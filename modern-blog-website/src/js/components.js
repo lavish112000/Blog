@@ -53,7 +53,7 @@ class ComponentsManager {
                         <h3>Quick Links</h3>
                         <ul class="footer-links">
                             <li><a href="#home">Home</a></li>
-                            <li><a href="#about">About Us</a></li>
+                            <li><a href="pages/about.html">About Us</a></li>
                             <li><a href="#contact">Contact</a></li>
                             <li><a href="#privacy">Privacy Policy</a></li>
                             <li><a href="#terms">Terms of Service</a></li>
@@ -341,6 +341,9 @@ class ComponentsManager {
             case 'pinterest':
                 shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${description}`;
                 break;
+            default:
+                console.warn(`Unknown social platform: ${platform}`);
+                return;
         }
         
         if (shareUrl) {

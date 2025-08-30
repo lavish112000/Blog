@@ -891,10 +891,32 @@ a:hover {
    ABOUT PAGE STYLES
    ===================================== */
 
+/* About Page Background */
+.about-page {
+    background: var(--gradient-primary);
+    min-height: 100vh;
+    color: var(--white);
+}
+
+/* About Page Global Text Styling */
+.about-page h1,
+.about-page h2,
+.about-page h3,
+.about-page h4,
+.about-page h5,
+.about-page h6 {
+    color: var(--white);
+}
+
+.about-page p,
+.about-page li {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 /* About Hero Section */
 .about-hero {
     padding: 120px 0 var(--spacing-3xl);
-    background: var(--gradient-primary);
+    background: transparent; /* Remove duplicate gradient since body has it */
     color: var(--white);
     position: relative;
     overflow: hidden;
@@ -974,7 +996,7 @@ a:hover {
 /* About Details Section */
 .about-details {
     padding: var(--spacing-3xl) 0;
-    background: var(--white);
+    background: transparent; /* Remove white background to show gradient */
 }
 
 .about-content-grid {
@@ -987,14 +1009,14 @@ a:hover {
 .about-intro h2 {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-lg);
-    color: var(--text-accent);
+    color: var(--white); /* Changed to white for gradient background */
 }
 
 .about-intro p {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: var(--spacing-lg);
-    color: var(--text-primary);
+    color: rgba(255, 255, 255, 0.9); /* Light white for readability on gradient */
 }
 
 .about-stats {
@@ -1027,7 +1049,7 @@ a:hover {
 /* Skills Section */
 .skills-section {
     padding: var(--spacing-3xl) 0;
-    background: var(--gray-50);
+    background: transparent; /* Remove gray background to show gradient */
 }
 
 .skills-grid {
@@ -1037,11 +1059,12 @@ a:hover {
 }
 
 .skill-category {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white for glass effect */
+    backdrop-filter: blur(10px);
     padding: var(--spacing-xl);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
-    border: 1px solid var(--gray-200);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .skill-header {
@@ -1061,7 +1084,7 @@ a:hover {
 
 .skill-header h3 {
     font-size: 1.5rem;
-    color: var(--text-secondary);
+    color: var(--white); /* Changed to white for visibility on gradient */
     margin: 0;
 }
 
@@ -1107,7 +1130,7 @@ a:hover {
 /* Experience Section */
 .experience-section {
     padding: var(--spacing-3xl) 0;
-    background: var(--white);
+    background: transparent; /* Remove white background to show gradient */
 }
 
 .experience-timeline {
@@ -1194,7 +1217,7 @@ a:hover {
 /* Services Section */
 .services-section {
     padding: var(--spacing-3xl) 0;
-    background: var(--gray-50);
+    background: transparent; /* Remove gray background to show gradient */
 }
 
 .services-grid {
@@ -1204,13 +1227,14 @@ a:hover {
 }
 
 .service-card {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent for glass effect */
+    backdrop-filter: blur(10px);
     padding: var(--spacing-xl);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
     text-align: center;
     transition: var(--transition-normal);
-    border: 1px solid var(--gray-200);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .service-card:hover {
@@ -1270,7 +1294,7 @@ a:hover {
 /* Portfolio Section */
 .portfolio-section {
     padding: var(--spacing-3xl) 0;
-    background: var(--white);
+    background: transparent; /* Remove white background to show gradient */
 }
 
 .portfolio-grid {
@@ -1339,7 +1363,7 @@ a:hover {
 /* Contact Section */
 .contact-section {
     padding: var(--spacing-3xl) 0;
-    background: var(--gray-50);
+    background: transparent; /* Remove gray background to show gradient */
 }
 
 .contact-grid {
@@ -1418,10 +1442,12 @@ a:hover {
 }
 
 .contact-form {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent for glass effect */
+    backdrop-filter: blur(10px);
     padding: var(--spacing-xl);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .form-group {
