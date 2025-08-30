@@ -4,18 +4,20 @@
 
 /* Blog Post Card Styles */
 .blog-card {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: var(--radius-xl);
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: var(--transition-normal);
     position: relative;
-    border: 1px solid var(--gray-200);
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .blog-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
+    border-color: rgba(102, 126, 234, 0.4);
 }
 
 .blog-card-image {
@@ -48,6 +50,7 @@
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-full);
     font-size: 0.875rem;
+    font-weight: 500;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;

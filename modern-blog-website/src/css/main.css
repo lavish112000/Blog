@@ -2,6 +2,9 @@
    MODERN BLOG WEBSITE - MAIN STYLES
    ===================================== */
 
+/* Import Brush Script Font */
+@import url('https://fonts.googleapis.com/css2?family=Brush+Script+MT:wght@400;700&display=swap');
+
 /* CSS Variables for Theme Colors */
 :root {
     /* Primary Gradient Colors */
@@ -11,6 +14,11 @@
     --gradient-success: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
     --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
     
+    /* Navigation Bar - Light Vibrant Blue */
+    --nav-background: linear-gradient(135deg, #40a9ff 0%, #1890ff 50%, #0066cc 100%);
+    --nav-text: #ffffff;
+    --nav-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    
     /* Solid Colors */
     --primary-color: #667eea;
     --secondary-color: #f5576c;
@@ -18,6 +26,14 @@
     --success-color: #43e97b;
     --warning-color: #fee140;
     --error-color: #ff6b6b;
+    
+    /* Text Colors for High Contrast */
+    --text-primary: #1a1a1a;
+    --text-secondary: #2c2c2c;
+    --text-accent: #0066cc;
+    --text-light: #ffffff;
+    --text-shadow-dark: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    --text-shadow-light: 1px 1px 2px rgba(255, 255, 255, 0.8);
     
     /* Neutral Colors */
     --white: #ffffff;
@@ -33,9 +49,10 @@
     --gray-800: #1f2937;
     --gray-900: #111827;
     
-    /* Typography */
-    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-display: 'Playfair Display', Georgia, serif;
+    /* Typography - Brush Script for all text */
+    --font-primary: 'Brush Script MT', 'Kalam', 'Caveat', 'Comic Sans MS', cursive;
+    --font-display: 'Brush Script MT', 'Kalam', 'Caveat', 'Comic Sans MS', cursive;
+    --font-fallback: 'Kalam', 'Caveat', 'Comic Sans MS', cursive, sans-serif;
     
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -110,44 +127,76 @@ html {
 }
 
 body {
-    font-family: var(--font-primary);
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--gray-800);
-    background-color: var(--white);
+    font-family: var(--font-primary), var(--font-fallback);
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
     overflow-x: hidden;
     transition: var(--transition-normal);
+    text-shadow: var(--text-shadow-light);
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--gray-900);
+    font-family: var(--font-display), var(--font-fallback);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
+    text-shadow: var(--text-shadow-light);
 }
 
-h1 { font-size: 3.5rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 2rem; }
+h1 { 
+    font-size: 3.8rem; 
+    color: var(--text-accent);
+    text-shadow: var(--text-shadow-dark);
+}
+h2 { 
+    font-size: 2.8rem; 
+    color: var(--text-secondary);
+}
+h3 { 
+    font-size: 2.2rem; 
+    color: var(--text-secondary);
+}
 h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1.125rem; }
+h4 { 
+    font-size: 1.6rem; 
+    color: var(--text-secondary);
+}
+h5 { 
+    font-size: 1.3rem; 
+    color: var(--text-secondary);
+}
+h6 { 
+    font-size: 1.15rem; 
+    color: var(--text-secondary);
+}
 
 p {
     margin-bottom: var(--spacing-md);
-    color: var(--gray-600);
+    color: var(--text-primary);
+    font-family: var(--font-primary), var(--font-fallback);
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-shadow: var(--text-shadow-light);
+    line-height: 1.8;
 }
 
 a {
-    color: var(--primary-color);
+    color: var(--text-accent);
     text-decoration: none;
     transition: var(--transition-fast);
+    font-family: var(--font-primary), var(--font-fallback);
+    font-weight: 500;
+    text-shadow: var(--text-shadow-light);
 }
 
 a:hover {
     color: var(--secondary-color);
+    text-shadow: var(--text-shadow-dark);
 }
 
 /* Utility Classes */
@@ -155,6 +204,29 @@ a:hover {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
+}
+
+/* Apply Brush Script font to all text elements */
+span, div, li, label, input, textarea, button, select {
+    font-family: var(--font-primary), var(--font-fallback) !important;
+}
+
+/* Ensure good contrast for all text elements */
+span, div:not(.navbar):not(.nav-container), li, label {
+    color: var(--text-primary);
+    text-shadow: var(--text-shadow-light);
+}
+
+/* Button text styling */
+button {
+    font-family: var(--font-primary), var(--font-fallback) !important;
+    font-weight: 500;
+}
+
+/* Input and form element styling */
+input, textarea, select {
+    font-family: var(--font-primary), var(--font-fallback) !important;
+    color: var(--text-primary) !important;
 }
 
 .gradient-text {
@@ -234,7 +306,12 @@ a:hover {
 }
 
 .navbar {
+    background: var(--nav-background);
     padding: var(--spacing-md) 0;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
 }
 
 .nav-container {
@@ -255,18 +332,18 @@ a:hover {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: var(--gray-900);
+    color: var(--nav-text);
     text-decoration: none;
+    font-family: var(--font-display), var(--font-fallback);
+    text-shadow: var(--nav-text-shadow);
 }
 
 .brand-logo i {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: 1.75rem;
+    color: var(--nav-text);
+    font-size: 2rem;
+    text-shadow: var(--nav-text-shadow);
 }
 
 .nav-menu {
@@ -287,29 +364,38 @@ a:hover {
 }
 
 .nav-link {
-    color: var(--gray-700);
-    font-weight: 500;
-    padding: var(--spacing-sm) 0;
+    color: var(--nav-text);
+    font-weight: 600;
+    font-family: var(--font-primary), var(--font-fallback);
+    font-size: 1.1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
     transition: var(--transition-fast);
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
+    text-decoration: none;
+    text-shadow: var(--nav-text-shadow);
+    border-radius: var(--radius-md);
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .nav-link.active::after {
     content: '';
     position: absolute;
     bottom: -8px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--gradient-primary);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: var(--nav-text);
     border-radius: var(--radius-full);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Dropdown Menu */
@@ -364,14 +450,28 @@ a:hover {
 .search-toggle,
 .theme-toggle,
 .nav-toggle {
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     padding: var(--spacing-sm);
     border-radius: var(--radius-full);
     cursor: pointer;
-    color: var(--gray-600);
+    color: var(--nav-text);
     transition: var(--transition-fast);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: var(--nav-text-shadow);
+}
+
+.search-toggle:hover,
+.theme-toggle:hover,
+.nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .search-toggle:hover,
@@ -509,18 +609,23 @@ a:hover {
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: var(--spacing-lg);
-    color: var(--white);
+    color: var(--text-light);
+    font-family: var(--font-display), var(--font-fallback);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
-    line-height: 1.6;
+    font-size: 1.4rem;
+    line-height: 1.7;
     margin-bottom: var(--spacing-xl);
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-light);
+    font-family: var(--font-primary), var(--font-fallback);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    font-weight: 500;
 }
 
 .hero-actions {
@@ -595,8 +700,9 @@ a:hover {
     justify-content: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-md) var(--spacing-xl);
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
+    font-family: var(--font-primary), var(--font-fallback);
     border: 2px solid transparent;
     border-radius: var(--radius-full);
     cursor: pointer;
@@ -604,28 +710,31 @@ a:hover {
     text-decoration: none;
     position: relative;
     overflow: hidden;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary {
     background: var(--gradient-secondary);
-    color: var(--white);
+    color: var(--text-light);
     border-color: transparent;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .btn-outline {
     background: transparent;
-    color: var(--white);
+    color: var(--text-light);
     border-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-outline:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Section Styles */
