@@ -4,14 +4,17 @@
   "description": "A modern, responsive blog website with enterprise-level UI design and vibrant color themes - featuring dynamic content, advanced search, theme switching, and professional components",
   "main": "src/index.html",
   "scripts": {
-    "start": "webpack serve --mode development --open",
+    "start": "http-server src -p 8080 -o",
+    "dev": "http-server src -p 3000 -o",
+    "serve": "python3 -m http.server 8080",
+    "live": "live-server src --port=5500",
     "build": "webpack --mode production",
-    "dev": "webpack serve --mode development",
     "watch": "webpack --mode development --watch",
     "clean": "rm -rf dist",
     "lint": "eslint src/js/**/*.js",
+    "lint:fix": "eslint src/js/**/*.js --fix",
     "format": "prettier --write src/**/*.{js,css,html}",
-    "serve": "http-server dist -p 8080 -o",
+    "format:check": "prettier --check src/**/*.{js,css,html}",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "keywords": [
@@ -32,20 +35,20 @@
   "author": "GitHub Copilot",
   "license": "MIT",
   "dependencies": {
-    "babel-loader": "^8.0.0",
-    "css-loader": "^5.0.0",
-    "html-webpack-plugin": "^5.0.0",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.0.0",
-    "webpack-dev-server": "^3.0.0"
+    "http-server": "^14.1.1"
   },
   "devDependencies": {
-    "babel-loader": "^8.0.0",
-    "css-loader": "^5.0.0",
-    "html-webpack-plugin": "^5.0.0",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.0.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^3.0.0"
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.0",
+    "webpack-dev-server": "^4.15.0",
+    "html-webpack-plugin": "^5.5.0",
+    "css-loader": "^6.8.0",
+    "style-loader": "^3.3.0",
+    "babel-loader": "^9.1.0",
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "eslint": "^8.44.0",
+    "prettier": "^3.0.0",
+    "live-server": "^1.2.2"
   }
 }
