@@ -1,0 +1,92 @@
+{
+  "folders": [
+    {
+      "name": "Modern Blog Website",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "files.autoSave": "onFocusChange",
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact"
+    },
+    "html.format.wrapLineLength": 100,
+    "css.validate": true,
+    "javascript.validate.enable": true,
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.root": "/src",
+    "liveServer.settings.CustomBrowser": "chrome",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true
+  },
+  "extensions": {
+    "recommendations": [
+      "ritwickdey.liveserver",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "formulahendry.auto-rename-tag",
+      "coenraads.bracket-pair-colorizer-2",
+      "ecmel.vscode-html-css",
+      "xabikos.javascriptsnippets",
+      "eamodio.gitlens",
+      "naumovs.color-highlight",
+      "christian-kohler.path-intellisense",
+      "ms-vscode.vscode-json"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Start Development Server",
+        "type": "shell",
+        "command": "npm",
+        "args": ["start"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new"
+        },
+        "problemMatcher": [],
+        "detail": "Start the development server using http-server"
+      },
+      {
+        "label": "Format Code",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "format"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Lint JavaScript",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "lint"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new"
+        },
+        "problemMatcher": ["$eslint-stylish"]
+      }
+    ]
+  }
+}
