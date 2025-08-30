@@ -892,25 +892,40 @@ a:hover {
    ===================================== */
 
 /* About Page Background */
-.about-page {
-    background: var(--gradient-primary);
-    min-height: 100vh;
-    color: var(--white);
+html.about-page,
+body.about-page {
+    background: var(--gradient-primary) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh !important;
+    color: var(--white) !important;
+}
+
+/* Ensure gradient shows through all containers */
+body.about-page,
+body.about-page *:not(.nav-menu):not(.skill-category):not(.service-card):not(.contact-form) {
+    background-color: transparent !important;
+}
+
+/* Override any white/gray backgrounds specifically in about page */
+body.about-page .container,
+body.about-page main,
+body.about-page section:not(.hero) {
+    background: transparent !important;
 }
 
 /* About Page Global Text Styling */
-.about-page h1,
-.about-page h2,
-.about-page h3,
-.about-page h4,
-.about-page h5,
-.about-page h6 {
-    color: var(--white);
+body.about-page h1,
+body.about-page h2,
+body.about-page h3,
+body.about-page h4,
+body.about-page h5,
+body.about-page h6 {
+    color: var(--white) !important;
 }
 
-.about-page p,
-.about-page li {
-    color: rgba(255, 255, 255, 0.9);
+body.about-page p,
+body.about-page li {
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* About Hero Section */
@@ -1610,4 +1625,31 @@ a:hover {
     .timeline-item::before {
         left: 11px;
     }
+}
+
+/* =====================================
+   ABOUT PAGE GRADIENT OVERRIDE
+   Force gradient background on about page
+   ===================================== */
+.about-page,
+.about-page body,
+html.about-page,
+html.about-page body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh !important;
+}
+
+/* Force transparent backgrounds for about page sections */
+.about-page section,
+.about-page .container,
+.about-page main,
+.about-page .about-details,
+.about-page .skills-section,
+.about-page .experience-section,
+.about-page .services-section,
+.about-page .portfolio-section,
+.about-page .contact-section {
+    background: transparent !important;
+    background-color: transparent !important;
 }
