@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "The Future of Web Development",
+        "content": "Web development is evolving rapidly, with new technologies and frameworks emerging every day. In this post, we explore the trends shaping the future of web development and how developers can stay ahead of the curve.",
+        "author": "Jane Doe",
+        "date": "2023-10-01",
+        "tags": ["Web Development", "Technology", "Trends"]
+    },
+    {
+        "id": 2,
+        "title": "Understanding JavaScript Closures",
+        "content": "Closures are a fundamental concept in JavaScript that allow functions to maintain access to their lexical scope. This post dives deep into closures, providing examples and use cases to help you understand their importance.",
+        "author": "John Smith",
+        "date": "2023-10-05",
+        "tags": ["JavaScript", "Programming", "Closures"]
+    },
+    {
+        "id": 3,
+        "title": "A Guide to Responsive Design",
+        "content": "Responsive design is crucial for creating websites that look great on all devices. In this guide, we cover the principles of responsive design and provide tips for implementing it effectively.",
+        "author": "Emily Johnson",
+        "date": "2023-10-10",
+        "tags": ["Design", "Responsive", "UX"]
+    },
+    {
+        "id": 4,
+        "title": "Exploring CSS Grid Layout",
+        "content": "CSS Grid Layout is a powerful tool for creating complex web layouts. This post explores the features of CSS Grid and provides practical examples to help you get started.",
+        "author": "Michael Brown",
+        "date": "2023-10-15",
+        "tags": ["CSS", "Layout", "Grid"]
+    },
+    {
+        "id": 5,
+        "title": "Getting Started with React",
+        "content": "React is one of the most popular JavaScript libraries for building user interfaces. In this post, we provide an introduction to React, covering its core concepts and how to create your first application.",
+        "author": "Sarah Wilson",
+        "date": "2023-10-20",
+        "tags": ["React", "JavaScript", "Frontend"]
+    }
+]
