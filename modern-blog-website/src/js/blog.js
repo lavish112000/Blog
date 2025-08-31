@@ -37,97 +37,109 @@ class BlogManager {
         return [
             {
                 id: 1,
-                title: "The Future of Web Development: Trends to Watch in 2024",
-                content: "Web development is evolving rapidly, with new technologies and frameworks emerging every day. In this comprehensive guide, we explore the cutting-edge trends that are shaping the future of web development and how developers can stay ahead of the curve. From WebAssembly to AI-powered development tools, discover what's coming next.",
-                excerpt: "Explore the cutting-edge trends shaping the future of web development in 2024, from WebAssembly to AI-powered tools.",
-                author: "Jane Doe",
-                authorAvatar: "JD",
-                date: "2024-01-15",
-                readTime: "8 min read",
-                tags: ["Web Development", "Technology", "Trends", "Future"],
-                category: "technology",
+                title: 'The Future of Web Development: Trends to Watch in 2024',
+                content:
+                    'Web development is evolving rapidly, with new technologies and frameworks emerging every day. In this comprehensive guide, we explore the cutting-edge trends that are shaping the future of web development and how developers can stay ahead of the curve. From WebAssembly to AI-powered development tools, discover what\'s coming next.',
+                excerpt:
+                    'Explore the cutting-edge trends shaping the future of web development in 2024, from WebAssembly to AI-powered tools.',
+                author: 'Jane Doe',
+                authorAvatar: 'JD',
+                date: '2024-01-15',
+                readTime: '8 min read',
+                tags: ['Web Development', 'Technology', 'Trends', 'Future'],
+                category: 'technology',
                 featured: true,
-                image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800",
+                image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800',
                 views: 1250,
                 comments: 45
             },
             {
                 id: 2,
-                title: "Understanding JavaScript Closures: A Deep Dive",
-                content: "Closures are a fundamental concept in JavaScript that allow functions to maintain access to their lexical scope. This comprehensive post dives deep into closures, providing practical examples and use cases to help you understand their importance and power in modern JavaScript development.",
-                excerpt: "Master JavaScript closures with practical examples and learn how they work under the hood.",
-                author: "John Smith",
-                authorAvatar: "JS",
-                date: "2024-01-12",
-                readTime: "6 min read",
-                tags: ["JavaScript", "Programming", "Closures", "Development"],
-                category: "technology",
+                title: 'Understanding JavaScript Closures: A Deep Dive',
+                content:
+                    'Closures are a fundamental concept in JavaScript that allow functions to maintain access to their lexical scope. This comprehensive post dives deep into closures, providing practical examples and use cases to help you understand their importance and power in modern JavaScript development.',
+                excerpt:
+                    'Master JavaScript closures with practical examples and learn how they work under the hood.',
+                author: 'John Smith',
+                authorAvatar: 'JS',
+                date: '2024-01-12',
+                readTime: '6 min read',
+                tags: ['JavaScript', 'Programming', 'Closures', 'Development'],
+                category: 'technology',
                 featured: false,
-                image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800",
+                image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800',
                 views: 890,
                 comments: 23
             },
             {
                 id: 3,
-                title: "A Complete Guide to Responsive Design Principles",
-                content: "Responsive design is crucial for creating websites that look great on all devices. In this comprehensive guide, we cover the fundamental principles of responsive design and provide practical tips for implementing it effectively across different screen sizes and devices.",
-                excerpt: "Learn the essential principles of responsive design and create websites that work perfectly on any device.",
-                author: "Emily Johnson",
-                authorAvatar: "EJ",
-                date: "2024-01-10",
-                readTime: "10 min read",
-                tags: ["Design", "Responsive", "UX", "CSS"],
-                category: "design",
+                title: 'A Complete Guide to Responsive Design Principles',
+                content:
+                    'Responsive design is crucial for creating websites that look great on all devices. In this comprehensive guide, we cover the fundamental principles of responsive design and provide practical tips for implementing it effectively across different screen sizes and devices.',
+                excerpt:
+                    'Learn the essential principles of responsive design and create websites that work perfectly on any device.',
+                author: 'Emily Johnson',
+                authorAvatar: 'EJ',
+                date: '2024-01-10',
+                readTime: '10 min read',
+                tags: ['Design', 'Responsive', 'UX', 'CSS'],
+                category: 'design',
                 featured: true,
-                image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800",
+                image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800',
                 views: 1580,
                 comments: 67
             },
             {
                 id: 4,
-                title: "Exploring CSS Grid Layout: Advanced Techniques",
-                content: "CSS Grid Layout is a powerful tool for creating complex web layouts with ease. This post explores advanced CSS Grid techniques, providing practical examples and best practices to help you create sophisticated layouts that were previously impossible or difficult to achieve.",
-                excerpt: "Discover advanced CSS Grid techniques and create sophisticated layouts with ease.",
-                author: "Michael Brown",
-                authorAvatar: "MB",
-                date: "2024-01-08",
-                readTime: "7 min read",
-                tags: ["CSS", "Grid", "Layout", "Web Design"],
-                category: "design",
+                title: 'Exploring CSS Grid Layout: Advanced Techniques',
+                content:
+                    'CSS Grid Layout is a powerful tool for creating complex web layouts with ease. This post explores advanced CSS Grid techniques, providing practical examples and best practices to help you create sophisticated layouts that were previously impossible or difficult to achieve.',
+                excerpt:
+                    'Discover advanced CSS Grid techniques and create sophisticated layouts with ease.',
+                author: 'Michael Brown',
+                authorAvatar: 'MB',
+                date: '2024-01-08',
+                readTime: '7 min read',
+                tags: ['CSS', 'Grid', 'Layout', 'Web Design'],
+                category: 'design',
                 featured: false,
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800",
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800',
                 views: 720,
                 comments: 31
             },
             {
                 id: 5,
-                title: "Building Scalable Business Solutions",
-                content: "As businesses grow, their software needs become more complex. This article explores strategies for building scalable business solutions that can grow with your organization, covering architecture patterns, technology choices, and best practices for enterprise development.",
-                excerpt: "Learn how to build business solutions that scale with your organization's growth.",
-                author: "Sarah Wilson",
-                authorAvatar: "SW",
-                date: "2024-01-05",
-                readTime: "9 min read",
-                tags: ["Business", "Scalability", "Enterprise", "Architecture"],
-                category: "business",
+                title: 'Building Scalable Business Solutions',
+                content:
+                    'As businesses grow, their software needs become more complex. This article explores strategies for building scalable business solutions that can grow with your organization, covering architecture patterns, technology choices, and best practices for enterprise development.',
+                excerpt:
+                    'Learn how to build business solutions that scale with your organization\'s growth.',
+                author: 'Sarah Wilson',
+                authorAvatar: 'SW',
+                date: '2024-01-05',
+                readTime: '9 min read',
+                tags: ['Business', 'Scalability', 'Enterprise', 'Architecture'],
+                category: 'business',
                 featured: true,
-                image: "https://images.unsplash.com/photo-1560472355-a9a6e19f4b13?w=800",
+                image: 'https://images.unsplash.com/photo-1560472355-a9a6e19f4b13?w=800',
                 views: 950,
                 comments: 19
             },
             {
                 id: 6,
-                title: "Modern Lifestyle and Digital Wellness",
-                content: "In our increasingly digital world, maintaining a healthy balance between technology use and personal wellbeing is more important than ever. This article explores practical strategies for achieving digital wellness in modern life.",
-                excerpt: "Discover strategies for maintaining digital wellness in our connected world.",
-                author: "Alex Chen",
-                authorAvatar: "AC",
-                date: "2024-01-03",
-                readTime: "5 min read",
-                tags: ["Lifestyle", "Digital Wellness", "Health", "Balance"],
-                category: "lifestyle",
+                title: 'Modern Lifestyle and Digital Wellness',
+                content:
+                    'In our increasingly digital world, maintaining a healthy balance between technology use and personal wellbeing is more important than ever. This article explores practical strategies for achieving digital wellness in modern life.',
+                excerpt:
+                    'Discover strategies for maintaining digital wellness in our connected world.',
+                author: 'Alex Chen',
+                authorAvatar: 'AC',
+                date: '2024-01-03',
+                readTime: '5 min read',
+                tags: ['Lifestyle', 'Digital Wellness', 'Health', 'Balance'],
+                category: 'lifestyle',
                 featured: false,
-                image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800",
+                image: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800',
                 views: 630,
                 comments: 12
             }
@@ -139,8 +151,10 @@ class BlogManager {
         if (!featuredGrid) return;
 
         const featuredPosts = this.posts.filter(post => post.featured).slice(0, 3);
-        
-        featuredGrid.innerHTML = featuredPosts.map(post => `
+
+        featuredGrid.innerHTML = featuredPosts
+            .map(
+                post => `
             <article class="featured-card" data-category="${post.category}">
                 <div class="featured-card-content">
                     <div class="featured-badge">
@@ -161,9 +175,13 @@ class BlogManager {
                     </div>
                     <div class="blog-card-footer">
                         <div class="blog-card-tags">
-                            ${post.tags.slice(0, 2).map(tag => 
-                                `<a href="#" class="blog-tag" onclick="blogManager.filterByTag('${tag}')">${tag}</a>`
-                            ).join('')}
+                            ${post.tags
+        .slice(0, 2)
+        .map(
+            tag =>
+                `<a href="#" class="blog-tag" onclick="blogManager.filterByTag('${tag}')">${tag}</a>`
+        )
+        .join('')}
                         </div>
                         <a href="#" class="read-more" onclick="blogManager.openPost(${post.id})">
                             Read More <i class="fas fa-arrow-right"></i>
@@ -171,7 +189,9 @@ class BlogManager {
                     </div>
                 </div>
             </article>
-        `).join('');
+        `
+            )
+            .join('');
     }
 
     renderBlogPosts() {
@@ -179,11 +199,14 @@ class BlogManager {
         if (!postsGrid) return;
 
         let filteredPosts = this.posts;
-        
+
         if (this.currentFilter !== 'all') {
-            filteredPosts = this.posts.filter(post => 
-                post.category === this.currentFilter || 
-                post.tags.some(tag => tag.toLowerCase().includes(this.currentFilter.toLowerCase()))
+            filteredPosts = this.posts.filter(
+                post =>
+                    post.category === this.currentFilter ||
+                    post.tags.some(tag =>
+                        tag.toLowerCase().includes(this.currentFilter.toLowerCase())
+                    )
             );
         }
 
@@ -191,7 +214,9 @@ class BlogManager {
         const endIndex = this.currentPage * this.postsPerPage;
         const postsToShow = filteredPosts.slice(startIndex, endIndex);
 
-        postsGrid.innerHTML = postsToShow.map(post => `
+        postsGrid.innerHTML = postsToShow
+            .map(
+                post => `
             <article class="blog-card fade-in-up" data-category="${post.category}">
                 <div class="blog-card-image">
                     <img src="${post.image}" alt="${post.title}" loading="lazy">
@@ -216,9 +241,13 @@ class BlogManager {
                     </div>
                     <div class="blog-card-footer">
                         <div class="blog-card-tags">
-                            ${post.tags.slice(0, 3).map(tag => 
-                                `<a href="#" class="blog-tag" onclick="blogManager.filterByTag('${tag}')">${tag}</a>`
-                            ).join('')}
+                            ${post.tags
+        .slice(0, 3)
+        .map(
+            tag =>
+                `<a href="#" class="blog-tag" onclick="blogManager.filterByTag('${tag}')">${tag}</a>`
+        )
+        .join('')}
                         </div>
                         <a href="#" class="read-more" onclick="blogManager.openPost(${post.id})">
                             Read More <i class="fas fa-arrow-right"></i>
@@ -226,7 +255,9 @@ class BlogManager {
                     </div>
                 </div>
             </article>
-        `).join('');
+        `
+            )
+            .join('');
 
         // Show/hide load more button
         const loadMoreBtn = document.getElementById('load-more-btn');
@@ -250,9 +281,7 @@ class BlogManager {
             return;
         }
 
-        const popularPosts = [...this.posts]
-            .sort((a, b) => b.views - a.views)
-            .slice(0, 5);
+        const popularPosts = [...this.posts].sort((a, b) => b.views - a.views).slice(0, 5);
 
         const widget = `
             <div class="sidebar-widget">
@@ -261,7 +290,9 @@ class BlogManager {
                     Popular Posts
                 </h3>
                 <div class="popular-posts">
-                    ${popularPosts.map(post => `
+                    ${popularPosts
+        .map(
+            post => `
                         <div class="popular-post">
                             <div class="popular-post-image">
                                 <img src="${post.image}" alt="${post.title}">
@@ -273,7 +304,9 @@ class BlogManager {
                                 <div class="popular-post-date">${this.formatDate(post.date)}</div>
                             </div>
                         </div>
-                    `).join('')}
+                    `
+        )
+        .join('')}
                 </div>
             </div>
         `;
@@ -295,14 +328,18 @@ class BlogManager {
                     Categories
                 </h3>
                 <ul class="category-list">
-                    ${categoryCounts.map(category => `
+                    ${categoryCounts
+        .map(
+            category => `
                         <li class="category-item">
                             <a href="#" class="category-link" onclick="blogManager.filterPosts('${category.name}')">
                                 ${this.capitalize(category.name)}
                             </a>
                             <span class="category-count">${category.count}</span>
                         </li>
-                    `).join('')}
+                    `
+        )
+        .join('')}
                 </ul>
             </div>
         `;
@@ -313,13 +350,13 @@ class BlogManager {
     renderTagsCloud() {
         const allTags = this.posts.flatMap(post => post.tags);
         const tagCounts = {};
-        
+
         allTags.forEach(tag => {
             tagCounts[tag] = (tagCounts[tag] || 0) + 1;
         });
 
         const sortedTags = Object.entries(tagCounts)
-            .sort(([,a], [,b]) => b - a)
+            .sort(([, a], [, b]) => b - a)
             .slice(0, 15);
 
         const widget = `
@@ -329,11 +366,15 @@ class BlogManager {
                     Popular Tags
                 </h3>
                 <div class="tags-cloud">
-                    ${sortedTags.map(([tag, count]) => `
+                    ${sortedTags
+        .map(
+            ([tag, _count]) => `
                         <a href="#" class="tag-cloud-item" onclick="blogManager.filterByTag('${tag}')">
                             ${tag}
                         </a>
-                    `).join('')}
+                    `
+        )
+        .join('')}
                 </div>
             </div>
         `;
@@ -362,7 +403,7 @@ class BlogManager {
     filterPosts(category) {
         this.currentFilter = category;
         this.currentPage = 1;
-        
+
         // Update active filter tab
         document.querySelectorAll('.filter-tab').forEach(tab => {
             tab.classList.remove('active');
@@ -378,7 +419,7 @@ class BlogManager {
     filterByTag(tag) {
         this.currentFilter = tag.toLowerCase();
         this.currentPage = 1;
-        
+
         // Update filter tabs to show "all" as active since we're filtering by tag
         document.querySelectorAll('.filter-tab').forEach(tab => {
             tab.classList.remove('active');
@@ -447,14 +488,14 @@ class BlogManager {
         `;
 
         document.body.appendChild(modal);
-        modal.addEventListener('click', (e) => {
+        modal.addEventListener('click', e => {
             if (e.target === modal || e.target.classList.contains('post-modal-close')) {
                 modal.remove();
             }
         });
 
         // Add escape key listener
-        const escapeHandler = (e) => {
+        const escapeHandler = e => {
             if (e.key === 'Escape') {
                 modal.remove();
                 document.removeEventListener('keydown', escapeHandler);
@@ -468,10 +509,10 @@ class BlogManager {
         if (!searchInput) return;
 
         let searchTimeout;
-        searchInput.addEventListener('input', (e) => {
+        searchInput.addEventListener('input', e => {
             clearTimeout(searchTimeout);
             const query = e.target.value.trim().toLowerCase();
-            
+
             if (query.length > 2) {
                 searchTimeout = setTimeout(() => {
                     this.performSearch(query);
@@ -484,12 +525,13 @@ class BlogManager {
     }
 
     performSearch(query) {
-        const searchResults = this.posts.filter(post => 
-            post.title.toLowerCase().includes(query) ||
-            post.content.toLowerCase().includes(query) ||
-            post.excerpt.toLowerCase().includes(query) ||
-            post.tags.some(tag => tag.toLowerCase().includes(query)) ||
-            post.author.toLowerCase().includes(query)
+        const searchResults = this.posts.filter(
+            post =>
+                post.title.toLowerCase().includes(query) ||
+                post.content.toLowerCase().includes(query) ||
+                post.excerpt.toLowerCase().includes(query) ||
+                post.tags.some(tag => tag.toLowerCase().includes(query)) ||
+                post.author.toLowerCase().includes(query)
         );
 
         this.renderSearchResults(searchResults, query);
@@ -510,7 +552,9 @@ class BlogManager {
             return;
         }
 
-        postsGrid.innerHTML = results.map(post => `
+        postsGrid.innerHTML = results
+            .map(
+                post => `
             <article class="blog-card search-result fade-in-up" data-category="${post.category}">
                 <div class="blog-card-image">
                     <img src="${post.image}" alt="${post.title}" loading="lazy">
@@ -530,9 +574,10 @@ class BlogManager {
                     <p class="blog-card-excerpt">${this.highlightSearchTerm(post.excerpt, query)}</p>
                     <div class="blog-card-footer">
                         <div class="blog-card-tags">
-                            ${post.tags.slice(0, 3).map(tag => 
-                                `<a href="#" class="blog-tag">${tag}</a>`
-                            ).join('')}
+                            ${post.tags
+        .slice(0, 3)
+        .map(tag => `<a href="#" class="blog-tag">${tag}</a>`)
+        .join('')}
                         </div>
                         <a href="#" class="read-more" onclick="blogManager.openPost(${post.id})">
                             Read More <i class="fas fa-arrow-right"></i>
@@ -540,7 +585,9 @@ class BlogManager {
                     </div>
                 </div>
             </article>
-        `).join('');
+        `
+            )
+            .join('');
 
         // Hide load more button for search results
         const loadMoreBtn = document.getElementById('load-more-btn');
@@ -557,7 +604,7 @@ class BlogManager {
     handleNewsletterSubmit(event) {
         event.preventDefault();
         const email = event.target.querySelector('input[type="email"]').value;
-        
+
         if (this.validateEmail(email)) {
             this.showNotification('Thank you for subscribing to our newsletter!', 'success');
             event.target.reset();
@@ -578,9 +625,9 @@ class BlogManager {
             <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
             <span>${message}</span>
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         setTimeout(() => notification.classList.add('show'), 100);
         setTimeout(() => {
             notification.classList.remove('show');
@@ -623,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Function to display blog posts
-    const displayPosts = (posts) => {
+    const displayPosts = posts => {
         blogContainer.innerHTML = '';
         posts.forEach(post => {
             const postElement = document.createElement('div');
