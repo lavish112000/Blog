@@ -21,7 +21,7 @@ class ModernBlog {
         // Navigation toggle
         const navToggle = document.getElementById('nav-toggle');
         const navMenu = document.getElementById('nav-menu');
-        
+
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
@@ -49,7 +49,7 @@ class ModernBlog {
         }
 
         if (searchOverlay) {
-            searchOverlay.addEventListener('click', (e) => {
+            searchOverlay.addEventListener('click', e => {
                 if (e.target === searchOverlay) {
                     searchOverlay.classList.remove('active');
                 }
@@ -67,7 +67,7 @@ class ModernBlog {
         // Newsletter form
         const newsletterForm = document.getElementById('newsletter-form');
         if (newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
+            newsletterForm.addEventListener('submit', e => {
                 this.handleNewsletterSubmit(e);
             });
         }
@@ -86,7 +86,7 @@ class ModernBlog {
         // Filter tabs
         const filterTabs = document.querySelectorAll('.filter-tab');
         filterTabs.forEach(tab => {
-            tab.addEventListener('click', (e) => {
+            tab.addEventListener('click', e => {
                 this.handleFilterTab(e.target);
             });
         });
@@ -100,7 +100,7 @@ class ModernBlog {
         }
 
         // Escape key handlers
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 if (searchOverlay.classList.contains('active')) {
                     searchOverlay.classList.remove('active');
@@ -116,10 +116,10 @@ class ModernBlog {
     initializeComponents() {
         // Initialize reading progress bar
         this.initReadingProgress();
-        
+
         // Initialize intersection observer for animations
         this.initScrollAnimations();
-        
+
         // Initialize search functionality
         this.initSearch();
     }
@@ -139,7 +139,6 @@ class ModernBlog {
     }
 
     setupScrollEffects() {
-        let lastScrollY = window.scrollY;
         const header = document.getElementById('header');
         const backToTop = document.getElementById('back-to-top');
 
@@ -163,15 +162,13 @@ class ModernBlog {
                     backToTop.classList.remove('visible');
                 }
             }
-
-            lastScrollY = currentScrollY;
         });
     }
 
     initializeTheme() {
         const savedTheme = localStorage.getItem('blog-theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
+
         if (savedTheme) {
             document.documentElement.setAttribute('data-theme', savedTheme);
         } else if (prefersDark) {
@@ -184,7 +181,7 @@ class ModernBlog {
     toggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('blog-theme', newTheme);
         this.updateThemeIcon();
@@ -193,7 +190,7 @@ class ModernBlog {
     updateThemeIcon() {
         const themeToggle = document.getElementById('theme-toggle');
         const currentTheme = document.documentElement.getAttribute('data-theme');
-        
+
         if (themeToggle) {
             const icon = themeToggle.querySelector('i');
             if (icon) {
@@ -204,10 +201,10 @@ class ModernBlog {
 
     handleNewsletterSubmit(e) {
         e.preventDefault();
-        
+
         const formData = new FormData(e.target);
         const email = formData.get('email');
-        
+
         if (this.validateEmail(email)) {
             this.showNotification('Thank you for subscribing!', 'success');
             e.target.reset();
@@ -226,10 +223,10 @@ class ModernBlog {
         document.querySelectorAll('.filter-tab').forEach(tab => {
             tab.classList.remove('active');
         });
-        
+
         // Add active class to clicked tab
         clickedTab.classList.add('active');
-        
+
         // Filter posts based on selected category
         const filter = clickedTab.dataset.filter;
         this.filterPosts(filter);
@@ -237,7 +234,7 @@ class ModernBlog {
 
     filterPosts(filter) {
         const posts = document.querySelectorAll('.blog-card');
-        
+
         posts.forEach(post => {
             if (filter === 'all' || post.dataset.category === filter) {
                 post.style.display = 'block';
@@ -251,16 +248,16 @@ class ModernBlog {
     loadMorePosts() {
         const loadMoreBtn = document.getElementById('load-more-btn');
         const postsGrid = document.getElementById('posts-grid');
-        
+
         if (loadMoreBtn) {
             loadMoreBtn.textContent = 'Loading...';
             loadMoreBtn.disabled = true;
-            
+
             // Simulate API call
             setTimeout(() => {
                 // In a real application, you would fetch new posts from an API
                 this.addMorePosts(postsGrid);
-                
+
                 loadMoreBtn.textContent = 'Load More Articles';
                 loadMoreBtn.disabled = false;
             }, 1000);
@@ -272,18 +269,20 @@ class ModernBlog {
         // For demo purposes, we'll add placeholder posts
         const newPosts = [
             {
-                title: "Advanced CSS Grid Techniques",
-                excerpt: "Discover advanced CSS Grid techniques that will revolutionize your layout design process.",
-                author: "Sarah Wilson",
-                date: "2024-01-15",
-                category: "design"
+                title: 'Advanced CSS Grid Techniques',
+                excerpt:
+                    'Discover advanced CSS Grid techniques that will revolutionize your layout design process.',
+                author: 'Sarah Wilson',
+                date: '2024-01-15',
+                category: 'design'
             },
             {
-                title: "Machine Learning Basics",
-                excerpt: "An introduction to machine learning concepts and their practical applications.",
-                author: "David Chen",
-                date: "2024-01-14",
-                category: "technology"
+                title: 'Machine Learning Basics',
+                excerpt:
+                    'An introduction to machine learning concepts and their practical applications.',
+                author: 'David Chen',
+                date: '2024-01-14',
+                category: 'technology'
             }
         ];
 
@@ -297,7 +296,7 @@ class ModernBlog {
         const article = document.createElement('article');
         article.className = 'blog-card fade-in-up';
         article.dataset.category = post.category;
-        
+
         article.innerHTML = `
             <div class="blog-card-image">
                 <div class="blog-card-category">${post.category}</div>
@@ -324,7 +323,7 @@ class ModernBlog {
                 </div>
             </div>
         `;
-        
+
         return article;
     }
 
@@ -340,16 +339,19 @@ class ModernBlog {
     }
 
     initScrollAnimations() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
 
         // Observe all elements that should animate on scroll
         document.querySelectorAll('.blog-card, .featured-card, .sidebar-widget').forEach(el => {
@@ -360,15 +362,15 @@ class ModernBlog {
     initSearch() {
         const searchInput = document.getElementById('search-input');
         const searchSuggestions = document.getElementById('search-suggestions');
-        
+
         if (!searchInput || !searchSuggestions) return;
 
         let searchTimeout;
-        
-        searchInput.addEventListener('input', (e) => {
+
+        searchInput.addEventListener('input', e => {
             clearTimeout(searchTimeout);
             const query = e.target.value.trim();
-            
+
             if (query.length > 2) {
                 searchTimeout = setTimeout(() => {
                     this.performSearch(query, searchSuggestions);
@@ -382,30 +384,31 @@ class ModernBlog {
     performSearch(query, suggestionsContainer) {
         // In a real application, this would make an API call
         const mockResults = [
-            { title: "JavaScript Best Practices", type: "article" },
-            { title: "CSS Grid Guide", type: "tutorial" },
-            { title: "React Hooks", type: "article" }
-        ].filter(item => 
-            item.title.toLowerCase().includes(query.toLowerCase())
-        );
+            { title: 'JavaScript Best Practices', type: 'article' },
+            { title: 'CSS Grid Guide', type: 'tutorial' },
+            { title: 'React Hooks', type: 'article' }
+        ].filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
 
         suggestionsContainer.innerHTML = mockResults
-            .map(result => `
+            .map(
+                result => `
                 <div class="search-suggestion">
                     <i class="fas fa-search"></i>
                     <span>${result.title}</span>
                     <small>${result.type}</small>
                 </div>
-            `).join('');
+            `
+            )
+            .join('');
     }
 
     showNotification(message, type = 'info') {
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.textContent = message;
-        
+
         document.body.appendChild(notification);
-        
+
         setTimeout(() => notification.classList.add('show'), 100);
         setTimeout(() => {
             notification.classList.remove('show');

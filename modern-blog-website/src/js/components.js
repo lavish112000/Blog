@@ -23,7 +23,7 @@ class ComponentsManager {
                 <div class="reading-progress-bar"></div>
             </div>
         `;
-        
+
         // Insert reading progress bar if not already present
         if (!document.querySelector('.reading-progress')) {
             document.body.insertAdjacentHTML('afterbegin', headerContent);
@@ -96,13 +96,13 @@ class ComponentsManager {
 
         // Add search widget
         this.addSearchWidget(sidebar);
-        
+
         // Add author info widget
         this.addAuthorWidget(sidebar);
-        
+
         // Add recent comments widget
         this.addRecentCommentsWidget(sidebar);
-        
+
         // Add social media widget
         this.addSocialMediaWidget(sidebar);
     }
@@ -156,22 +156,22 @@ class ComponentsManager {
     addRecentCommentsWidget(sidebar) {
         const recentComments = [
             {
-                author: "Mike Johnson",
-                comment: "Great article! Really helped me understand the concepts better.",
-                post: "Understanding JavaScript Closures",
-                date: "2 hours ago"
+                author: 'Mike Johnson',
+                comment: 'Great article! Really helped me understand the concepts better.',
+                post: 'Understanding JavaScript Closures',
+                date: '2 hours ago'
             },
             {
-                author: "Sarah Chen",
-                comment: "The examples were perfect. Thanks for sharing!",
-                post: "CSS Grid Layout Guide",
-                date: "5 hours ago"
+                author: 'Sarah Chen',
+                comment: 'The examples were perfect. Thanks for sharing!',
+                post: 'CSS Grid Layout Guide',
+                date: '5 hours ago'
             },
             {
-                author: "Alex Rodriguez",
-                comment: "Looking forward to more content like this.",
-                post: "Web Development Trends",
-                date: "1 day ago"
+                author: 'Alex Rodriguez',
+                comment: 'Looking forward to more content like this.',
+                post: 'Web Development Trends',
+                date: '1 day ago'
             }
         ];
 
@@ -182,7 +182,9 @@ class ComponentsManager {
                     Recent Comments
                 </h3>
                 <div class="recent-comments">
-                    ${recentComments.map(comment => `
+                    ${recentComments
+        .map(
+            comment => `
                         <div class="recent-comment">
                             <div class="comment-author">
                                 <div class="comment-avatar">${comment.author.charAt(0)}</div>
@@ -194,7 +196,9 @@ class ComponentsManager {
                             <p class="comment-text">${comment.comment}</p>
                             <div class="comment-post">On: <a href="#">${comment.post}</a></div>
                         </div>
-                    `).join('')}
+                    `
+        )
+        .join('')}
                 </div>
             </div>
         `;
@@ -253,13 +257,13 @@ class ComponentsManager {
 
     initializeTooltips() {
         // Add tooltip functionality for elements with data-tooltip attribute
-        document.addEventListener('mouseover', (e) => {
+        document.addEventListener('mouseover', e => {
             if (e.target.hasAttribute('data-tooltip')) {
                 this.showTooltip(e.target, e.target.getAttribute('data-tooltip'));
             }
         });
 
-        document.addEventListener('mouseout', (e) => {
+        document.addEventListener('mouseout', e => {
             if (e.target.hasAttribute('data-tooltip')) {
                 this.hideTooltip();
             }
@@ -270,13 +274,13 @@ class ComponentsManager {
         const tooltip = document.createElement('div');
         tooltip.className = 'tooltip';
         tooltip.textContent = text;
-        
+
         document.body.appendChild(tooltip);
-        
+
         const rect = element.getBoundingClientRect();
-        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+        tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + 'px';
         tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
-        
+
         setTimeout(() => tooltip.classList.add('show'), 100);
     }
 
@@ -308,14 +312,18 @@ class ComponentsManager {
 
     initializeShareButtons() {
         // Add share functionality to social share buttons
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', e => {
             if (e.target.closest('.social-share-btn')) {
                 e.preventDefault();
                 const shareBtn = e.target.closest('.social-share-btn');
-                const platform = shareBtn.classList.contains('facebook') ? 'facebook' :
-                               shareBtn.classList.contains('twitter') ? 'twitter' :
-                               shareBtn.classList.contains('linkedin') ? 'linkedin' : 'pinterest';
-                
+                const platform = shareBtn.classList.contains('facebook')
+                    ? 'facebook'
+                    : shareBtn.classList.contains('twitter')
+                        ? 'twitter'
+                        : shareBtn.classList.contains('linkedin')
+                            ? 'linkedin'
+                            : 'pinterest';
+
                 this.shareOnPlatform(platform);
             }
         });
@@ -324,28 +332,30 @@ class ComponentsManager {
     shareOnPlatform(platform) {
         const url = encodeURIComponent(window.location.href);
         const title = encodeURIComponent(document.title);
-        const description = encodeURIComponent(document.querySelector('meta[name="description"]')?.content || '');
-        
+        const description = encodeURIComponent(
+            document.querySelector('meta[name="description"]')?.content || ''
+        );
+
         let shareUrl = '';
-        
+
         switch (platform) {
-            case 'facebook':
-                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-                break;
-            case 'twitter':
-                shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-                break;
-            case 'linkedin':
-                shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-                break;
-            case 'pinterest':
-                shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${description}`;
-                break;
-            default:
-                console.warn(`Unknown social platform: ${platform}`);
-                return;
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            break;
+        case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+            break;
+        case 'linkedin':
+            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+            break;
+        case 'pinterest':
+            shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${description}`;
+            break;
+        default:
+            console.warn(`Unknown social platform: ${platform}`);
+            return;
         }
-        
+
         if (shareUrl) {
             window.open(shareUrl, '_blank', 'width=600,height=400');
         }
@@ -357,12 +367,15 @@ class ComponentsManager {
             const text = content.textContent || content.innerText;
             const words = text.trim().split(/\s+/).length;
             const readingTime = Math.ceil(words / 200); // Assuming 200 words per minute
-            
+
             const readTimeElement = content.querySelector('.read-time');
             if (!readTimeElement) {
                 const metaSection = content.querySelector('.blog-card-meta, .post-meta');
                 if (metaSection) {
-                    metaSection.insertAdjacentHTML('beforeend', `<span class="read-time">${readingTime} min read</span>`);
+                    metaSection.insertAdjacentHTML(
+                        'beforeend',
+                        `<span class="read-time">${readingTime} min read</span>`
+                    );
                 }
             }
         });
@@ -371,7 +384,7 @@ class ComponentsManager {
     handleFooterNewsletter(event) {
         event.preventDefault();
         const email = event.target.querySelector('input[type="email"]').value;
-        
+
         if (this.validateEmail(email)) {
             this.showNotification('Thank you for subscribing to our newsletter!', 'success');
             event.target.reset();
@@ -383,7 +396,7 @@ class ComponentsManager {
     handleSidebarSearch(event) {
         event.preventDefault();
         const query = event.target.querySelector('#sidebar-search').value.trim();
-        
+
         if (query) {
             // Trigger main search functionality
             const mainSearchInput = document.getElementById('search-input');
@@ -393,7 +406,7 @@ class ComponentsManager {
                 if (window.blogManager) {
                     window.blogManager.performSearch(query.toLowerCase());
                 }
-                
+
                 // Close search overlay if open
                 const searchOverlay = document.getElementById('search-overlay');
                 if (searchOverlay.classList.contains('active')) {
@@ -416,17 +429,17 @@ class ComponentsManager {
             <span>${message}</span>
             <button class="notification-close">&times;</button>
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         setTimeout(() => notification.classList.add('show'), 100);
-        
+
         // Auto remove after 4 seconds
         const autoRemove = setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
         }, 4000);
-        
+
         // Manual close
         notification.querySelector('.notification-close').addEventListener('click', () => {
             clearTimeout(autoRemove);

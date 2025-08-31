@@ -15,7 +15,11 @@
     "lint:fix": "eslint src/js/**/*.js --fix",
     "format": "prettier --write src/**/*.{js,css,html}",
     "format:check": "prettier --check src/**/*.{js,css,html}",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "review": "./scripts/code-review.sh",
+    "security": "./scripts/security-check.sh",
+    "precommit": "./scripts/pre-commit",
+    "setup-hooks": "ln -sf ../../scripts/pre-commit .git/hooks/pre-commit"
   },
   "keywords": [
     "blog",
