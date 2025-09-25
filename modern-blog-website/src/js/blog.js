@@ -40,7 +40,7 @@ class BlogManager {
                 title: "The Future of Web Development: Trends to Watch in 2024",
                 content: "Web development is evolving rapidly, with new technologies and frameworks emerging every day. In this comprehensive guide, we explore the cutting-edge trends that are shaping the future of web development and how developers can stay ahead of the curve. From WebAssembly to AI-powered development tools, discover what's coming next.",
                 excerpt: "Explore the cutting-edge trends shaping the future of web development in 2024, from WebAssembly to AI-powered tools.",
-                author: "Jane Doe",
+                author: "Lalit Choudhary",
                 authorAvatar: "JD",
                 date: "2024-01-15",
                 readTime: "8 min read",
