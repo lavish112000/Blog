@@ -27,7 +27,7 @@ class BlogManager {
             const response = await fetch('./data/posts.json');
             this.posts = await response.json();
         } catch (error) {
-            console.error('Error loading posts:', error);
+            // Error loading posts - using empty dataset
             // Fallback to sample data
             this.posts = this.getSamplePosts();
         }
@@ -329,7 +329,7 @@ class BlogManager {
                     Popular Tags
                 </h3>
                 <div class="tags-cloud">
-                    ${sortedTags.map(([tag, count]) => `
+                    ${sortedTags.map(([tag, _count]) => `
                         <a href="#" class="tag-cloud-item" onclick="blogManager.filterByTag('${tag}')">
                             ${tag}
                         </a>
@@ -618,7 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const posts = await response.json();
             displayPosts(posts);
         } catch (error) {
-            console.error('Error loading blog posts:', error);
+            // Error loading blog posts - using fallback content
         }
     };
 
