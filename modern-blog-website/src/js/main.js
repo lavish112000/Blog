@@ -139,7 +139,6 @@ class ModernBlog {
     }
 
     setupScrollEffects() {
-        let lastScrollY = window.scrollY;
         const header = document.getElementById('header');
         const backToTop = document.getElementById('back-to-top');
 
@@ -163,8 +162,6 @@ class ModernBlog {
                     backToTop.classList.remove('visible');
                 }
             }
-
-            lastScrollY = currentScrollY;
         });
     }
 
