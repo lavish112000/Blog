@@ -139,7 +139,7 @@ class ComponentsManager {
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Featured Author">
                     </div>
                     <div class="author-bio-content">
-                        <h3>Lalit Choudhary</h3>
+                        <h3>Lalit</h3>
                         <p>Senior Technology Writer with 10+ years of experience in web development and digital innovation. Passionate about sharing knowledge and inspiring the next generation of developers.</p>
                         <div class="author-social">
                             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
