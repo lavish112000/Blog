@@ -1,1082 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
-    <title>Vibrant Insights - Enterprise Blog Platform</title>
-    <meta name="title" content="Vibrant Insights - Enterprise Blog Platform">
-    <meta name="description" content="Discover cutting-edge insights, trends, and stories in our enterprise-level blog platform with advanced features, offline support, and premium user experience.">
-    <meta name="keywords" content="blog, enterprise, technology, insights, modern, responsive, PWA, offline">
-    <meta name="author" content="Vibrant Insights Team">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vibrant-insights.com/">
-    <meta property="og:title" content="Vibrant Insights - Enterprise Blog Platform">
-    <meta property="og:description" content="Discover cutting-edge insights, trends, and stories in our enterprise-level blog platform.">
-    <meta property="og:image" content="https://vibrant-insights.com/assets/social/og-image.png">
-    <meta property="og:site_name" content="Vibrant Insights">
-    <meta property="og:locale" content="en_US">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://vibrant-insights.com/">
-    <meta property="twitter:title" content="Vibrant Insights - Enterprise Blog Platform">
-    <meta property="twitter:description" content="Discover cutting-edge insights, trends, and stories in our enterprise-level blog platform.">
-    <meta property="twitter:image" content="https://vibrant-insights.com/assets/social/twitter-image.png">
-    <meta property="twitter:creator" content="@vibrantinsights">
-    <meta property="twitter:site" content="@vibrantinsights">
-    
-    <!-- PWA Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Vibrant Insights">
-    <meta name="application-name" content="Vibrant Insights">
-    <meta name="msapplication-TileColor" content="#667eea">
-    <meta name="msapplication-config" content="assets/icons/browserconfig.xml">
-    
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https:; media-src 'self' https:; frame-src 'self' https:;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    
-    <!-- Performance Hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    
-    <!-- Critical CSS (Inline for performance) -->
-    <style>
-        /* Critical path styles for immediate rendering */
-        body { margin: 0; font-family: 'Inter', sans-serif; }
-        .loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); z-index: 9999; display: flex; align-items: center; justify-content: center; color: white; }
-        .loading-spinner { text-align: center; }
-        .spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid white; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.95); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
-    </style>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vibrant Insights - Modern Blog Experience</title>
+    <meta
+      name="description"
+      content="Discover cutting-edge insights, trends, and stories in our vibrant, modern blog platform."
+    />
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    </noscript>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
-    
-    <!-- Stylesheets with async loading -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/components.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="css/enterprise-fixes.css" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="css/components.css">
-        <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/enterprise-fixes.css">
-    </noscript>
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- Favicons and Icons -->
-    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-    <link rel="alternate icon" href="assets/icons/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
-    <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#667eea">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Vibrant Insights",
-        "alternateName": "Vibrant Insights Blog",
-        "url": "https://vibrant-insights.com",
-        "description": "Enterprise-level blog platform with cutting-edge insights and trends",
-        "publisher": {
-            "@type": "Organization",
-            "name": "Vibrant Insights",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://vibrant-insights.com/assets/icons/logo.png"
-            }
-        },
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://vibrant-insights.com/?search={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
-    
-    <!-- Analytics - Google Tag Manager -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID', {
-            send_page_view: false,
-            custom_map: { custom_parameter: 'user_engagement' }
-        });
-    </script>
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  </head>
+  <body>
     <!-- Loading Screen -->
-    <div id="loadingScreen" class="loading-screen">
-        <div class="loading-spinner">
-            <div class="spinner"></div>
-            <h3>Loading Enterprise Experience...</h3>
-            <p>Preparing your personalized content</p>
-        </div>
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading Amazing Content...</p>
+      </div>
     </div>
 
-    <!-- Skip Navigation -->
-    <a href="#main-content" class="skip-nav">Skip to main content</a>
+    <!-- Header -->
+    <header class="header" id="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="nav-brand">
+            <a href="#" class="brand-logo">
+              <i class="fas fa-feather"></i>
+              <span>Vibrant Insights</span>
+            </a>
+          </div>
 
-    <!-- PWA Install Banner -->
-    <div id="pwaInstallBanner" class="pwa-install-banner">
-        <div class="banner-content">
-            <div class="banner-icon">
-                <i class="fas fa-mobile-alt"></i>
-            </div>
-            <div class="banner-text">
-                <h4>Install Vibrant Insights</h4>
-                <p>Get the full app experience with offline reading</p>
-            </div>
-            <div class="banner-actions">
-                <button id="installPWA" class="btn btn-primary">Install</button>
-                <button id="dismissInstall" class="btn btn-ghost">Later</button>
-            </div>
+          <div class="nav-menu" id="nav-menu">
+            <ul class="nav-list">
+              <li class="nav-item">
+                <a href="#home" class="nav-link active">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle"
+                  >Categories <i class="fas fa-chevron-down"></i
+                ></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" class="dropdown-link">Technology</a></li>
+                  <li><a href="#" class="dropdown-link">Design</a></li>
+                  <li><a href="#" class="dropdown-link">Business</a></li>
+                  <li><a href="#" class="dropdown-link">Lifestyle</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="pages/about.html" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="#contact" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <button
+              class="search-toggle"
+              id="search-toggle"
+              title="Search"
+              aria-label="Open search"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+            <button
+              class="theme-toggle"
+              id="theme-toggle"
+              title="Toggle Theme"
+              aria-label="Toggle dark/light theme"
+            >
+              <i class="fas fa-moon"></i>
+            </button>
+            <button
+              class="nav-toggle"
+              id="nav-toggle"
+              title="Menu"
+              aria-label="Toggle navigation menu"
+            >
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </button>
+          </div>
         </div>
-    </div>
+      </nav>
 
-    <!-- Notification System -->
-    <div id="notificationContainer" class="notification-container" aria-live="polite"></div>
-
-    <!-- Header Component -->
-    <header class="header" role="banner" id="header">
-        <nav class="navbar" role="navigation">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    <a href="/" class="brand-logo" aria-label="Vibrant Insights Home">
-                        <i class="fas fa-feather gradient-icon"></i>
-                        <span class="gradient-text">Vibrant Insights</span>
-                    </a>
-                </div>
-                
-                <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
-                    <ul class="nav-list" role="menubar">
-                        <li class="nav-item" role="none">
-                            <a href="#home" class="nav-link active" role="menuitem" data-page="home">Home</a>
-                        </li>
-                        <li class="nav-item dropdown" role="none">
-                            <a href="#" class="nav-link dropdown-toggle" role="menuitem" aria-haspopup="true" aria-expanded="false">
-                                Categories <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-label="Categories">
-                                <li role="none"><a href="#" class="dropdown-link" role="menuitem" data-category="technology">Technology</a></li>
-                                <li role="none"><a href="#" class="dropdown-link" role="menuitem" data-category="design">Design</a></li>
-                                <li role="none"><a href="#" class="dropdown-link" role="menuitem" data-category="business">Business</a></li>
-                                <li role="none"><a href="#" class="dropdown-link" role="menuitem" data-category="lifestyle">Lifestyle</a></li>
-                                <li role="none"><a href="#" class="dropdown-link" role="menuitem" data-category="health">Health & Wellness</a></li>
-                                <li role="none"><a href="#" class="dropdown-link" role="menuitem" data-category="travel">Travel</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item" role="none">
-                            <a href="pages/about.html" class="nav-link" role="menuitem" data-page="about">About</a>
-                        </li>
-                        <li class="nav-item" role="none">
-                            <a href="pages/contact.html" class="nav-link" role="menuitem" data-page="contact">Contact</a>
-                        </li>
-                    </ul>
-                </nav>
-                
-                <div class="nav-actions">
-                    <!-- Search Toggle -->
-                    <button class="search-toggle" id="search-toggle" title="Search" aria-label="Open search">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    
-                    <!-- Bookmarks -->
-                    <button class="bookmarks-toggle" id="bookmarks-toggle" title="Bookmarks" aria-label="View bookmarked articles">
-                        <i class="fas fa-bookmark"></i>
-                        <span class="bookmark-count">0</span>
-                    </button>
-                    
-                    <!-- Notifications -->
-                    <button class="notifications-toggle" id="notifications-toggle" title="Notifications" aria-label="View notifications">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge hidden">0</span>
-                    </button>
-                    
-                    <!-- Reading Settings -->
-                    <button class="reading-settings-toggle" id="reading-settings-toggle" title="Reading Settings" aria-label="Adjust reading preferences">
-                        <i class="fas fa-font"></i>
-                    </button>
-                    
-                    <!-- Theme Toggle -->
-                    <button class="theme-toggle" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    
-                    <!-- Mobile Menu Toggle -->
-                    <button class="nav-toggle" id="nav-toggle" title="Menu" aria-label="Toggle navigation menu">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
-                </div>
-            </div>
-        </nav>
-        
-        <!-- Enhanced Search Overlay -->
-        <div class="search-overlay" id="search-overlay" role="search">
-            <div class="search-container">
-                <div class="search-header">
-                    <h3>Search Articles</h3>
-                    <button class="search-close" id="search-close" title="Close Search" aria-label="Close search overlay">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="search-box">
-                    <div class="search-input-wrapper">
-                        <input type="text" 
-                               placeholder="Search articles, topics, authors..." 
-                               id="search-input"
-                               autocomplete="off"
-                               role="searchbox"
-                               aria-label="Search content">
-                        <div class="search-suggestions" id="search-suggestions"></div>
-                    </div>
-                    <div class="search-controls">
-                        <button class="search-filters-btn" id="search-filters-btn" title="Search Filters" aria-label="Show search filters">
-                            <i class="fas fa-filter"></i>
-                        </button>
-                        <button class="search-btn" id="search-btn" title="Search" aria-label="Execute search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Search Filters -->
-                <div class="search-filters" id="search-filters">
-                    <div class="filter-row">
-                        <div class="filter-group">
-                            <label for="category-filter">Category:</label>
-                            <select id="category-filter">
-                                <option value="">All Categories</option>
-                                <option value="technology">Technology</option>
-                                <option value="design">Design</option>
-                                <option value="business">Business</option>
-                                <option value="lifestyle">Lifestyle</option>
-                                <option value="health">Health</option>
-                                <option value="travel">Travel</option>
-                            </select>
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label for="date-filter">Date:</label>
-                            <select id="date-filter">
-                                <option value="">Any Time</option>
-                                <option value="today">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month">This Month</option>
-                                <option value="year">This Year</option>
-                            </select>
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label for="sort-filter">Sort By:</label>
-                            <select id="sort-filter">
-                                <option value="relevance">Relevance</option>
-                                <option value="date">Date</option>
-                                <option value="popularity">Popularity</option>
-                                <option value="reading-time">Reading Time</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="filter-actions">
-                        <button class="filter-clear" id="filter-clear">Clear Filters</button>
-                        <button class="filter-apply" id="filter-apply">Apply Filters</button>
-                    </div>
-                </div>
-                
-                <!-- Search Results -->
-                <div class="search-results" id="search-results" role="region" aria-label="Search results">
-                    <div class="search-stats" id="search-stats"></div>
-                    <div class="results-container" id="results-container"></div>
-                </div>
-            </div>
+      <!-- Search Overlay -->
+      <div class="search-overlay" id="search-overlay">
+        <div class="search-container">
+          <div class="search-box">
+            <input
+              type="text"
+              placeholder="Search articles, topics, authors..."
+              id="search-input"
+            />
+            <button
+              class="search-btn"
+              title="Search"
+              aria-label="Execute search"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <button
+            class="search-close"
+            id="search-close"
+            title="Close Search"
+            aria-label="Close search overlay"
+          >
+            <i class="fas fa-times"></i>
+          </button>
         </div>
-
+        <div class="search-suggestions" id="search-suggestions"></div>
+      </div>
     </header>
 
-    <!-- Reading Settings Panel -->
-    <div class="reading-settings-panel" id="reading-settings-panel">
-        <div class="panel-header">
-            <h3>Reading Settings</h3>
-            <button class="panel-close" id="reading-panel-close" aria-label="Close reading settings">
-                <i class="fas fa-times"></i>
-            </button>
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero" id="home">
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-text">
+              <h1 class="hero-title">
+                Discover
+                <span class="gradient-text">Extraordinary</span>
+                Stories
+              </h1>
+              <p class="hero-subtitle">
+                Dive into a world of cutting-edge insights, innovative ideas,
+                and inspiring narratives that shape tomorrow's digital
+                landscape.
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-primary">Explore Articles</button>
+                <button class="btn btn-outline">Join Community</button>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="hero-graphic">
+                <div class="floating-card card-1">
+                  <i class="fas fa-rocket"></i>
+                  <span>Innovation</span>
+                </div>
+                <div class="floating-card card-2">
+                  <i class="fas fa-lightbulb"></i>
+                  <span>Ideas</span>
+                </div>
+                <div class="floating-card card-3">
+                  <i class="fas fa-globe"></i>
+                  <span>Global</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="panel-content">
-            <div class="setting-group">
-                <label for="font-size">Font Size:</label>
-                <div class="slider-control">
-                    <input type="range" id="font-size" min="14" max="24" value="16">
-                    <span class="slider-value">16px</span>
-                </div>
-            </div>
-            <div class="setting-group">
-                <label for="line-height">Line Height:</label>
-                <div class="slider-control">
-                    <input type="range" id="line-height" min="1.2" max="2.0" step="0.1" value="1.6">
-                    <span class="slider-value">1.6</span>
-                </div>
-            </div>
-            <div class="setting-group">
-                <label for="reading-width">Reading Width:</label>
-                <div class="slider-control">
-                    <input type="range" id="reading-width" min="60" max="100" value="80">
-                    <span class="slider-value">80%</span>
-                </div>
-            </div>
-            <div class="setting-group">
-                <label>Font Family:</label>
-                <div class="font-options">
-                    <button class="font-option active" data-font="inter">Inter</button>
-                    <button class="font-option" data-font="serif">Serif</button>
-                    <button class="font-option" data-font="mono">Mono</button>
-                </div>
-            </div>
+      </section>
+
+      <!-- Featured Posts Section -->
+      <section class="featured-posts" id="featured">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Featured Stories</h2>
+            <p class="section-subtitle">
+              Handpicked articles that are making waves
+            </p>
+          </div>
+          <div class="featured-grid" id="featured-grid">
+            <!-- Featured posts will be loaded here -->
+          </div>
         </div>
-    </div>
+      </section>
 
-    <!-- Bookmarks Panel -->
-    <div class="bookmarks-panel" id="bookmarks-panel">
-        <div class="panel-header">
-            <h3>Your Bookmarks</h3>
-            <button class="panel-close" id="bookmarks-panel-close" aria-label="Close bookmarks">
-                <i class="fas fa-times"></i>
-            </button>
+      <!-- Main Content Area -->
+      <section class="content-section">
+        <div class="container">
+          <div class="content-grid">
+            <!-- Blog Posts -->
+            <div class="posts-column">
+              <div class="posts-header">
+                <h2>Latest Articles</h2>
+                <div class="filter-tabs">
+                  <button class="filter-tab active" data-filter="all">
+                    All
+                  </button>
+                  <button class="filter-tab" data-filter="technology">
+                    Tech
+                  </button>
+                  <button class="filter-tab" data-filter="design">
+                    Design
+                  </button>
+                  <button class="filter-tab" data-filter="business">
+                    Business
+                  </button>
+                </div>
+              </div>
+              <div class="posts-grid" id="posts-grid">
+                <!-- Blog posts will be loaded here -->
+              </div>
+              <div class="load-more">
+                <button class="btn btn-outline" id="load-more-btn">
+                  Load More Articles
+                </button>
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+              <!-- Sidebar content will be loaded here -->
+            </aside>
+          </div>
         </div>
-        <div class="panel-content">
-            <div class="bookmarks-list" id="bookmarks-list">
-                <div class="empty-bookmarks">
-                    <i class="fas fa-bookmark"></i>
-                    <p>No bookmarks yet. Start bookmarking articles you love!</p>
-                </div>
+      </section>
+
+      <!-- Newsletter Section -->
+      <section class="newsletter-section">
+        <div class="container">
+          <div class="newsletter-content">
+            <div class="newsletter-text">
+              <h2>Stay in the Loop</h2>
+              <p>
+                Get the latest insights delivered straight to your inbox. Join
+                our community of 50,000+ readers.
+              </p>
             </div>
+            <form class="newsletter-form" id="newsletter-form">
+              <div class="form-group">
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  required
+                />
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </div>
+              <p class="newsletter-note">
+                No spam, unsubscribe anytime. We respect your privacy.
+              </p>
+            </form>
+          </div>
         </div>
-    </div>
-
-    <!-- Main Content -->
-    <main class="main-content" id="main-content" role="main">
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">
-                            Discover 
-                            <span class="gradient-text typing-effect">Extraordinary</span>
-                            Stories
-                        </h1>
-                        <p class="hero-subtitle">
-                            Dive into a world of cutting-edge insights, innovative ideas, and inspiring narratives that shape tomorrow's digital landscape with our enterprise-level blog platform.
-                        </p>
-                        <div class="hero-stats">
-                            <div class="stat-item">
-                                <span class="stat-number" data-count="10000">0</span>
-                                <span class="stat-label">Articles</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number" data-count="50000">0</span>
-                                <span class="stat-label">Readers</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number" data-count="25">0</span>
-                                <span class="stat-label">Categories</span>
-                            </div>
-                        </div>
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" id="explore-articles">
-                                <i class="fas fa-compass"></i>
-                                Explore Articles
-                            </button>
-                            <button class="btn btn-outline" id="join-community">
-                                <i class="fas fa-users"></i>
-                                Join Community
-                            </button>
-                            <button class="btn btn-ghost" id="start-tour">
-                                <i class="fas fa-play"></i>
-                                Take Tour
-                            </button>
-                        </div>
-                    </div>
-                    <div class="hero-visual">
-                        <div class="hero-graphic">
-                            <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="100">
-                                <i class="fas fa-rocket gradient-icon"></i>
-                                <span>Innovation</span>
-                                <div class="card-glow"></div>
-                            </div>
-                            <div class="floating-card card-2" data-aos="fade-up" data-aos-delay="200">
-                                <i class="fas fa-lightbulb gradient-icon"></i>
-                                <span>Ideas</span>
-                                <div class="card-glow"></div>
-                            </div>
-                            <div class="floating-card card-3" data-aos="fade-up" data-aos-delay="300">
-                                <i class="fas fa-globe gradient-icon"></i>
-                                <span>Global Reach</span>
-                                <div class="card-glow"></div>
-                            </div>
-                            <div class="floating-card card-4" data-aos="fade-up" data-aos-delay="400">
-                                <i class="fas fa-brain gradient-icon"></i>
-                                <span>AI-Powered</span>
-                                <div class="card-glow"></div>
-                            </div>
-                            <div class="floating-card card-5" data-aos="fade-up" data-aos-delay="500">
-                                <i class="fas fa-mobile-alt gradient-icon"></i>
-                                <span>Mobile First</span>
-                                <div class="card-glow"></div>
-                            </div>
-                        </div>
-                        <div class="hero-bg-animation">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="scroll-indicator" id="scroll-indicator">
-                    <div class="scroll-text">Scroll to explore</div>
-                    <div class="scroll-arrow">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- AI Recommendations Section -->
-        <section class="ai-recommendations" id="ai-recommendations">
-            <div class="container">
-                <div class="section-header">
-                    <div class="header-content">
-                        <h2 class="section-title">
-                            <i class="fas fa-brain gradient-icon"></i>
-                            AI-Curated For You
-                        </h2>
-                        <p class="section-subtitle">Personalized content based on your reading history and preferences</p>
-                    </div>
-                    <div class="recommendation-controls">
-                        <button class="refresh-recommendations" id="refresh-recommendations" title="Refresh recommendations">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                        <button class="recommendation-settings" id="recommendation-settings" title="Recommendation settings">
-                            <i class="fas fa-cog"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="recommendations-carousel" id="recommendations-carousel">
-                    <div class="carousel-container">
-                        <div class="carousel-track" id="recommendations-track">
-                            <!-- AI recommendations will be loaded here -->
-                        </div>
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn prev" id="recommendations-prev" title="Previous recommendations" aria-label="Previous recommendations">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="carousel-btn next" id="recommendations-next" title="Next recommendations" aria-label="Next recommendations">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Posts Section -->
-        <section class="featured-posts" id="featured">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <i class="fas fa-star gradient-icon"></i>
-                        Featured Stories
-                    </h2>
-                    <p class="section-subtitle">Handpicked articles that are making waves in the community</p>
-                    <div class="view-toggle">
-                        <button class="view-btn active" data-view="grid" title="Grid view">
-                            <i class="fas fa-th"></i>
-                        </button>
-                        <button class="view-btn" data-view="list" title="List view">
-                            <i class="fas fa-list"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="featured-grid" id="featured-grid">
-                    <!-- Featured posts will be loaded here -->
-                </div>
-                <div class="section-footer">
-                    <button class="btn btn-outline" id="view-all-featured">
-                        View All Featured Articles
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trending Topics Section -->
-        <section class="trending-topics" id="trending">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <i class="fas fa-fire gradient-icon"></i>
-                        Trending Now
-                    </h2>
-                    <p class="section-subtitle">Hot topics and discussions everyone's talking about</p>
-                </div>
-                <div class="trending-container">
-                    <div class="trending-tags" id="trending-tags">
-                        <!-- Trending tags will be loaded here -->
-                    </div>
-                    <div class="trending-chart" id="trending-chart">
-                        <canvas id="trend-chart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Main Content Area -->
-        <section class="content-section" id="content">
-            <div class="container">
-                <div class="content-header">
-                    <div class="content-title">
-                        <h2>Latest Articles</h2>
-                        <span class="article-count" id="article-count">Loading...</span>
-                    </div>
-                    <div class="content-controls">
-                        <div class="filter-tabs">
-                            <button class="filter-tab active" data-filter="all">All</button>
-                            <button class="filter-tab" data-filter="technology">Tech</button>
-                            <button class="filter-tab" data-filter="design">Design</button>
-                            <button class="filter-tab" data-filter="business">Business</button>
-                            <button class="filter-tab" data-filter="lifestyle">Lifestyle</button>
-                        </div>
-                        <div class="view-controls">
-                            <div class="sort-dropdown">
-                                <select id="sort-articles" title="Sort articles" aria-label="Sort articles by">
-                                    <option value="newest">Newest First</option>
-                                    <option value="oldest">Oldest First</option>
-                                    <option value="popular">Most Popular</option>
-                                    <option value="trending">Trending</option>
-                                    <option value="reading-time">Reading Time</option>
-                                </select>
-                            </div>
-                            <div class="layout-toggle">
-                                <button class="layout-btn active" data-layout="grid" title="Grid layout">
-                                    <i class="fas fa-th"></i>
-                                </button>
-                                <button class="layout-btn" data-layout="list" title="List layout">
-                                    <i class="fas fa-list"></i>
-                                </button>
-                                <button class="layout-btn" data-layout="magazine" title="Magazine layout">
-                                    <i class="fas fa-newspaper"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="content-grid">
-                    <!-- Blog Posts -->
-                    <div class="posts-column">
-                        <div class="posts-container">
-                            <!-- Loading skeleton -->
-                            <div class="loading-skeleton" id="posts-skeleton">
-                                <div class="skeleton-post"></div>
-                                <div class="skeleton-post"></div>
-                                <div class="skeleton-post"></div>
-                            </div>
-                            
-                            <!-- Posts grid -->
-                            <div class="posts-grid" id="posts-grid">
-                                <!-- Blog posts will be loaded here -->
-                            </div>
-                            
-                            <!-- Infinite scroll loading -->
-                            <div class="load-more-container">
-                                <div class="load-more-spinner" id="load-more-spinner">
-                                    <div class="spinner"></div>
-                                    <p>Loading more articles...</p>
-                                </div>
-                                <button class="btn btn-outline" id="load-more-btn">
-                                    Load More Articles
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Enhanced Sidebar -->
-                    <aside class="sidebar" role="complementary">
-                        <!-- Popular Posts Widget -->
-                        <div class="sidebar-widget popular-posts">
-                            <div class="widget-header">
-                                <h3 class="widget-title">
-                                    <i class="fas fa-fire"></i>
-                                    Popular This Week
-                                </h3>
-                            </div>
-                            <div class="widget-content" id="popular-posts">
-                                <!-- Popular posts will be loaded here -->
-                            </div>
-                        </div>
-
-                        <!-- Categories Widget -->
-                        <div class="sidebar-widget categories">
-                            <div class="widget-header">
-                                <h3 class="widget-title">
-                                    <i class="fas fa-folder"></i>
-                                    Categories
-                                </h3>
-                            </div>
-                            <div class="widget-content" id="categories-list">
-                                <!-- Categories will be loaded here -->
-                            </div>
-                        </div>
-
-                        <!-- Tags Cloud Widget -->
-                        <div class="sidebar-widget tags-cloud">
-                            <div class="widget-header">
-                                <h3 class="widget-title">
-                                    <i class="fas fa-tags"></i>
-                                    Popular Tags
-                                </h3>
-                            </div>
-                            <div class="widget-content" id="tags-cloud">
-                                <!-- Tags will be loaded here -->
-                            </div>
-                        </div>
-
-                        <!-- Authors Widget -->
-                        <div class="sidebar-widget authors">
-                            <div class="widget-header">
-                                <h3 class="widget-title">
-                                    <i class="fas fa-users"></i>
-                                    Featured Authors
-                                </h3>
-                            </div>
-                            <div class="widget-content" id="featured-authors">
-                                <!-- Authors will be loaded here -->
-                            </div>
-                        </div>
-
-                        <!-- Social Feed Widget -->
-                        <div class="sidebar-widget social-feed">
-                            <div class="widget-header">
-                                <h3 class="widget-title">
-                                    <i class="fas fa-share-alt"></i>
-                                    Social Feed
-                                </h3>
-                            </div>
-                            <div class="widget-content" id="social-feed">
-                                <!-- Social feed will be loaded here -->
-                            </div>
-                        </div>
-
-                        <!-- Reading Progress Widget -->
-                        <div class="sidebar-widget reading-stats">
-                            <div class="widget-header">
-                                <h3 class="widget-title">
-                                    <i class="fas fa-chart-line"></i>
-                                    Your Reading Stats
-                                </h3>
-                            </div>
-                            <div class="widget-content">
-                                <div class="stat-item">
-                                    <span class="stat-value" id="articles-read">0</span>
-                                    <span class="stat-label">Articles Read</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-value" id="time-spent">0m</span>
-                                    <span class="stat-label">Time Spent</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-value" id="reading-streak">0</span>
-                                    <span class="stat-label">Day Streak</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <!-- Enhanced Newsletter Section -->
-        <section class="newsletter-section" id="newsletter">
-            <div class="container">
-                <div class="newsletter-card">
-                    <div class="newsletter-content">
-                        <div class="newsletter-icon">
-                            <i class="fas fa-envelope gradient-icon"></i>
-                        </div>
-                        <div class="newsletter-text">
-                            <h2>Stay Ahead of the Curve</h2>
-                            <p>Join 50,000+ forward-thinking readers who get exclusive insights, early access to new articles, and curated content delivered weekly.</p>
-                            <div class="newsletter-features">
-                                <div class="feature">
-                                    <i class="fas fa-check"></i>
-                                    <span>Weekly curated content</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-check"></i>
-                                    <span>Exclusive insights</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-check"></i>
-                                    <span>Early access to articles</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-check"></i>
-                                    <span>No spam, unsubscribe anytime</span>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="newsletter-form" id="newsletter-form">
-                            <div class="form-group">
-                                <input type="email" 
-                                       class="form-input" 
-                                       placeholder="Enter your email address" 
-                                       required 
-                                       id="newsletter-email"
-                                       aria-label="Email address">
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="btn-text">Subscribe</span>
-                                    <span class="btn-loading">
-                                        <i class="fas fa-spinner fa-spin"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            <p class="form-note">
-                                By subscribing, you agree to our <a href="#privacy">Privacy Policy</a> and consent to receive updates from our blog.
-                            </p>
-                        </form>
-                    </div>
-                    <div class="newsletter-visual">
-                        <div class="newsletter-animation">
-                            <div class="floating-email">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="floating-notification">
-                                <i class="fas fa-bell"></i>
-                            </div>
-                            <div class="floating-star">
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      </section>
     </main>
 
-    <!-- Enhanced Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="footer-container">
-            <!-- Footer Top -->
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="/" class="footer-logo">
-                        <i class="fas fa-feather gradient-icon"></i>
-                        <span class="gradient-text">Vibrant Insights</span>
-                    </a>
-                    <p class="footer-description">
-                        Your premier destination for cutting-edge insights, innovative ideas, and inspiring narratives that shape tomorrow's digital landscape.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link" aria-label="Follow us on Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Follow us on Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Follow us on LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Follow us on Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Subscribe to our YouTube channel">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Join our Discord community">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-links">
-                    <div class="link-column">
-                        <h4>Explore</h4>
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/blog">Latest Articles</a></li>
-                            <li><a href="/categories">Categories</a></li>
-                            <li><a href="/authors">Authors</a></li>
-                            <li><a href="/trending">Trending</a></li>
-                            <li><a href="/archive">Archive</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="link-column">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/careers">Careers</a></li>
-                            <li><a href="/contact">Contact</a></li>
-                            <li><a href="/press">Press Kit</a></li>
-                            <li><a href="/partnerships">Partnerships</a></li>
-                            <li><a href="/advertise">Advertise</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="link-column">
-                        <h4>Resources</h4>
-                        <ul>
-                            <li><a href="/help">Help Center</a></li>
-                            <li><a href="/guidelines">Writing Guidelines</a></li>
-                            <li><a href="/api">API Documentation</a></li>
-                            <li><a href="/tools">Writing Tools</a></li>
-                            <li><a href="/community">Community</a></li>
-                            <li><a href="/events">Events</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="link-column">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="/privacy">Privacy Policy</a></li>
-                            <li><a href="/terms">Terms of Service</a></li>
-                            <li><a href="/cookies">Cookie Policy</a></li>
-                            <li><a href="/dmca">DMCA</a></li>
-                            <li><a href="/accessibility">Accessibility</a></li>
-                            <li><a href="/security">Security</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="footer-newsletter">
-                    <h4>Stay Updated</h4>
-                    <p>Get the latest articles and insights delivered to your inbox.</p>
-                    <form class="footer-newsletter-form" id="footer-newsletter">
-                        <div class="input-group">
-                            <input type="email" placeholder="Your email address" required aria-label="Email for newsletter">
-                            <button type="submit" class="btn btn-primary" title="Subscribe to newsletter" aria-label="Subscribe to newsletter">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="footer-info">
-                    <p>&copy; 2024 Vibrant Insights. All rights reserved.</p>
-                    <div class="footer-meta">
-                        <span>Made with <i class="fas fa-heart text-red"></i> by our team</span>
-                        <span>•</span>
-                        <span id="visitor-count">0 visitors today</span>
-                        <span>•</span>
-                        <span>Version 2.0</span>
-                    </div>
-                </div>
-                
-                <div class="footer-actions">
-                    <div class="theme-indicator">
-                        <span class="theme-text">Theme:</span>
-                        <div class="theme-preview">
-                            <div class="theme-dot light" title="Light theme"></div>
-                            <div class="theme-dot dark" title="Dark theme"></div>
-                            <div class="theme-dot auto active" title="Auto theme"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="language-selector">
-                        <button class="language-btn" id="language-selector" aria-label="Select language">
-                            <i class="fas fa-globe"></i>
-                            <span>EN</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="language-dropdown" id="language-dropdown">
-                            <a href="#" data-lang="en" class="language-option active">
-                                <span class="flag">🇺🇸</span>
-                                <span>English</span>
-                            </a>
-                            <a href="#" data-lang="es" class="language-option">
-                                <span class="flag">🇪🇸</span>
-                                <span>Español</span>
-                            </a>
-                            <a href="#" data-lang="fr" class="language-option">
-                                <span class="flag">🇫🇷</span>
-                                <span>Français</span>
-                            </a>
-                            <a href="#" data-lang="de" class="language-option">
-                                <span class="flag">🇩🇪</span>
-                                <span>Deutsch</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <!-- Footer content will be loaded here -->
     </footer>
 
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top" title="Back to Top" aria-label="Scroll to top of page">
-        <i class="fas fa-arrow-up"></i>
+    <button
+      class="back-to-top"
+      id="back-to-top"
+      title="Back to Top"
+      aria-label="Scroll to top of page"
+    >
+      <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress" id="reading-progress">
-        <div class="progress-bar" id="progress-bar"></div>
-    </div>
-
-    <!-- Performance Monitor -->
-    <div class="performance-monitor" id="performance-monitor">
-        <div class="perf-indicator" id="perf-indicator">
-            <i class="fas fa-tachometer-alt"></i>
-            <span id="perf-score">--</span>
-        </div>
-    </div>
-
-    <!-- Offline Indicator -->
-    <div class="offline-indicator" id="offline-indicator">
-        <div class="offline-content">
-            <i class="fas fa-wifi-slash"></i>
-            <span>You're offline. Some features may be limited.</span>
-            <button class="dismiss-offline" id="dismiss-offline" title="Dismiss offline notice" aria-label="Dismiss offline notice">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Cookie Consent Banner -->
-    <div class="cookie-banner" id="cookie-banner">
-        <div class="cookie-content">
-            <div class="cookie-text">
-                <h4>Cookie Notice</h4>
-                <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
-            </div>
-            <div class="cookie-actions">
-                <button class="btn btn-ghost" id="cookie-settings">Settings</button>
-                <button class="btn btn-outline" id="cookie-essential">Essential Only</button>
-                <button class="btn btn-primary" id="cookie-accept">Accept All</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tour Overlay -->
-    <div class="tour-overlay" id="tour-overlay">
-        <div class="tour-content">
-            <div class="tour-step" id="tour-step">
-                <div class="tour-header">
-                    <h3 id="tour-title">Welcome to Vibrant Insights!</h3>
-                    <button class="tour-close" id="tour-close" aria-label="Close tour">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="tour-body">
-                    <p id="tour-description">Let's take a quick tour of our platform's features.</p>
-                </div>
-                <div class="tour-footer">
-                    <div class="tour-progress">
-                        <span class="tour-step-info">
-                            <span id="tour-current">1</span> of <span id="tour-total">5</span>
-                        </span>
-                        <div class="tour-progress-bar">
-                            <div class="tour-progress-fill" id="tour-progress-fill"></div>
-                        </div>
-                    </div>
-                    <div class="tour-actions">
-                        <button class="btn btn-ghost" id="tour-skip">Skip Tour</button>
-                        <button class="btn btn-outline" id="tour-prev" disabled>Previous</button>
-                        <button class="btn btn-primary" id="tour-next">Next</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Scripts -->
-    <!-- Critical JS for immediate functionality -->
-    <script>
-        // Immediate theme application
-        (function() {
-            const theme = localStorage.getItem('theme') || 'auto';
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-        
-        // Critical path loading indicator
-        window.addEventListener('load', function() {
-            const loadingScreen = document.getElementById('loadingScreen');
-            if (loadingScreen) {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => loadingScreen.remove(), 300);
-            }
-        });
-    </script>
-
-    <!-- Core Enterprise Scripts -->
-    <script src="js/analytics.js"></script>
-    <script src="js/blog-enterprise.js"></script>
-    <script src="js/components-enterprise.js"></script>
-    <script src="js/integration-manager.js"></script>
-    <script type="module" src="js/main-enterprise.js"></script>
-    
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    }, function(err) {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
-        }
-    </script>
-
-    <!-- Analytics -->
-    <script>
-        // Enhanced analytics with user engagement tracking
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'page_view', {
-                page_title: document.title,
-                page_location: window.location.href,
-                custom_parameter: 'enterprise_blog'
-            });
-        }
-    </script>
-</body>
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/components.js"></script>
+  </body>
 </html>
