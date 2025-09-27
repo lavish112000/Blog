@@ -104,11 +104,6 @@ export class SearchEngine {
             this.handleSearchKeydown(e);
         });
 
-        // Voice search support
-        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-            this.setupVoiceSearch(searchInput);
-        }
-
         // Search shortcuts
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -116,44 +111,6 @@ export class SearchEngine {
                 this.openSearch();
             }
         });
-    }
-
-    setupVoiceSearch(searchInput) {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const recognition = new SpeechRecognition();
-        
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = 'en-US';
-
-        // Add voice search button
-        const voiceButton = document.createElement('button');
-        voiceButton.className = 'voice-search-btn';
-        voiceButton.innerHTML = '<i class="fas fa-microphone"></i>';
-        voiceButton.title = 'Voice Search';
-        
-        const searchContainer = searchInput.parentNode;
-        searchContainer.appendChild(voiceButton);
-
-        voiceButton.addEventListener('click', () => {
-            recognition.start();
-            voiceButton.classList.add('listening');
-        });
-
-        recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            searchInput.value = transcript;
-            searchInput.dispatchEvent(new Event('input'));
-            voiceButton.classList.remove('listening');
-        };
-
-        recognition.onerror = () => {
-            voiceButton.classList.remove('listening');
-        };
-
-        recognition.onend = () => {
-            voiceButton.classList.remove('listening');
-        };
     }
 
     performSearch(query) {

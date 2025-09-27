@@ -24,7 +24,6 @@ class IntegrationManager {
         // Central overlay management to prevent conflicts
         const overlayElements = [
             'search-overlay',
-            'voice-search-modal',
             'reading-settings-panel',
             'bookmarks-panel',
             'notifications-panel'
@@ -106,12 +105,6 @@ class IntegrationManager {
             if (e.target.matches('#search-toggle')) {
                 e.preventDefault();
                 this.toggleSearch();
-            }
-            
-            // Voice search toggle
-            if (e.target.matches('#voice-search-toggle')) {
-                e.preventDefault();
-                this.toggleVoiceSearch();
             }
             
             // Reading settings toggle
@@ -217,24 +210,6 @@ class IntegrationManager {
         }
     }
 
-    toggleVoiceSearch() {
-        // Use the voice search manager if available
-        if (window.voiceSearchManager) {
-            window.voiceSearchManager.toggleVoiceSearch();
-        } else {
-            const voiceModal = document.getElementById('voice-search-modal');
-            if (voiceModal) {
-                const isActive = voiceModal.classList.contains('active');
-                
-                if (isActive) {
-                    this.forceCloseOverlay('voice-search-modal');
-                } else {
-                    voiceModal.classList.add('active');
-                }
-            }
-        }
-    }
-
     toggleReadingSettings() {
         const panel = document.getElementById('reading-settings-panel');
         if (panel) {
@@ -290,7 +265,7 @@ class IntegrationManager {
     isOverlayTrigger(element, overlayId) {
         const triggers = {
             'search-overlay': ['#search-toggle', '.search-toggle'],
-            'voice-search-modal': ['#voice-search-toggle', '.voice-search-toggle'],
+
             'reading-settings-panel': ['#reading-settings-toggle'],
             'bookmarks-panel': ['#bookmarks-toggle'],
             'notifications-panel': ['#notifications-toggle']
@@ -424,7 +399,7 @@ class IntegrationManager {
         const zIndexMap = {
             'header': 1000,
             'search-overlay': 1002,
-            'voice-search-modal': 10001,
+
             'reading-settings-panel': 1001,
             'bookmarks-panel': 1001,
             'notifications-panel': 1001,

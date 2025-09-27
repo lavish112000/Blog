@@ -134,10 +134,6 @@ class Analytics {
                 this.trackEvent('theme_toggle');
             }
 
-            if (e.target.matches('.voice-search-toggle')) {
-                this.trackEvent('voice_search_initiated');
-            }
-
             if (e.target.matches('.bookmark-btn, .bookmarks-toggle')) {
                 this.trackEvent('bookmark_interaction');
             }

@@ -1,8 +1,7 @@
 /**
  * =====================================
  * ENTERPRISE BLOG PLATFORM - MAIN MODULE
- * Advanced features and performance optimization
- * =====================================
+ * Advanced features and performance optimizatio* =====================================
  */
 
 import { WebVitals } from './utils/web-vitals.js';
@@ -135,11 +134,6 @@ class EnterpriseBlogPlatform {
 
         // Keyboard navigation enhancement
         this.setupKeyboardNavigation();
-
-        // Voice commands (if supported)
-        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-            this.setupVoiceCommands();
-        }
 
         // Mouse tracking for analytics
         this.setupMouseTracking();
