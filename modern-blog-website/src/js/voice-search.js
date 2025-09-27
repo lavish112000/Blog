@@ -81,6 +81,9 @@ class VoiceSearchManager {
                 case 'network':
                     errorMessage = 'Network error. Please check connection.';
                     break;
+                default:
+                    errorMessage = 'Voice recognition error. Please try again.';
+                    break;
             }
 
             this.updateListeningStatus('Error', errorMessage);

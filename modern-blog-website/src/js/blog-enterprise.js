@@ -185,14 +185,12 @@ class BlogEnterprise {
 }
 
 // Initialize blog enterprise features
-let blogEnterprise;
-
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        blogEnterprise = new BlogEnterprise();
+        window.blogEnterprise = new BlogEnterprise();
     });
 } else {
-    blogEnterprise = new BlogEnterprise();
+    window.blogEnterprise = new BlogEnterprise();
 }
 
 // Export for use in other modules

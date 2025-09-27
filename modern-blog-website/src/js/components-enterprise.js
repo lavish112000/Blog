@@ -245,6 +245,9 @@ class ComponentsEnterprise {
                     case 'copy':
                         this.copyToClipboard(window.location.href);
                         return;
+                    default:
+                        console.warn('Unknown share platform:', platform);
+                        return;
                 }
                 
                 if (shareUrl) {
@@ -485,14 +488,12 @@ class ComponentsEnterprise {
 }
 
 // Initialize components enterprise
-let componentsEnterprise;
-
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        componentsEnterprise = new ComponentsEnterprise();
+        window.componentsEnterprise = new ComponentsEnterprise();
     });
 } else {
-    componentsEnterprise = new ComponentsEnterprise();
+    window.componentsEnterprise = new ComponentsEnterprise();
 }
 
 // Export for use in other modules

@@ -257,14 +257,14 @@ class Analytics {
     sendToAnalytics(type, data) {
         try {
             // Send to Google Analytics if available
-            if (typeof gtag !== 'undefined') {
+            if (typeof window.gtag !== 'undefined') {
                 if (type === 'pageview') {
-                    gtag('config', 'GA_MEASUREMENT_ID', {
+                    window.gtag('config', 'GA_MEASUREMENT_ID', {
                         page_path: data.page,
                         page_title: data.title
                     });
                 } else if (type === 'event') {
-                    gtag('event', data.name, {
+                    window.gtag('event', data.name, {
                         event_category: 'engagement',
                         event_label: data.page,
                         custom_parameters: data.data
