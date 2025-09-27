@@ -292,7 +292,10 @@ class Analytics {
 
             // Use sendBeacon for reliability
             if (navigator.sendBeacon) {
-                navigator.sendBeacon('/api/analytics', JSON.stringify(payload));
+                const success = navigator.sendBeacon('/api/analytics', JSON.stringify(payload));
+                if (!success) {
+                    this.storeLocally(type, data);
+                }
             } else {
                 // Fallback to fetch
                 fetch('/api/analytics', {
@@ -300,7 +303,8 @@ class Analytics {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 }).catch(error => {
-                    // Silently fail for analytics
+                    // Store locally if API unavailable
+                    this.storeLocally(type, data);
                 });
             }
         }
@@ -313,6 +317,27 @@ class Analytics {
         if (window.location.hostname === 'localhost') return false;
         
         return true;
+    }
+
+    storeLocally(type, data) {
+        try {
+            const localEvents = JSON.parse(localStorage.getItem('analytics-queue') || '[]');
+            localEvents.push({
+                type,
+                data,
+                timestamp: Date.now(),
+                session: this.getSessionId()
+            });
+            
+            // Keep only last 100 events to prevent storage overflow
+            if (localEvents.length > 100) {
+                localEvents.splice(0, localEvents.length - 100);
+            }
+            
+            localStorage.setItem('analytics-queue', JSON.stringify(localEvents));
+        } catch (error) {
+            console.warn('Unable to store analytics locally:', error);
+        }
     }
 
     getSessionId() {
