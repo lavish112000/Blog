@@ -203,12 +203,6 @@
                         <li class="nav-item" role="none">
                             <a href="pages/contact.html" class="nav-link" role="menuitem" data-page="contact">Contact</a>
                         </li>
-                        <li class="nav-item" role="none">
-                            <a href="#" class="nav-link" role="menuitem" id="bookmarksLink">
-                                <i class="fas fa-bookmark"></i> Bookmarks
-                                <span class="bookmark-counter">0</span>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                 
@@ -276,9 +270,6 @@
                         <div class="search-suggestions" id="search-suggestions"></div>
                     </div>
                     <div class="search-controls">
-                        <button class="voice-search-btn" id="voice-search-btn" title="Voice Search" aria-label="Start voice search">
-                            <i class="fas fa-microphone"></i>
-                        </button>
                         <button class="search-filters-btn" id="search-filters-btn" title="Search Filters" aria-label="Show search filters">
                             <i class="fas fa-filter"></i>
                         </button>
@@ -1074,7 +1065,12 @@
         });
     </script>
 
-    <!-- Main Enterprise Scripts -->
+    <!-- Core Enterprise Scripts -->
+    <script src="js/analytics.js"></script>
+    <script src="js/blog-enterprise.js"></script>
+    <script src="js/components-enterprise.js"></script>
+    <script src="js/voice-search.js"></script>
+    <script src="js/integration-manager.js"></script>
     <script type="module" src="js/main-enterprise.js"></script>
     
     <!-- Service Worker Registration -->

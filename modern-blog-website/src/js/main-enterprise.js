@@ -6,7 +6,7 @@
  */
 
 import { WebVitals } from './utils/web-vitals.js';
-import { Analytics } from './analytics.js';
+import { Analytics } from './utils/analytics.js';
 import { PWAManager } from './pwa.js';
 import { PerformanceMonitor } from './utils/performance.js';
 import { AccessibilityManager } from './utils/accessibility.js';
