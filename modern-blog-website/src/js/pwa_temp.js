@@ -385,7 +385,7 @@ export class PWAManager {
         // Add status bar styling
         const statusBarMeta = document.createElement('meta');
         statusBarMeta.name = 'theme-color';
-        statusBarMeta.content = '#667eea';
+        statusBarMeta.content = '#ec2F4B';
         document.head.appendChild(statusBarMeta);
         
         // Enable full-screen experience
