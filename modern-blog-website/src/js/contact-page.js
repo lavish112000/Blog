@@ -6,7 +6,6 @@
 
 class ContactPageManager {
     constructor() {
-        // Get DOM elements for form, message display, and FAQ items
         this.contactForm = document.getElementById('contactForm');
         this.formMessage = document.getElementById('formMessage');
         this.faqItems = document.querySelectorAll('.faq-item');
@@ -14,7 +13,6 @@ class ContactPageManager {
     }
 
     init() {
-        // Initialize form validation and FAQ accordion functionality
         this.setupFormValidation();
         this.setupFAQAccordion();
     }
@@ -25,7 +23,6 @@ class ContactPageManager {
     setupFormValidation() {
         if (!this.contactForm) return;
 
-        // Add submit event listener to handle form submission
         this.contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -34,7 +31,7 @@ class ContactPageManager {
             }
         });
 
-        // Add real-time validation for all form inputs
+        // Real-time validation
         const inputs = this.contactForm.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
             input.addEventListener('blur', () => {
@@ -55,7 +52,6 @@ class ContactPageManager {
         let isValid = true;
         let errorMessage = '';
 
-        // Validate name field
         if (field.name === 'name') {
             if (field.value.trim().length < 2) {
                 isValid = false;
@@ -63,7 +59,6 @@ class ContactPageManager {
             }
         }
 
-        // Validate email field
         if (field.name === 'email') {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(field.value)) {
@@ -72,7 +67,6 @@ class ContactPageManager {
             }
         }
 
-        // Validate subject field
         if (field.name === 'subject') {
             if (field.value === '') {
                 isValid = false;
@@ -80,7 +74,6 @@ class ContactPageManager {
             }
         }
 
-        // Validate message field
         if (field.name === 'message') {
             if (field.value.trim().length < 10) {
                 isValid = false;
@@ -88,7 +81,6 @@ class ContactPageManager {
             }
         }
 
-        // Validate privacy checkbox
         if (field.name === 'privacy') {
             if (!field.checked) {
                 isValid = false;
@@ -109,7 +101,6 @@ class ContactPageManager {
      * Validate entire form
      */
     validateForm() {
-        // Get all required inputs and validate each one
         const inputs = this.contactForm.querySelectorAll('input[required], textarea[required], select[required]');
         let isFormValid = true;
 
@@ -158,7 +149,7 @@ class ContactPageManager {
      * Submit form
      */
     submitForm() {
-        // Show loading state and simulate API call delay
+        // Simulate API call - in production, send formData to backend
         this.showLoadingState();
 
         setTimeout(() => {
@@ -189,7 +180,6 @@ class ContactPageManager {
         this.formMessage.classList.add('success');
         this.formMessage.textContent = '✓ Thank you! Your message has been sent successfully. We\'ll be in touch soon!';
 
-        // Hide success message after 5 seconds
         setTimeout(() => {
             this.formMessage.classList.remove('success');
             this.formMessage.textContent = '';
@@ -200,8 +190,8 @@ class ContactPageManager {
      * Show error message
      */
     showErrorMessage(message) {
-        this.formMessage.classList.remove('error');
-        this.formMessage.classList.add('success');
+        this.formMessage.classList.remove('success');
+        this.formMessage.classList.add('error');
         this.formMessage.textContent = '✗ ' + message;
 
         const submitBtn = this.contactForm.querySelector('.submit-btn');
@@ -213,7 +203,6 @@ class ContactPageManager {
      * Setup FAQ Accordion
      */
     setupFAQAccordion() {
-        // Add click event listeners to each FAQ question
         this.faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             
@@ -227,22 +216,21 @@ class ContactPageManager {
      * Toggle FAQ item
      */
     toggleFAQ(item) {
-        // Check if the item is already active
         const isActive = item.classList.contains('active');
         
-        // Close all FAQ items first
+        // Close all items
         this.faqItems.forEach(faqItem => {
             faqItem.classList.remove('active');
         });
 
-        // Open the clicked item if it wasn't active
+        // Open clicked item if it wasn't active
         if (!isActive) {
             item.classList.add('active');
         }
     }
 }
 
-// Initialize Contact Page Manager when DOM is loaded
+// Initialize Contact Page Manager
 document.addEventListener('DOMContentLoaded', () => {
     new ContactPageManager();
 });
