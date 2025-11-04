@@ -203,40 +203,58 @@ class ComponentsManager {
 
     addSocialMediaWidget(sidebar) {
         const socialWidget = `
-            <div class="sidebar-widget">
-                <h3 class="widget-title">
-                    <i class="fas fa-share-alt"></i>
-                    Follow Us
-                </h3>
-                <div class="social-media-links">
-                    <a href="#" class="social-link facebook">
-                        <i class="fab fa-facebook-f"></i>
-                        <div class="social-info">
-                            <span class="social-name">Facebook</span>
-                            <span class="social-count">12.5K Followers</span>
+            <div class="sidebar-widget follow-us-widget">
+                <div class="follow-us-header">
+                    <h3 class="widget-title">
+                        <i class="fas fa-heart"></i>
+                        Join Our Community
+                    </h3>
+                    <p class="follow-us-subtitle">Connect with us on social media</p>
+                </div>
+                <div class="follow-us-container">
+                    <a href="#" class="social-button facebook" aria-label="Follow on Facebook">
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-facebook-f"></i>
                         </div>
-                    </a>
-                    <a href="#" class="social-link twitter">
-                        <i class="fab fa-twitter"></i>
                         <div class="social-info">
-                            <span class="social-name">Twitter</span>
-                            <span class="social-count">8.3K Followers</span>
+                            <span class="social-platform-name">Facebook</span>
+                            <span class="social-followers">12.5K followers</span>
                         </div>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="#" class="social-link linkedin">
-                        <i class="fab fa-linkedin-in"></i>
+                    <a href="#" class="social-button twitter" aria-label="Follow on Twitter">
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-twitter"></i>
+                        </div>
                         <div class="social-info">
-                            <span class="social-name">LinkedIn</span>
-                            <span class="social-count">5.7K Connections</span>
+                            <span class="social-platform-name">Twitter/X</span>
+                            <span class="social-followers">8.3K followers</span>
                         </div>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="#" class="social-link youtube">
-                        <i class="fab fa-youtube"></i>
+                    <a href="#" class="social-button linkedin" aria-label="Connect on LinkedIn">
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
                         <div class="social-info">
-                            <span class="social-name">YouTube</span>
-                            <span class="social-count">15.2K Subscribers</span>
+                            <span class="social-platform-name">LinkedIn</span>
+                            <span class="social-followers">5.7K connections</span>
                         </div>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
+                    <a href="#" class="social-button youtube" aria-label="Subscribe on YouTube">
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="social-info">
+                            <span class="social-platform-name">YouTube</span>
+                            <span class="social-followers">15.2K subscribers</span>
+                        </div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="follow-us-footer">
+                    <p>Follow us for daily updates, tips, and inspiring content!</p>
                 </div>
             </div>
         `;
