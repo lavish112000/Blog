@@ -1,0 +1,54 @@
+{
+  "name": "vibrant-insights-blog",
+  "version": "1.0.0",
+  "description": "A modern, responsive blog website with enterprise-level UI design and vibrant color themes - featuring dynamic content, advanced search, theme switching, and professional components",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "http-server src -p 8080 -o",
+    "dev": "http-server src -p 3000 -o",
+    "serve": "python3 -m http.server 8080",
+    "live": "live-server src --port=5500",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch",
+    "clean": "rm -rf dist",
+    "lint": "eslint src/js/**/*.js",
+    "lint:fix": "eslint src/js/**/*.js --fix",
+    "format": "prettier --write src/**/*.{js,css,html}",
+    "format:check": "prettier --check src/**/*.{js,css,html}",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "blog",
+    "website",
+    "responsive",
+    "modern",
+    "enterprise",
+    "vibrant",
+    "css3",
+    "javascript",
+    "webpack",
+    "html5",
+    "dark-mode",
+    "search",
+    "dynamic-content"
+  ],
+  "author": "GitHub Copilot",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.0",
+    "webpack-dev-server": "^4.15.0",
+    "html-webpack-plugin": "^5.5.0",
+    "css-loader": "^6.8.0",
+    "style-loader": "^3.3.0",
+    "babel-loader": "^9.1.0",
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "eslint": "^8.44.0",
+    "prettier": "^3.0.0",
+    "live-server": "^1.2.2"
+  }
+}
