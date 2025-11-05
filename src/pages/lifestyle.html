@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifestyle - Modern Blog Website</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header">
+        <!-- Include header.html here -->
+    </div>
+
+    <main>
+        <div class="category-hero">
+            <h1>Lifestyle</h1>
+            <p>Tips, ideas, and inspiration for a better lifestyle</p>
+        </div>
+        <div id="posts-grid" class="blog-posts">
+            <!-- Blog posts will be dynamically loaded here -->
+        </div>
+    </main>
+
+    <!-- Sidebar Component -->
+    <aside id="sidebar">
+        <!-- Include sidebar.html here -->
+    </aside>
+
+    <!-- Footer Component -->
+    <footer id="footer">
+        <!-- Include footer.html here -->
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/blog.js"></script>
+    <script src="../js/components.js"></script>
+    <script>
+        // Set the category filter for this page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.blogManager) {
+                blogManager.currentFilter = 'lifestyle';
+                blogManager.renderBlogPosts();
+            }
+        });
+    </script>
+</body>
+</html>

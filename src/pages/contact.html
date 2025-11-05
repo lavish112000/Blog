@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Vibrant Insights</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/contact-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Fluid Background Animation -->
+    <div class="contact-fluid-bg">
+        <div class="fluid-blob blob-1"></div>
+        <div class="fluid-blob blob-2"></div>
+        <div class="fluid-blob blob-3"></div>
+    </div>
+
+    <main class="contact-main">
+        <!-- Page Header Section -->
+        <section class="contact-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="contact-title">
+                        <span>Get In Touch</span>
+                    </h1>
+                    <p class="contact-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information & Form Section -->
+        <section class="contact-section">
+            <div class="container container-lg">
+                <div class="contact-wrapper">
+                    <!-- Contact Information Cards Container -->
+                    <div class="contact-info-section">
+                        <div class="section-header">
+                            <h2>Contact Information</h2>
+                            <p>Get in touch through any of these channels</p>
+                        </div>
+                        <div class="contact-info-cards">
+                            <div class="info-card fade-in-up">
+                                <div class="info-card-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="info-card-content">
+                                    <h3>Location</h3>
+                                    <p>123 Tech Street, Silicon Valley</p>
+                                    <p>San Francisco, CA 94105</p>
+                                </div>
+                            </div>
+
+                            <div class="info-card fade-in-up">
+                                <div class="info-card-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="info-card-content">
+                                    <h3>Email</h3>
+                                    <a href="mailto:hello@vibrantinsights.com">hello@vibrantinsights.com</a>
+                                    <a href="mailto:support@vibrantinsights.com">support@vibrantinsights.com</a>
+                                </div>
+                            </div>
+
+                            <div class="info-card fade-in-up">
+                                <div class="info-card-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="info-card-content">
+                                    <h3>Phone</h3>
+                                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                                    <p class="office-hours">Mon - Fri: 9AM - 6PM PST</p>
+                                </div>
+                            </div>
+
+                            <div class="info-card fade-in-up">
+                                <div class="info-card-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="info-card-content">
+                                    <h3>Response Time</h3>
+                                    <p>We typically respond within 24 hours</p>
+                                    <p class="response-note">During business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Container -->
+                    <div class="contact-form-section">
+                        <div class="contact-form-wrapper fade-in-up">
+                            <div class="form-header">
+                                <h2>Send us a Message</h2>
+                                <p>We'll get back to you as soon as possible</p>
+                            </div>
+                            <form id="contactForm" class="contact-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                                        <span class="form-error"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                                        <span class="form-error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="+1 (234) 567-890">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <select id="subject" name="subject" required>
+                                            <option value="">Select a subject</option>
+                                            <option value="general">General Inquiry</option>
+                                            <option value="partnership">Partnership Opportunity</option>
+                                            <option value="advertising">Advertising</option>
+                                            <option value="feedback">Feedback</option>
+                                            <option value="support">Technical Support</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <span class="form-error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-full">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" placeholder="Tell us more about your inquiry..." rows="6" required></textarea>
+                                    <span class="form-error"></span>
+                                </div>
+
+                                <div class="form-group checkbox">
+                                    <input type="checkbox" id="privacy" name="privacy" required>
+                                    <label for="privacy">I agree to the privacy policy and terms of service</label>
+                                </div>
+
+                                <button type="submit" class="submit-btn">
+                                    <span>Send Message</span>
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </form>
+
+                            <div id="formMessage" class="form-message"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <section class="contact-social-section">
+            <div class="container container-lg">
+                <div class="social-content">
+                    <div class="social-header">
+                        <h2>Follow Us On Social Media</h2>
+                        <p>Connect with us and stay updated with the latest content</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon-link facebook" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon-link twitter" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon-link linkedin" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-icon-link youtube" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-icon-link instagram" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="contact-faq-section">
+            <div class="container container-lg">
+                <div class="faq-content">
+                    <div class="faq-header">
+                        <h2>Frequently Asked Questions</h2>
+                        <p>Find answers to common questions</p>
+                    </div>
+                    <div class="faq-grid">
+                        <div class="faq-item fade-in-up">
+                            <div class="faq-question">
+                                <h4>What is your typical response time?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We typically respond to all inquiries within 24 business hours. For urgent matters, please call us directly.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item fade-in-up">
+                            <div class="faq-question">
+                                <h4>Can I schedule a consultation?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely! You can mention your preferred time in the message, and our team will get back to you to confirm the appointment.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item fade-in-up">
+                            <div class="faq-question">
+                                <h4>Do you offer technical support?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, we provide comprehensive technical support for all our services. Select "Technical Support" when submitting your inquiry.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item fade-in-up">
+                            <div class="faq-question">
+                                <h4>Are you open on weekends?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We operate Monday to Friday, 9AM to 6PM PST. For weekend inquiries, we'll respond first thing on Monday.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item fade-in-up">
+                            <div class="faq-question">
+                                <h4>How can I subscribe to your newsletter?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>You can subscribe to our newsletter on any page of our website. Look for the newsletter signup form in the sidebar or footer.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item fade-in-up">
+                            <div class="faq-question">
+                                <h4>Can I provide feedback or suggestions?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We'd love your feedback! Simply select "Feedback" as the subject and let us know your thoughts. Your input helps us improve.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <footer id="footer"></footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/contact-page.js"></script>
+</body>
+</html>
