@@ -89,6 +89,32 @@ blog-website
 - Use the contact page to reach out for inquiries.
 - Subscribe to the newsletter for updates.
 
+## Deployment
+
+### Netlify Deployment
+
+This project is configured for easy deployment on Netlify:
+
+1. **Connect to GitHub**: Link your GitHub repository to Netlify
+2. **Build Settings**: Netlify will automatically detect the `netlify.toml` configuration:
+   - **Build Command**: `npm run build`
+   - **Publish Directory**: `dist`
+3. **Deploy**: Netlify will build and deploy your site automatically on every push to main
+
+### Manual Deployment
+
+If you prefer to deploy manually:
+
+```bash
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# The dist/ directory contains all files ready for deployment
+```
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
