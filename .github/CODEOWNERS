@@ -1,31 +1,40 @@
 # Code Owners for Blog Website
-# These users will be automatically requested for review when someone opens a pull request.
 
-# Global owners - will be requested for all PRs
+## These users will be automatically requested for review when someone opens a pull request
+
+## Global owners - will be requested for all PRs
+
 * @lavish112000
 
-# JavaScript code owners
+## JavaScript code owners
+
 /src/js/ @lavish112000
 
-# CSS and styling
+## CSS and styling
+
 /src/css/ @lavish112000
 
-# HTML templates
+## HTML templates
+
 /src/*.html @lavish112000
 /src/pages/ @lavish112000
 /src/components/ @lavish112000
 
-# Configuration files
+## Configuration files
+
 *.config.js @lavish112000
 package.json @lavish112000
 webpack.config.js @lavish112000
 
-# CI/CD and GitHub workflows
+## CI/CD and GitHub workflows
+
 /.github/ @lavish112000
 
-# Documentation
+## Documentation
+
 *.md @lavish112000
 
-# Build and deployment
+## Build and deployment
+
 /dist/ @lavish112000
 netlify.toml @lavish112000
