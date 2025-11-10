@@ -130,6 +130,9 @@ temp/
 *.sln
 *.sw?
 
+# Husky
+.husky/_
+
 # OS generated files
 .DS_Store
 .DS_Store?
