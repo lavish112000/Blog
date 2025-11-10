@@ -21,7 +21,40 @@
     "liveServer.settings.root": "/src",
     "liveServer.settings.CustomBrowser": "chrome",
     "liveServer.settings.donotShowInfoMsg": true,
-    "liveServer.settings.donotVerifyTags": true
+    "liveServer.settings.donotVerifyTags": true,
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact"
+    ],
+    "eslint.run": "onType",
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.git": true,
+      "**/coverage": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/coverage": true
+    }
   },
   "extensions": {
     "recommendations": [
@@ -35,7 +68,11 @@
       "eamodio.gitlens",
       "naumovs.color-highlight",
       "christian-kohler.path-intellisense",
-      "ms-vscode.vscode-json"
+      "ms-vscode.vscode-json",
+      "streetsidesoftware.code-spell-checker",
+      "usernamehw.errorlens",
+      "wix.vscode-import-cost",
+      "orta.vscode-jest"
     ]
   },
   "tasks": {
@@ -86,6 +123,62 @@
           "panel": "new"
         },
         "problemMatcher": ["$eslint-stylish"]
+      },
+      {
+        "label": "Run Tests",
+        "type": "shell",
+        "command": "npm",
+        "args": ["test"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Run Tests with Coverage",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "test:coverage"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Build Production",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "build"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Pre-commit Checks",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "precommit"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new"
+        },
+        "problemMatcher": []
       }
     ]
   }
