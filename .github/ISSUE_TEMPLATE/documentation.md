@@ -10,7 +10,7 @@ assignees: ''
 
 <!-- Which documentation file or section has issues? -->
 
-**File/Section:** 
+**File/Section:**
 
 ## Issue Type
 
@@ -27,7 +27,7 @@ assignees: ''
 
 <!-- Quote or describe the current documentation that needs improvement -->
 
-```
+```markdown
 Current text or section here
 ```
 
@@ -35,7 +35,7 @@ Current text or section here
 
 <!-- Describe what should be changed or added -->
 
-```
+```markdown
 Suggested text or changes here
 ```
 
