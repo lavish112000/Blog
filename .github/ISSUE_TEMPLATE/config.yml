@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussion Forum
+    url: https://github.com/lavish112000/Blog/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 📚 Documentation
+    url: https://github.com/lavish112000/Blog/blob/main/README.md
+    about: Read the project documentation
+  - name: 🔒 Security Advisory
+    url: https://github.com/lavish112000/Blog/security/advisories
+    about: Report security vulnerabilities privately

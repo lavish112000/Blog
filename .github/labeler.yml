@@ -1,0 +1,72 @@
+# Auto-label PRs based on changed files
+
+# JavaScript changes
+'javascript':
+  - 'src/js/**/*.js'
+  - '**/*.js'
+
+# CSS/Styling changes
+'css':
+  - 'src/css/**/*.css'
+  - '**/*.css'
+
+# HTML changes
+'html':
+  - 'src/**/*.html'
+  - '**/*.html'
+
+# Documentation changes
+'documentation':
+  - '**/*.md'
+  - 'docs/**/*'
+
+# Configuration changes
+'config':
+  - '**/*.json'
+  - '**/*.yml'
+  - '**/*.yaml'
+  - '**/*.toml'
+  - '.eslintrc.*'
+  - '.prettierrc*'
+  - 'webpack.config.js'
+  - 'jest.config.js'
+
+# Testing changes
+'testing':
+  - '**/*.test.js'
+  - '**/*.spec.js'
+  - 'src/js/__tests__/**/*'
+  - 'jest.config.js'
+
+# CI/CD changes
+'ci/cd':
+  - '.github/workflows/**/*'
+  - '.github/actions/**/*'
+  - 'netlify.toml'
+
+# Dependencies
+'dependencies':
+  - 'package.json'
+  - 'package-lock.json'
+  - 'yarn.lock'
+  - 'pnpm-lock.yaml'
+
+# Assets
+'assets':
+  - 'src/assets/**/*'
+  - '**/*.png'
+  - '**/*.jpg'
+  - '**/*.jpeg'
+  - '**/*.gif'
+  - '**/*.svg'
+  - '**/*.webp'
+
+# Components
+'components':
+  - 'src/components/**/*'
+
+# Build/Deployment
+'build':
+  - 'webpack.config.js'
+  - 'dist/**/*'
+  - 'build/**/*'

@@ -15,7 +15,11 @@
     "lint:fix": "eslint src/js/**/*.js --fix",
     "format": "prettier --write src/**/*.{js,css,html}",
     "format:check": "prettier --check src/**/*.{js,css,html}",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "precommit": "npm run lint && npm run format:check && npm run test",
+    "prepare": "husky"
   },
   "keywords": [
     "blog",
@@ -40,11 +44,16 @@
   "devDependencies": {
     "@babel/core": "^7.22.0",
     "@babel/preset-env": "^7.22.0",
+    "@types/jest": "^30.0.0",
     "babel-loader": "^9.1.0",
     "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^6.8.0",
     "eslint": "^8.44.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "lint-staged": "^16.2.6",
     "live-server": "^1.2.2",
     "prettier": "^3.0.0",
     "style-loader": "^3.3.0",
@@ -53,3 +62,4 @@
     "webpack-dev-server": "^4.15.0"
   }
 }
+

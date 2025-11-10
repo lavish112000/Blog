@@ -117,7 +117,38 @@ npm run build
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+Contributions are welcome! This project has a comprehensive code review system with automated quality checks.
+
+**Before contributing, please:**
+1. Read the [Contributing Guidelines](CONTRIBUTING.md)
+2. Review the [Code Review Checklist](CODE_REVIEW_CHECKLIST.md)
+3. Check the [Quick Reference Guide](CODE_REVIEW_SYSTEM.md)
+
+**Quick Start:**
+```bash
+npm install              # Install dependencies
+npm run lint            # Check code quality
+npm test                # Run tests
+npm run precommit       # Run all checks
+```
+
+**Resources:**
+- [Contributing Guidelines](CONTRIBUTING.md) - Complete developer guide
+- [Code Review Checklist](CODE_REVIEW_CHECKLIST.md) - 10-point review system
+- [Security Guidelines](SECURITY.md) - Security best practices
+- [Performance Guide](PERFORMANCE.md) - Performance optimization
+
+## Code Quality
+
+This project uses:
+- ✅ **ESLint** - Code quality enforcement
+- ✅ **Prettier** - Code formatting
+- ✅ **Jest** - Unit testing (50% coverage minimum)
+- ✅ **Husky** - Pre-commit hooks
+- ✅ **GitHub Actions** - CI/CD with quality gates
+- ✅ **CodeQL** - Security scanning
+
+All PRs must pass automated quality checks before merge.
 
 ## License
 
