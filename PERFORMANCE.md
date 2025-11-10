@@ -39,6 +39,7 @@ This guide outlines performance standards, monitoring practices, and optimizatio
 ### 1. Chrome DevTools
 
 **Lighthouse Audit:**
+
 ```bash
 1. Open Chrome DevTools (F12)
 2. Go to Lighthouse tab
@@ -47,12 +48,14 @@ This guide outlines performance standards, monitoring practices, and optimizatio
 ```
 
 **Performance Tab:**
+
 - Record page load
 - Analyze timeline
 - Identify bottlenecks
 - Check JavaScript execution time
 
 **Network Tab:**
+
 - Monitor request waterfall
 - Check resource sizes
 - Identify slow requests
@@ -61,6 +64,7 @@ This guide outlines performance standards, monitoring practices, and optimizatio
 ### 2. Web Vitals Extension
 
 Install Chrome extension:
+
 - Real-time Core Web Vitals
 - Field data from real users
 - Compare with lab data
@@ -501,11 +505,13 @@ if (document.readyState === 'complete') {
 ### Regular Monitoring
 
 **Weekly:**
+
 - [ ] Review Lighthouse scores
 - [ ] Check bundle size trends
 - [ ] Monitor Core Web Vitals
 
 **Monthly:**
+
 - [ ] Audit dependencies
 - [ ] Review performance budget
 - [ ] Update optimization strategies
@@ -518,6 +524,7 @@ if (document.readyState === 'complete') {
 ### Issue: Slow Initial Load
 
 **Solutions:**
+
 - Implement code splitting
 - Optimize images
 - Use CDN for static assets
@@ -527,6 +534,7 @@ if (document.readyState === 'complete') {
 ### Issue: Poor LCP
 
 **Solutions:**
+
 - Preload hero images
 - Optimize server response time
 - Use critical CSS
@@ -535,6 +543,7 @@ if (document.readyState === 'complete') {
 ### Issue: High CLS
 
 **Solutions:**
+
 - Reserve space for images (width/height attributes)
 - Avoid inserting content above existing content
 - Use CSS transforms for animations
@@ -543,6 +552,7 @@ if (document.readyState === 'complete') {
 ### Issue: Large Bundle Size
 
 **Solutions:**
+
 - Remove unused dependencies
 - Enable tree shaking
 - Code split by route
@@ -571,6 +581,7 @@ if (document.readyState === 'complete') {
 ## Questions?
 
 For performance-related questions:
+
 1. Review this guide
 2. Run Lighthouse audit
 3. Check Chrome DevTools
