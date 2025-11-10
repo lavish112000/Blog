@@ -76,6 +76,9 @@ jobs:
   checklist-validator:
     name: Validate PR Checklist
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+      issues: write
     
     steps:
       - name: Check PR description
@@ -111,6 +114,9 @@ jobs:
     name: Welcome First-Time Contributors
     runs-on: ubuntu-latest
     if: github.event.action == 'opened'
+    permissions:
+      pull-requests: read
+      issues: write
     
     steps:
       - name: Check if first-time contributor
@@ -145,6 +151,9 @@ jobs:
     name: Review Reminder
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
+    permissions:
+      pull-requests: read
+      issues: write
     
     steps:
       - name: Check review status
@@ -172,6 +181,8 @@ jobs:
     name: Thank Reviewers
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
+    permissions:
+      issues: write
     
     steps:
       - name: Thank reviewer
