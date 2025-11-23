@@ -49,6 +49,7 @@ git commit -m "Your message"
 ## 🛠 Tools Configured
 
 ### Code Quality
+
 - **ESLint** - JavaScript linting with Jest support
 - **Prettier** - Code formatting
 - **Jest** - Testing framework with 50% coverage
@@ -56,12 +57,14 @@ git commit -m "Your message"
 - **lint-staged** - Pre-commit checks
 
 ### CI/CD
+
 - **GitHub Actions** - Automated quality checks
 - **CodeQL** - Security scanning
 - **npm audit** - Dependency vulnerabilities
 - **Netlify** - Automated deployment
 
 ### VS Code
+
 - 15+ recommended extensions
 - Format on save
 - Auto-fix on save
@@ -86,7 +89,7 @@ git commit -m "Your message"
 
 ## 🔄 Development Workflow
 
-```
+```markdown
 1. Create branch
    ↓
 2. Make changes

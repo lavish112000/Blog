@@ -32,13 +32,15 @@ assignees: ''
 ## Environment
 
 **Browser:**
+
 - [ ] Chrome (version: )
 - [ ] Firefox (version: )
 - [ ] Safari (version: )
 - [ ] Edge (version: )
-- [ ] Other: 
+- [ ] Other:
 
 **Operating System:**
+
 - [ ] Windows
 - [ ] macOS
 - [ ] Linux
@@ -46,11 +48,12 @@ assignees: ''
 - [ ] Android
 
 **Device:**
+
 - [ ] Desktop
 - [ ] Mobile
 - [ ] Tablet
 
-**Screen Resolution:** 
+**Screen Resolution:**
 
 ## Additional Context
 

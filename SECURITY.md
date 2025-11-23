@@ -19,6 +19,7 @@ This document outlines security best practices and requirements for the Modern B
 **IMPORTANT:** Please do not report security vulnerabilities through public GitHub issues.
 
 If you discover a security vulnerability:
+
 1. Email the maintainers directly at [security contact]
 2. Include detailed steps to reproduce
 3. Provide severity assessment if possible
@@ -184,6 +185,7 @@ Our CI/CD pipeline automatically checks for vulnerabilities:
 ### Dependency Updates
 
 **Weekly Schedule:**
+
 1. Review `npm audit` output
 2. Check for outdated packages: `npm outdated`
 3. Update non-breaking changes: `npm update`
@@ -193,6 +195,7 @@ Our CI/CD pipeline automatically checks for vulnerabilities:
 ### Vulnerability Database
 
 We monitor:
+
 - **npm audit** - JavaScript vulnerabilities
 - **GitHub Security Advisories** - Repository alerts
 - **Snyk** - Continuous monitoring (if configured)
@@ -205,6 +208,7 @@ We monitor:
 ### Pre-commit Checks
 
 Automated by Husky:
+
 ```bash
 # Runs on every commit
 npm run lint
@@ -230,6 +234,7 @@ Before every PR:
 **Test for common vulnerabilities:**
 
 1. **XSS Testing**
+
    ```javascript
    // Try injecting:
    <script>alert('XSS')</script>
@@ -237,6 +242,7 @@ Before every PR:
    ```
 
 2. **Input Validation**
+
    ```javascript
    // Test with:
    - Empty strings
@@ -247,6 +253,7 @@ Before every PR:
    ```
 
 3. **Authentication**
+
    ```javascript
    // Verify:
    - Session timeout works
@@ -271,6 +278,7 @@ secrets/
 ```
 
 **Use environment variables:**
+
 ```javascript
 // ✅ Good
 const API_KEY = process.env.API_KEY;
@@ -342,12 +350,14 @@ headers: {
 ### 1. Cross-Site Scripting (XSS)
 
 **Vulnerable:**
+
 ```javascript
 // ❌ Never do this
 element.innerHTML = userInput;
 ```
 
 **Secure:**
+
 ```javascript
 // ✅ Do this instead
 element.textContent = userInput;
@@ -358,12 +368,14 @@ element.innerText = sanitize(userInput);
 ### 2. SQL Injection
 
 **Vulnerable:**
+
 ```javascript
 // ❌ Never do this (if using SQL)
 const query = `SELECT * FROM posts WHERE id = ${userId}`;
 ```
 
 **Secure:**
+
 ```javascript
 // ✅ Use parameterized queries
 const query = 'SELECT * FROM posts WHERE id = ?';
@@ -373,6 +385,7 @@ db.execute(query, [userId]);
 ### 3. CSRF (Cross-Site Request Forgery)
 
 **Secure:**
+
 ```javascript
 // Include CSRF token in forms
 <input type="hidden" name="csrf_token" value="${csrfToken}">
@@ -386,6 +399,7 @@ if (req.body.csrf_token !== req.session.csrf_token) {
 ### 4. Insecure Direct Object References
 
 **Vulnerable:**
+
 ```javascript
 // ❌ Direct access without authorization
 function getPost(postId) {
@@ -394,6 +408,7 @@ function getPost(postId) {
 ```
 
 **Secure:**
+
 ```javascript
 // ✅ Check authorization
 function getPost(postId, userId) {
@@ -437,6 +452,7 @@ function getPost(postId, userId) {
 ### Security Contacts
 
 For security issues:
+
 - GitHub Security Advisories: Enable in repository settings
 - Direct contact: [maintainer email]
 - Response time: 24 hours for critical issues
@@ -473,11 +489,13 @@ For security issues:
 ### Regular Audits
 
 **Monthly:**
+
 - Review npm audit output
 - Check for outdated dependencies
 - Review security logs
 
 **Quarterly:**
+
 - Full security review
 - Update dependencies
 - Review and update this document
@@ -487,6 +505,7 @@ For security issues:
 ## Questions?
 
 For security-related questions:
+
 1. Review this document
 2. Check OWASP guidelines
 3. Consult with security team

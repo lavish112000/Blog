@@ -11,6 +11,7 @@ assignees: ''
 **If this is a critical security vulnerability, please DO NOT create a public issue.**
 
 Instead:
+
 1. Email the maintainers directly
 2. Use GitHub Security Advisories (recommended)
 3. Provide details privately
@@ -44,15 +45,15 @@ For non-critical security improvements, you may proceed with this template.
 
 <!-- Which parts of the application are affected? -->
 
-- 
+-
 
 ## Steps to Reproduce
 
 <!-- Only if this is not a critical vulnerability -->
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ## Impact
 

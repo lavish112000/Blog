@@ -29,31 +29,36 @@ Thank you for your interest in contributing to our project! This guide will help
 ### Initial Setup
 
 1. **Fork and Clone**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/Blog.git
-   cd Blog
-   ```
 
-2. **Install Dependencies**
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/YOUR_USERNAME/Blog.git
+cd Blog
+```
 
-3. **Verify Setup**
-   ```bash
-   npm run lint        # Check code quality
-   npm run test        # Run tests
-   npm run build       # Build project
-   ```
+1. **Install Dependencies**
 
-4. **Open in VS Code**
-   ```bash
-   code blog-website.code-workspace
-   ```
+```bash
+npm install
+```
+
+1. **Verify Setup**
+
+```bash
+npm run lint        # Check code quality
+npm run test        # Run tests
+npm run build       # Build project
+```
+
+1. **Open in VS Code**
+
+```bash
+code blog-website.code-workspace
+```
 
 ### VS Code Setup
 
 Install recommended extensions when prompted. Our workspace includes:
+
 - ESLint for code quality
 - Prettier for formatting
 - Live Server for development
@@ -72,6 +77,7 @@ git checkout -b fix/bug-description
 ```
 
 **Branch Naming Convention:**
+
 - `feature/` - New features
 - `fix/` - Bug fixes
 - `docs/` - Documentation changes
@@ -118,6 +124,7 @@ git commit -m "docs(readme): update installation steps"
 ```
 
 **Commit Types:**
+
 - `feat` - New feature
 - `fix` - Bug fix
 - `docs` - Documentation
@@ -144,6 +151,7 @@ Then create a Pull Request on GitHub using our PR template.
 ### JavaScript
 
 #### ES6+ Features
+
 - Use `const` and `let`, never `var`
 - Use arrow functions for callbacks
 - Use template literals for string interpolation
@@ -176,6 +184,7 @@ var fetchPosts = function() {
 ```
 
 #### Naming Conventions
+
 - `camelCase` for variables and functions
 - `PascalCase` for classes and constructors
 - `UPPER_SNAKE_CASE` for constants
@@ -194,6 +203,7 @@ function calc(c) { }
 ```
 
 #### Function Guidelines
+
 - Keep functions small (< 50 lines)
 - Single responsibility principle
 - Maximum 3-4 parameters (use object for more)
@@ -215,6 +225,7 @@ function createPost(title, content, author, tags, category, status, publishDate)
 ### CSS
 
 #### Naming Convention
+
 Use BEM (Block Element Modifier):
 
 ```css
@@ -231,6 +242,7 @@ Use BEM (Block Element Modifier):
 ```
 
 #### Best Practices
+
 - Mobile-first responsive design
 - Use CSS custom properties (variables)
 - Avoid !important unless absolutely necessary
@@ -314,6 +326,7 @@ describe('BlogPost Component', () => {
 - **Critical Logic:** 90% coverage
 
 Run coverage report:
+
 ```bash
 npm run test:coverage
 ```
@@ -333,6 +346,7 @@ All contributions go through our [10-Point Code Review Checklist](CODE_REVIEW_CH
 ### Before Requesting Review
 
 Ensure you have:
+
 - [ ] Run all quality checks locally
 - [ ] Written/updated tests
 - [ ] Updated documentation
@@ -365,15 +379,17 @@ Ensure you have:
    - Use environment variables
    - Add `.env` files to `.gitignore`
 
-2. **Validate all inputs**
-   ```javascript
-   function sanitizeInput(input) {
+1. **Validate all inputs**
+
+```javascript
+function sanitizeInput(input) {
      return input.trim().replace(/[<>]/g, '');
    }
-   ```
+```
 
-3. **Handle errors securely**
-   ```javascript
+1. **Handle errors securely**
+
+```javascript
    // ✅ Good
    catch (error) {
      console.error('Operation failed');
@@ -387,8 +403,9 @@ Ensure you have:
    }
    ```
 
-4. **Keep dependencies updated**
-   ```bash
+1. **Keep dependencies updated**
+
+```bash
    npm audit
    npm audit fix
    ```
@@ -396,6 +413,7 @@ Ensure you have:
 ### Security Checklist
 
 Before submitting PR:
+
 - [ ] No hardcoded credentials
 - [ ] All user inputs validated
 - [ ] Error messages don't expose sensitive info
@@ -450,24 +468,26 @@ We follow WCAG 2.1 Level AA standards.
 ### Requirements
 
 1. **Semantic HTML**
-   ```html
+
+```html
    <nav role="navigation">
    <main role="main">
    <article role="article">
    ```
 
-2. **Keyboard Navigation**
+1. **Keyboard Navigation**
    - All interactive elements focusable
    - Logical tab order
    - Visible focus indicators
 
-3. **Color Contrast**
+2. **Color Contrast**
    - Text: 4.5:1 ratio minimum
    - Large text: 3:1 ratio minimum
    - Test with tools like WebAIM
 
-4. **ARIA Labels**
-   ```html
+3. **ARIA Labels**
+
+```html
    <button aria-label="Close dialog">×</button>
    <img src="logo.png" alt="Company logo">
    ```
@@ -508,6 +528,7 @@ npm run build
 ### 4. Merge
 
 Once approved and CI passes:
+
 - Maintainer will merge
 - PR branch will be deleted
 - Changes deployed automatically (if main branch)
@@ -534,6 +555,7 @@ Once approved and CI passes:
 ### Recognition
 
 Contributors are recognized in:
+
 - Release notes
 - README contributors section
 - Project documentation
@@ -589,9 +611,10 @@ npm run clean         # Clean build artifacts
 ## Questions?
 
 If you have questions or need help:
+
 1. Check existing documentation
 2. Search existing issues/discussions
 3. Open a new discussion
 4. Contact maintainers
 
-**Thank you for contributing! 🎉**
+Thank you for contributing! 🎉

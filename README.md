@@ -14,7 +14,7 @@ This project is a modern, responsive blog website designed with an enterprise-le
 
 ## Project Structure
 
-```
+```text
 blog-website
 ├── src
 │   ├── index.html          # Main entry point for the website
@@ -120,11 +120,13 @@ npm run build
 Contributions are welcome! This project has a comprehensive code review system with automated quality checks.
 
 **Before contributing, please:**
+
 1. Read the [Contributing Guidelines](CONTRIBUTING.md)
 2. Review the [Code Review Checklist](CODE_REVIEW_CHECKLIST.md)
 3. Check the [Quick Reference Guide](CODE_REVIEW_SYSTEM.md)
 
 **Quick Start:**
+
 ```bash
 npm install              # Install dependencies
 npm run lint            # Check code quality
@@ -133,6 +135,7 @@ npm run precommit       # Run all checks
 ```
 
 **Resources:**
+
 - [Contributing Guidelines](CONTRIBUTING.md) - Complete developer guide
 - [Code Review Checklist](CODE_REVIEW_CHECKLIST.md) - 10-point review system
 - [Security Guidelines](SECURITY.md) - Security best practices
@@ -141,6 +144,7 @@ npm run precommit       # Run all checks
 ## Code Quality
 
 This project uses:
+
 - ✅ **ESLint** - Code quality enforcement
 - ✅ **Prettier** - Code formatting
 - ✅ **Jest** - Unit testing (50% coverage minimum)
