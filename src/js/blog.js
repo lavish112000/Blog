@@ -24,7 +24,7 @@ class BlogManager {
   async loadPosts() {
     try {
       // In a real application, this would fetch from an API
-      const response = await fetch("./data/posts.json");
+      const response = await fetch("/data/posts.json");
       this.posts = await response.json();
     } catch (error) {
       console.error("Error loading posts:", error);
@@ -184,12 +184,12 @@ class BlogManager {
                     <div class="blog-card-footer">
                         <div class="blog-card-tags">
                             ${post.tags
-                              .slice(0, 2)
-                              .map(
-                                (tag) =>
-                                  `<a href="#" class="blog-tag" onclick="blogManager.filterByTag('${tag}')">${tag}</a>`
-                              )
-                              .join("")}
+            .slice(0, 2)
+            .map(
+              (tag) =>
+                `<a href="#" class="blog-tag" onclick="blogManager.filterByTag('${tag}')">${tag}</a>`
+            )
+            .join("")}
                         </div>
                         <a href="#" class="read-more" onclick="blogManager.openPost(${post.id})">
                             Read More <i class="fas fa-arrow-right"></i>
@@ -250,12 +250,12 @@ class BlogManager {
                     <div class="blog-card-footer">
                         <div class="blog-card-tags">
                             ${post.tags
-                              .slice(0, 3)
-                              .map(
-                                (tag) =>
-                                  `<a href="#" class="blog-tag" onclick="blogManager.filterByTag('${tag}')">${tag}</a>`
-                              )
-                              .join("")}
+            .slice(0, 3)
+            .map(
+              (tag) =>
+                `<a href="#" class="blog-tag" onclick="blogManager.filterByTag('${tag}')">${tag}</a>`
+            )
+            .join("")}
                         </div>
                         <a href="#" class="read-more" onclick="blogManager.openPost(${post.id})">
                             Read More <i class="fas fa-arrow-right"></i>
@@ -303,11 +303,11 @@ class BlogManager {
                 </h3>
                 <div class="popular-posts">
                     ${popularPosts
-                      .map(
-                        (post) => `
+        .map(
+          (post) => `
                         <div class="popular-post">
                             <div class="popular-post-image">
-                                <img src="${post.image}" alt="${post.title}">
+                                <img src="${post.image}" alt="${post.title}" loading="lazy">
                             </div>
                             <div class="popular-post-content">
                                 <h4 class="popular-post-title">
@@ -317,8 +317,8 @@ class BlogManager {
                             </div>
                         </div>
                     `
-                      )
-                      .join("")}
+        )
+        .join("")}
                 </div>
             </div>
         `;
@@ -341,8 +341,8 @@ class BlogManager {
                 </h3>
                 <ul class="category-list">
                     ${categoryCounts
-                      .map(
-                        (category) => `
+        .map(
+          (category) => `
                         <li class="category-item">
                             <a href="#" class="category-link" onclick="blogManager.filterPosts('${category.name}')">
                                 ${this.capitalize(category.name)}
@@ -350,8 +350,8 @@ class BlogManager {
                             <span class="category-count">${category.count}</span>
                         </li>
                     `
-                      )
-                      .join("")}
+        )
+        .join("")}
                 </ul>
             </div>
         `;
@@ -379,14 +379,14 @@ class BlogManager {
                 </h3>
                 <div class="tags-cloud">
                     ${sortedTags
-                      .map(
-                        ([tag, count]) => `
+        .map(
+          ([tag, count]) => `
                         <a href="#" class="tag-cloud-item" onclick="blogManager.filterByTag('${tag}')">
                             ${tag}
                         </a>
                     `
-                      )
-                      .join("")}
+        )
+        .join("")}
                 </div>
             </div>
         `;
@@ -590,12 +590,12 @@ class BlogManager {
                     <div class="blog-card-footer">
                         <div class="blog-card-tags">
                             ${post.tags
-                              .slice(0, 3)
-                              .map(
-                                (tag) =>
-                                  `<a href="#" class="blog-tag">${tag}</a>`
-                              )
-                              .join("")}
+            .slice(0, 3)
+            .map(
+              (tag) =>
+                `<a href="#" class="blog-tag">${tag}</a>`
+            )
+            .join("")}
                         </div>
                         <a href="#" class="read-more" onclick="blogManager.openPost(${post.id})">
                             Read More <i class="fas fa-arrow-right"></i>
@@ -675,36 +675,4 @@ document.addEventListener("DOMContentLoaded", () => {
 // Export for use in other modules
 window.BlogManager = BlogManager;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const blogContainer = document.getElementById("blog-posts");
-  const postsUrl = "../data/posts.json";
 
-  // Function to load blog posts
-  const loadBlogPosts = async () => {
-    try {
-      const response = await fetch(postsUrl);
-      const posts = await response.json();
-      displayPosts(posts);
-    } catch (error) {
-      console.error("Error loading blog posts:", error);
-    }
-  };
-
-  // Function to display blog posts
-  const displayPosts = (posts) => {
-    blogContainer.innerHTML = "";
-    posts.forEach((post) => {
-      const postElement = document.createElement("div");
-      postElement.classList.add("blog-post");
-      postElement.innerHTML = `
-                <h2>${post.title}</h2>
-                <p>${post.content.substring(0, 100)}...</p>
-                <a href="blog.html?id=${post.id}" class="read-more">Read More</a>
-            `;
-      blogContainer.appendChild(postElement);
-    });
-  };
-
-  // Load blog posts on page load
-  loadBlogPosts();
-});
