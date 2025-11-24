@@ -6,6 +6,7 @@
 
 class ModernBlog {
   constructor() {
+    this.posts = window.blogData || [];
     this.init();
   }
 
@@ -18,432 +19,191 @@ class ModernBlog {
     this.registerServiceWorker();
   }
 
-  registerServiceWorker() {
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("/sw.js")
-          .then((registration) => {
-            console.log("SW registered: ", registration);
-          })
-          .catch((registrationError) => {
-            console.log("SW registration failed: ", registrationError);
-          });
-      });
-    }
-  }
-
-  setupEventListeners() {
-    // Navigation toggle
-    const navToggle = document.getElementById("nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
-
-    if (navToggle && navMenu) {
-      navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-        navToggle.classList.toggle("active");
-      });
-    }
-
-    // Search functionality
-    const searchToggle = document.getElementById("search-toggle");
-    const searchOverlay = document.getElementById("search-overlay");
-    const searchClose = document.getElementById("search-close");
-    const searchInput = document.getElementById("search-input");
-
-    if (searchToggle) {
-      searchToggle.addEventListener("click", () => {
-        searchOverlay.classList.add("active");
-        setTimeout(() => searchInput.focus(), 100);
-      });
-    }
-
-    if (searchClose) {
-      searchClose.addEventListener("click", () => {
-        searchOverlay.classList.remove("active");
-      });
-    }
-
-    if (searchOverlay) {
-      searchOverlay.addEventListener("click", (e) => {
-        if (e.target === searchOverlay) {
-          searchOverlay.classList.remove("active");
-        }
-      });
-    }
-
-    // Theme toggle
-    const themeToggle = document.getElementById("theme-toggle");
-    if (themeToggle) {
-      themeToggle.addEventListener("click", () => {
-        this.toggleTheme();
-      });
-    }
-
-    // Newsletter form
-    const newsletterForm = document.getElementById("newsletter-form");
-    if (newsletterForm) {
-      newsletterForm.addEventListener("submit", (e) => {
-        this.handleNewsletterSubmit(e);
-      });
-    }
-
-    // Back to top button
-    const backToTop = document.getElementById("back-to-top");
-    if (backToTop) {
-      backToTop.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-    }
-
-    // Filter tabs
-    const filterTabs = document.querySelectorAll(".filter-tab");
-    filterTabs.forEach((tab) => {
-      tab.addEventListener("click", (e) => {
-        this.handleFilterTab(e.target);
-      });
-    });
-
-    // Load more button
-    const loadMoreBtn = document.getElementById("load-more-btn");
-    if (loadMoreBtn) {
-      loadMoreBtn.addEventListener("click", () => {
-        this.loadMorePosts();
-      });
-    }
-
-    // Escape key handlers
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        if (searchOverlay.classList.contains("active")) {
-          searchOverlay.classList.remove("active");
-        }
-        if (navMenu.classList.contains("active")) {
-          navMenu.classList.remove("active");
-          navToggle.classList.remove("active");
-        }
-      }
-    });
-  }
-
   initializeComponents() {
-    // Initialize reading progress bar
-    this.initReadingProgress();
+    this.loadFeaturedPosts();
+    this.loadLatestPosts();
+  }
 
-    // Initialize intersection observer for animations
-    this.initScrollAnimations();
+  loadFeaturedPosts() {
+    const container = document.getElementById('featured-grid');
+    if (!container) return;
 
-    // Initialize search functionality
-    this.initSearch();
+    // Sort by views or just take featured ones
+    const featured = this.posts.filter(p => p.featured).slice(0, 3);
+
+    container.innerHTML = featured.map(post => `
+            <article class="featured-card fade-in-up">
+                <div class="featured-image">
+                    <img src="${post.image}" alt="${post.title}" loading="lazy">
+                    <div class="featured-category">${post.category}</div>
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span><i class="far fa-calendar"></i> ${post.date}</span>
+                        <span><i class="far fa-user"></i> ${post.author}</span>
+                    </div>
+                    <h3 class="featured-title">
+                        <a href="#">${post.title}</a>
+                    </h3>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        `).join('');
+  }
+
+  loadLatestPosts() {
+    const container = document.getElementById('posts-grid');
+    if (!container) return;
+
+    const path = window.location.pathname;
+    let postsToShow = [];
+
+    // Determine context based on URL
+    if (path.includes('technology.html')) {
+      postsToShow = this.posts.filter(p => p.category === 'technology');
+    } else if (path.includes('design.html')) {
+      postsToShow = this.posts.filter(p => p.category === 'design');
+    } else if (path.includes('business.html')) {
+      postsToShow = this.posts.filter(p => p.category === 'business');
+    } else if (path.includes('lifestyle.html')) {
+      postsToShow = this.posts.filter(p => p.category === 'lifestyle');
+    } else if (path.includes('blog.html')) {
+      postsToShow = this.posts; // Show all on blog page
+    } else {
+      // Home page or root: Show latest 6 mixed
+      postsToShow = this.posts.slice(0, 6);
+    }
+
+    if (postsToShow.length === 0) {
+      container.innerHTML = '<p class="no-posts">No posts found.</p>';
+      return;
+    }
+
+    container.innerHTML = postsToShow.map(post => this.createPostHTML(post)).join('');
+  }
+
+  createPostHTML(post) {
+    return `
+            <article class="blog-card fade-in-up" data-category="${post.category}">
+                <div class="blog-card-image">
+                    <img src="${post.image}" alt="${post.title}" loading="lazy">
+                    <div class="blog-card-category">${post.category}</div>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <div class="blog-card-author">
+                            <div class="author-avatar">${post.author.charAt(0)}</div>
+                            <span>${post.author}</span>
+                        </div>
+                        <span class="blog-card-date">${post.date}</span>
+                    </div>
+                    <h3 class="blog-card-title">
+                        <a href="#">${post.title}</a>
+                    </h3>
+                    <p class="blog-card-excerpt">${post.excerpt}</p>
+                    <div class="blog-card-footer">
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        `;
   }
 
   handleLoadingScreen() {
-    const loadingScreen = document.getElementById("loading-screen");
-    if (loadingScreen) {
-      window.addEventListener("load", () => {
-        setTimeout(() => {
-          loadingScreen.classList.add("hidden");
-          setTimeout(() => {
-            loadingScreen.style.display = "none";
-          }, 500);
-        }, 1000);
-      });
+    const loader = document.getElementById('loading-screen');
+    if (loader) {
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 500);
+      }, 800);
     }
   }
 
   setupScrollEffects() {
-    let lastScrollY = window.scrollY;
-    const header = document.getElementById("header");
-    const backToTop = document.getElementById("back-to-top");
-
-    window.addEventListener("scroll", () => {
-      const currentScrollY = window.scrollY;
-
-      // Header scroll effect
-      if (header) {
-        if (currentScrollY > 100) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-      }
+      });
+    }, { threshold: 0.1 });
 
-      // Back to top button
-      if (backToTop) {
-        if (currentScrollY > 300) {
-          backToTop.classList.add("visible");
-        } else {
-          backToTop.classList.remove("visible");
-        }
-      }
-
-      lastScrollY = currentScrollY;
-    });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
   }
 
   initializeTheme() {
-    const savedTheme = localStorage.getItem("blog-theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    if (savedTheme) {
-      document.documentElement.setAttribute("data-theme", savedTheme);
-    } else if (prefersDark) {
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-
+    const savedTheme = localStorage.getItem('blog-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
     this.updateThemeIcon();
   }
 
   toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("blog-theme", newTheme);
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('blog-theme', next);
     this.updateThemeIcon();
   }
 
   updateThemeIcon() {
-    const themeToggle = document.getElementById("theme-toggle");
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-
-    if (themeToggle) {
-      const icon = themeToggle.querySelector("i");
-      if (icon) {
-        icon.className = currentTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
-      }
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      const icon = btn.querySelector('i');
+      const theme = document.documentElement.getAttribute('data-theme');
+      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
   }
 
-  handleNewsletterSubmit(e) {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const email = formData.get("email");
-
-    if (this.validateEmail(email)) {
-      this.showNotification("Thank you for subscribing!", "success");
-      e.target.reset();
-    } else {
-      this.showNotification("Please enter a valid email address.", "error");
-    }
-  }
-
-  validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  handleFilterTab(clickedTab) {
-    // Remove active class from all tabs
-    document.querySelectorAll(".filter-tab").forEach((tab) => {
-      tab.classList.remove("active");
-    });
-
-    // Add active class to clicked tab
-    clickedTab.classList.add("active");
-
-    // Filter posts based on selected category
-    const filter = clickedTab.dataset.filter;
-    this.filterPosts(filter);
-  }
-
-  filterPosts(filter) {
-    const posts = document.querySelectorAll(".blog-card");
-
-    posts.forEach((post) => {
-      if (filter === "all" || post.dataset.category === filter) {
-        post.style.display = "block";
-        post.classList.add("fade-in-up");
-      } else {
-        post.style.display = "none";
-      }
-    });
-  }
-
-  loadMorePosts() {
-    const loadMoreBtn = document.getElementById("load-more-btn");
-    const postsGrid = document.getElementById("posts-grid");
-
-    if (loadMoreBtn) {
-      loadMoreBtn.textContent = "Loading...";
-      loadMoreBtn.disabled = true;
-
-      // Simulate API call
-      setTimeout(() => {
-        // In a real application, you would fetch new posts from an API
-        this.addMorePosts(postsGrid);
-
-        loadMoreBtn.textContent = "Load More Articles";
-        loadMoreBtn.disabled = false;
-      }, 1000);
-    }
-  }
-
-  addMorePosts(container) {
-    // This would typically fetch data from an API
-    // For demo purposes, we'll add placeholder posts
-    const newPosts = [
-      {
-        title: "Advanced CSS Grid Techniques",
-        excerpt:
-          "Discover advanced CSS Grid techniques that will revolutionize your layout design process.",
-        author: "Sarah Wilson",
-        date: "2024-01-15",
-        category: "design",
-      },
-      {
-        title: "Machine Learning Basics",
-        excerpt:
-          "An introduction to machine learning concepts and their practical applications.",
-        author: "David Chen",
-        date: "2024-01-14",
-        category: "technology",
-      },
-    ];
-
-    newPosts.forEach((post) => {
-      const postElement = this.createPostElement(post);
-      container.appendChild(postElement);
-    });
-  }
-
-  createPostElement(post) {
-    const article = document.createElement("article");
-    article.className = "blog-card fade-in-up";
-    article.dataset.category = post.category;
-
-    article.innerHTML = `
-            <div class="blog-card-image">
-                <div class="blog-card-category">${post.category}</div>
-            </div>
-            <div class="blog-card-content">
-                <div class="blog-card-meta">
-                    <div class="blog-card-author">
-                        <div class="author-avatar">${post.author.charAt(0)}</div>
-                        <span>${post.author}</span>
-                    </div>
-                    <span class="blog-card-date">${post.date}</span>
-                </div>
-                <h3 class="blog-card-title">
-                    <a href="#">${post.title}</a>
-                </h3>
-                <p class="blog-card-excerpt">${post.excerpt}</p>
-                <div class="blog-card-footer">
-                    <div class="blog-card-tags">
-                        <a href="#" class="blog-tag">${post.category}</a>
-                    </div>
-                    <a href="#" class="read-more">
-                        Read More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        `;
-
-    return article;
-  }
-
-  initReadingProgress() {
-    const progressBar = document.querySelector(".reading-progress-bar");
-    if (!progressBar) return;
-
-    window.addEventListener("scroll", () => {
-      const totalHeight = document.body.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      progressBar.style.width = `${Math.min(progress, 100)}%`;
-    });
-  }
-
-  initScrollAnimations() {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("fade-in-up");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      }
-    );
-
-    // Observe all elements that should animate on scroll
-    document
-      .querySelectorAll(".blog-card, .featured-card, .sidebar-widget")
-      .forEach((el) => {
-        observer.observe(el);
+  setupEventListeners() {
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
       });
+    }
+
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => this.toggleTheme());
+    }
+
+    // Filter tabs
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        const filter = e.target.dataset.filter;
+        this.filterPosts(filter);
+      });
+    });
   }
 
-  initSearch() {
-    const searchInput = document.getElementById("search-input");
-    const searchSuggestions = document.getElementById("search-suggestions");
-
-    if (!searchInput || !searchSuggestions) return;
-
-    let searchTimeout;
-
-    searchInput.addEventListener("input", (e) => {
-      clearTimeout(searchTimeout);
-      const query = e.target.value.trim();
-
-      if (query.length > 2) {
-        searchTimeout = setTimeout(() => {
-          this.performSearch(query, searchSuggestions);
-        }, 300);
+  filterPosts(category) {
+    const posts = document.querySelectorAll('.blog-card');
+    posts.forEach(post => {
+      if (category === 'all' || post.dataset.category === category) {
+        post.style.display = 'block';
+        setTimeout(() => post.style.opacity = '1', 50);
       } else {
-        searchSuggestions.innerHTML = "";
+        post.style.display = 'none';
+        post.style.opacity = '0';
       }
     });
   }
 
-  performSearch(query, suggestionsContainer) {
-    // In a real application, this would make an API call
-    const mockResults = [
-      { title: "JavaScript Best Practices", type: "article" },
-      { title: "CSS Grid Guide", type: "tutorial" },
-      { title: "React Hooks", type: "article" },
-    ].filter((item) => item.title.toLowerCase().includes(query.toLowerCase()));
-
-    suggestionsContainer.innerHTML = mockResults
-      .map(
-        (result) => `
-                <div class="search-suggestion">
-                    <i class="fas fa-search"></i>
-                    <span>${result.title}</span>
-                    <small>${result.type}</small>
-                </div>
-            `
-      )
-      .join("");
-  }
-
-  showNotification(message, type = "info") {
-    const notification = document.createElement("div");
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => notification.classList.add("show"), 100);
-    setTimeout(() => {
-      notification.classList.remove("show");
-      setTimeout(() => notification.remove(), 300);
-    }, 3000);
+  registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW failed', err));
+      });
+    }
   }
 }
 
-// Initialize the blog when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  new ModernBlog();
+document.addEventListener('DOMContentLoaded', () => {
+  window.blogManager = new ModernBlog();
 });
-
-// Export for use in other modules
-window.ModernBlog = ModernBlog;
