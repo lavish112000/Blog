@@ -1,38 +1,103 @@
-/**
- * =====================================
- * COMPONENTS JAVASCRIPT MODULE
- * =====================================
- */
-
 class ComponentsManager {
     constructor() {
+        this.basePath = this.getPathPrefix();
         this.init();
+    }
+
+    getPathPrefix() {
+        const path = window.location.pathname;
+        return path.includes('/pages/') ? '../' : '';
     }
 
     init() {
         this.loadHeader();
         this.loadFooter();
         this.loadSidebar();
-        this.initializeComponents();
+        this.initializeLazyLoading();
+        this.initializeShareButtons();
+        this.addNotificationStyles();
     }
 
     loadHeader() {
-        const headerContent = `
-            <!-- Reading Progress Bar -->
-            <div class="reading-progress">
-                <div class="reading-progress-bar"></div>
-            </div>
+        const header = document.getElementById('header');
+        if (!header) return;
+
+        const bp = this.basePath;
+
+        header.innerHTML = `
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-brand">
+                        <a href="${bp}index.html" class="brand-logo">
+                            <i class="fas fa-feather"></i>
+                            <span>Vibrant Insights</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-menu" id="nav-menu">
+                        <ul class="nav-list">
+                            <li class="nav-item">
+                                <a href="${bp}index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="${bp}pages/blog.html" class="nav-link">Blog</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="${bp}pages/technology.html" class="dropdown-link">Technology</a></li>
+                                    <li><a href="${bp}pages/design.html" class="dropdown-link">Design</a></li>
+                                    <li><a href="${bp}pages/business.html" class="dropdown-link">Business</a></li>
+                                    <li><a href="${bp}pages/lifestyle.html" class="dropdown-link">Lifestyle</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="${bp}pages/about.html" class="nav-link">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="${bp}index.html#contact" class="nav-link">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-actions">
+                        <button class="search-toggle" id="search-toggle" title="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="nav-toggle" id="nav-toggle" title="Menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
         `;
-        
-        // Insert reading progress bar if not already present
-        if (!document.querySelector('.reading-progress')) {
-            document.body.insertAdjacentHTML('afterbegin', headerContent);
-        }
+
+        // Highlight active link
+        const currentPath = window.location.pathname;
+        const navLinks = header.querySelectorAll('.nav-link, .dropdown-link');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href) {
+                const cleanHref = href.replace('../', '').replace('./', '');
+                if (currentPath.endsWith(cleanHref) && cleanHref !== '') {
+                    link.classList.add('active');
+                    if (link.classList.contains('dropdown-link')) {
+                        const parent = link.closest('.dropdown').querySelector('.dropdown-toggle');
+                        if (parent) parent.classList.add('active');
+                    }
+                }
+            }
+        });
     }
 
     loadFooter() {
-        const footer = document.querySelector('.footer');
+        const footer = document.getElementById('footer');
         if (!footer) return;
+
+        const bp = this.basePath;
 
         footer.innerHTML = `
             <div class="container">
@@ -52,21 +117,21 @@ class ComponentsManager {
                     <div class="footer-section">
                         <h3>Quick Links</h3>
                         <ul class="footer-links">
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="pages/about.html">About Us</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><a href="#privacy">Privacy Policy</a></li>
-                            <li><a href="#terms">Terms of Service</a></li>
+                            <li><a href="${bp}index.html">Home</a></li>
+                            <li><a href="${bp}pages/about.html">About Us</a></li>
+                            <li><a href="${bp}index.html#contact">Contact</a></li>
+                            <li><a href="${bp}index.html#privacy">Privacy Policy</a></li>
+                            <li><a href="${bp}index.html#terms">Terms of Service</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-section">
                         <h3>Categories</h3>
                         <ul class="footer-links">
-                            <li><a href="#" onclick="blogManager?.filterPosts('technology')">Technology</a></li>
-                            <li><a href="#" onclick="blogManager?.filterPosts('design')">Design</a></li>
-                            <li><a href="#" onclick="blogManager?.filterPosts('business')">Business</a></li>
-                            <li><a href="#" onclick="blogManager?.filterPosts('lifestyle')">Lifestyle</a></li>
+                            <li><a href="${bp}pages/technology.html">Technology</a></li>
+                            <li><a href="${bp}pages/design.html">Design</a></li>
+                            <li><a href="${bp}pages/business.html">Business</a></li>
+                            <li><a href="${bp}pages/lifestyle.html">Lifestyle</a></li>
                         </ul>
                     </div>
                     
@@ -88,51 +153,43 @@ class ComponentsManager {
     }
 
     loadSidebar() {
-        const sidebar = document.querySelector('.sidebar');
+        const sidebar = document.querySelector('.sidebar') || document.getElementById('sidebar');
         if (!sidebar) return;
 
-        // Clear existing content
         sidebar.innerHTML = '';
 
-        // Add search widget
         this.addSearchWidget(sidebar);
-        
-        // Add author info widget
         this.addAuthorWidget(sidebar);
-        
-        // Add recent comments widget
         this.addRecentCommentsWidget(sidebar);
-        
-        // Add social media widget
-        this.addSocialMediaWidget(sidebar);
+        this.addCommunityWidget(sidebar);
     }
 
     addSearchWidget(sidebar) {
-        const searchWidget = `
-            <div class="sidebar-widget">
+        const widget = `
+            <div class="sidebar-widget search-widget">
                 <h3 class="widget-title">
-                    <i class="fas fa-search"></i>
-                    Quick Search
+                    <i class="fas fa-search"></i> Quick Search
                 </h3>
                 <form class="sidebar-search-form" onsubmit="componentsManager.handleSidebarSearch(event)">
                     <div class="search-input-group">
                         <input type="text" placeholder="Search articles..." id="sidebar-search">
-                        <button type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
+                        <button type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
+                <div id="recent-searches" class="recent-searches">
+                    <!-- Recent searches will be populated here -->
+                </div>
             </div>
         `;
-        sidebar.insertAdjacentHTML('beforeend', searchWidget);
+        sidebar.insertAdjacentHTML('beforeend', widget);
+        this.updateRecentSearches();
     }
 
     addAuthorWidget(sidebar) {
-        const authorWidget = `
-            <div class="sidebar-widget">
+        const widget = `
+            <div class="sidebar-widget author-widget">
                 <h3 class="widget-title">
-                    <i class="fas fa-user-circle"></i>
-                    Featured Author
+                    <i class="fas fa-user-circle"></i> Featured Author
                 </h3>
                 <div class="author-bio">
                     <div class="author-bio-avatar">
@@ -150,280 +207,136 @@ class ComponentsManager {
                 </div>
             </div>
         `;
-        sidebar.insertAdjacentHTML('beforeend', authorWidget);
+        sidebar.insertAdjacentHTML('beforeend', widget);
     }
 
     addRecentCommentsWidget(sidebar) {
-        const recentComments = [
-            {
-                author: "Mike Johnson",
-                comment: "Great article! Really helped me understand the concepts better.",
-                post: "Understanding JavaScript Closures",
-                date: "2 hours ago"
-            },
-            {
-                author: "Sarah Chen",
-                comment: "The examples were perfect. Thanks for sharing!",
-                post: "CSS Grid Layout Guide",
-                date: "5 hours ago"
-            },
-            {
-                author: "Alex Rodriguez",
-                comment: "Looking forward to more content like this.",
-                post: "Web Development Trends",
-                date: "1 day ago"
-            }
+        const comments = [
+            { user: "Alex M.", text: "Great insights on the future of AI!", post: "The Future of AI" },
+            { user: "Sarah J.", text: "I learned so much from this article.", post: "Web Design Trends" },
+            { user: "Mike T.", text: "Thanks for sharing these tips.", post: "Remote Work Guide" }
         ];
 
-        const commentsWidget = `
-            <div class="sidebar-widget">
+        let commentsHtml = comments.map(c => `
+            <div class="recent-comment">
+                <div class="comment-author">
+                    <div class="comment-avatar">${c.user.charAt(0)}</div>
+                    <div class="comment-info">
+                        <strong>${c.user}</strong>
+                        <span class="comment-post">on ${c.post}</span>
+                    </div>
+                </div>
+                <p class="comment-text">"${c.text}"</p>
+            </div>
+        `).join('');
+
+        const widget = `
+            <div class="sidebar-widget comments-widget">
                 <h3 class="widget-title">
-                    <i class="fas fa-comments"></i>
-                    Recent Comments
+                    <i class="fas fa-comments"></i> Recent Comments
                 </h3>
-                <div class="recent-comments">
-                    ${recentComments.map(comment => `
-                        <div class="recent-comment">
-                            <div class="comment-author">
-                                <div class="comment-avatar">${comment.author.charAt(0)}</div>
-                                <div class="comment-info">
-                                    <strong>${comment.author}</strong>
-                                    <span class="comment-time">${comment.date}</span>
-                                </div>
-                            </div>
-                            <p class="comment-text">${comment.comment}</p>
-                            <div class="comment-post">On: <a href="#">${comment.post}</a></div>
-                        </div>
-                    `).join('')}
+                <div class="recent-comments-list">
+                    ${commentsHtml}
                 </div>
             </div>
         `;
-        sidebar.insertAdjacentHTML('beforeend', commentsWidget);
+        sidebar.insertAdjacentHTML('beforeend', widget);
     }
 
-    addSocialMediaWidget(sidebar) {
-        const socialWidget = `
-            <div class="sidebar-widget follow-us-widget">
-                <div class="follow-us-header">
-                    <h3 class="widget-title">
-                        <i class="fas fa-heart"></i>
-                        Join Our Community
-                    </h3>
-                    <p class="follow-us-subtitle">Connect with us on social media</p>
-                </div>
-                <div class="follow-us-container">
-                    <a href="#" class="social-button facebook" aria-label="Follow on Facebook">
-                        <div class="social-icon-wrapper">
+    addCommunityWidget(sidebar) {
+        const widget = `
+            <div class="sidebar-widget community-widget">
+                <h3 class="widget-title">
+                    <i class="fas fa-users"></i> Join Our Community
+                </h3>
+                <div class="community-content">
+                    <p>Join 50,000+ readers and creators. Get exclusive content and updates.</p>
+                    <div class="social-links-vertical">
+                        <a href="#" class="social-link facebook">
                             <i class="fab fa-facebook-f"></i>
-                        </div>
-                        <div class="social-info">
-                            <span class="social-platform-name">Facebook</span>
-                            <span class="social-followers">12.5K followers</span>
-                        </div>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#" class="social-button twitter" aria-label="Follow on Twitter">
-                        <div class="social-icon-wrapper">
+                            <div class="social-info">
+                                <span class="social-name">Facebook</span>
+                                <span class="social-count">25K+ Likes</span>
+                            </div>
+                        </a>
+                        <a href="#" class="social-link twitter">
                             <i class="fab fa-twitter"></i>
-                        </div>
-                        <div class="social-info">
-                            <span class="social-platform-name">Twitter/X</span>
-                            <span class="social-followers">8.3K followers</span>
-                        </div>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#" class="social-button linkedin" aria-label="Connect on LinkedIn">
-                        <div class="social-icon-wrapper">
+                            <div class="social-info">
+                                <span class="social-name">Twitter</span>
+                                <span class="social-count">15K+ Followers</span>
+                            </div>
+                        </a>
+                        <a href="#" class="social-link linkedin">
                             <i class="fab fa-linkedin-in"></i>
-                        </div>
-                        <div class="social-info">
-                            <span class="social-platform-name">LinkedIn</span>
-                            <span class="social-followers">5.7K connections</span>
-                        </div>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#" class="social-button youtube" aria-label="Subscribe on YouTube">
-                        <div class="social-icon-wrapper">
-                            <i class="fab fa-youtube"></i>
-                        </div>
-                        <div class="social-info">
-                            <span class="social-platform-name">YouTube</span>
-                            <span class="social-followers">15.2K subscribers</span>
-                        </div>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="follow-us-footer">
-                    <p>Follow us for daily updates, tips, and inspiring content!</p>
+                            <div class="social-info">
+                                <span class="social-name">LinkedIn</span>
+                                <span class="social-count">10K+ Connections</span>
+                            </div>
+                        </a>
+                    </div>
+                    <button class="btn btn-primary btn-block mt-3">Subscribe Now</button>
                 </div>
             </div>
         `;
-        sidebar.insertAdjacentHTML('beforeend', socialWidget);
+        sidebar.insertAdjacentHTML('beforeend', widget);
     }
 
-    initializeComponents() {
-        this.initializeTooltips();
-        this.initializeLazyLoading();
-        this.initializeShareButtons();
-        this.initializeReadingTime();
-        this.addNotificationStyles();
-    }
+    handleSidebarSearch(event) {
+        event.preventDefault();
+        const input = event.target.querySelector('input');
+        const query = input.value.trim();
 
-    initializeTooltips() {
-        // Add tooltip functionality for elements with data-tooltip attribute
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.hasAttribute('data-tooltip')) {
-                this.showTooltip(e.target, e.target.getAttribute('data-tooltip'));
+        if (query) {
+            let searches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+            if (!searches.includes(query)) {
+                searches.unshift(query);
+                if (searches.length > 5) searches.pop();
+                localStorage.setItem('recentSearches', JSON.stringify(searches));
+                this.updateRecentSearches();
             }
-        });
-
-        document.addEventListener('mouseout', (e) => {
-            if (e.target.hasAttribute('data-tooltip')) {
-                this.hideTooltip();
-            }
-        });
-    }
-
-    showTooltip(element, text) {
-        const tooltip = document.createElement('div');
-        tooltip.className = 'tooltip';
-        tooltip.textContent = text;
-        
-        document.body.appendChild(tooltip);
-        
-        const rect = element.getBoundingClientRect();
-        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
-        tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
-        
-        setTimeout(() => tooltip.classList.add('show'), 100);
-    }
-
-    hideTooltip() {
-        const tooltip = document.querySelector('.tooltip');
-        if (tooltip) {
-            tooltip.remove();
+            this.showNotification(`Searching for: ${query}`, 'success');
+            input.value = '';
         }
     }
 
-    initializeLazyLoading() {
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src || img.src;
-                        img.classList.remove('lazy');
-                        observer.unobserve(img);
-                    }
-                });
-            });
+    updateRecentSearches() {
+        const container = document.getElementById('recent-searches');
+        if (!container) return;
 
-            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-                imageObserver.observe(img);
-            });
+        const searches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+        if (searches.length === 0) {
+            container.innerHTML = '';
+            return;
         }
+
+        container.innerHTML = `
+            <div class="recent-searches-title">Recent Searches:</div>
+            <div class="tags-cloud">
+                ${searches.map(s => `<span class="tag" onclick="componentsManager.clickSearch('${s}')">${s}</span>`).join('')}
+            </div>
+        `;
     }
 
-    initializeShareButtons() {
-        // Add share functionality to social share buttons
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.social-share-btn')) {
-                e.preventDefault();
-                const shareBtn = e.target.closest('.social-share-btn');
-                const platform = shareBtn.classList.contains('facebook') ? 'facebook' :
-                               shareBtn.classList.contains('twitter') ? 'twitter' :
-                               shareBtn.classList.contains('linkedin') ? 'linkedin' : 'pinterest';
-                
-                this.shareOnPlatform(platform);
-            }
-        });
-    }
-
-    shareOnPlatform(platform) {
-        const url = encodeURIComponent(window.location.href);
-        const title = encodeURIComponent(document.title);
-        const description = encodeURIComponent(document.querySelector('meta[name="description"]')?.content || '');
-        
-        let shareUrl = '';
-        
-        switch (platform) {
-            case 'facebook':
-                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-                break;
-            case 'twitter':
-                shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-                break;
-            case 'linkedin':
-                shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-                break;
-            case 'pinterest':
-                shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${description}`;
-                break;
-            default:
-                console.warn(`Unknown social platform: ${platform}`);
-                return;
+    clickSearch(query) {
+        const input = document.getElementById('sidebar-search');
+        if (input) {
+            input.value = query;
         }
-        
-        if (shareUrl) {
-            window.open(shareUrl, '_blank', 'width=600,height=400');
-        }
-    }
-
-    initializeReadingTime() {
-        // Calculate and display reading time for articles
-        document.querySelectorAll('.blog-card-content, .post-content').forEach(content => {
-            const text = content.textContent || content.innerText;
-            const words = text.trim().split(/\s+/).length;
-            const readingTime = Math.ceil(words / 200); // Assuming 200 words per minute
-            
-            const readTimeElement = content.querySelector('.read-time');
-            if (!readTimeElement) {
-                const metaSection = content.querySelector('.blog-card-meta, .post-meta');
-                if (metaSection) {
-                    metaSection.insertAdjacentHTML('beforeend', `<span class="read-time">${readingTime} min read</span>`);
-                }
-            }
-        });
     }
 
     handleFooterNewsletter(event) {
         event.preventDefault();
         const email = event.target.querySelector('input[type="email"]').value;
-        
         if (this.validateEmail(email)) {
-            this.showNotification('Thank you for subscribing to our newsletter!', 'success');
+            this.showNotification('Thank you for subscribing!', 'success');
             event.target.reset();
         } else {
-            this.showNotification('Please enter a valid email address.', 'error');
-        }
-    }
-
-    handleSidebarSearch(event) {
-        event.preventDefault();
-        const query = event.target.querySelector('#sidebar-search').value.trim();
-        
-        if (query) {
-            // Trigger main search functionality
-            const mainSearchInput = document.getElementById('search-input');
-            if (mainSearchInput) {
-                mainSearchInput.value = query;
-                // Trigger search
-                if (window.blogManager) {
-                    window.blogManager.performSearch(query.toLowerCase());
-                }
-                
-                // Close search overlay if open
-                const searchOverlay = document.getElementById('search-overlay');
-                if (searchOverlay.classList.contains('active')) {
-                    searchOverlay.classList.remove('active');
-                }
-            }
+            this.showNotification('Please enter a valid email.', 'error');
         }
     }
 
     validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
     showNotification(message, type = 'info') {
@@ -434,394 +347,75 @@ class ComponentsManager {
             <span>${message}</span>
             <button class="notification-close">&times;</button>
         `;
-        
         document.body.appendChild(notification);
-        
+
         setTimeout(() => notification.classList.add('show'), 100);
-        
-        // Auto remove after 4 seconds
-        const autoRemove = setTimeout(() => {
+        setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
         }, 4000);
-        
-        // Manual close
+
         notification.querySelector('.notification-close').addEventListener('click', () => {
-            clearTimeout(autoRemove);
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
         });
     }
 
     addNotificationStyles() {
-        // Add notification styles if not already present
-        if (!document.querySelector('#notification-styles')) {
+        if (!document.getElementById('notification-styles')) {
             const style = document.createElement('style');
             style.id = 'notification-styles';
             style.textContent = `
                 .notification {
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: var(--white);
-                    color: var(--gray-800);
-                    padding: var(--spacing-lg) var(--spacing-xl);
-                    border-radius: var(--radius-lg);
-                    box-shadow: var(--shadow-xl);
-                    border-left: 4px solid var(--primary-color);
-                    z-index: var(--z-toast);
-                    opacity: 0;
-                    transform: translateX(100%);
-                    transition: all var(--transition-normal);
-                    max-width: 400px;
-                    min-width: 300px;
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-md);
+                    position: fixed; top: 20px; right: 20px; background: #fff; color: #333;
+                    padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    border-left: 4px solid #ec2F4B; z-index: 1000; display: flex; align-items: center; gap: 10px;
+                    transform: translateX(120%); transition: transform 0.3s ease;
                 }
-                
-                .notification.show {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-                
-                .notification.notification-success {
-                    border-left-color: var(--success-color);
-                }
-                
-                .notification.notification-error {
-                    border-left-color: var(--error-color);
-                }
-                
-                .notification.notification-warning {
-                    border-left-color: var(--warning-color);
-                }
-                
-                .notification i {
-                    font-size: 1.25rem;
-                    color: var(--primary-color);
-                }
-                
-                .notification.notification-success i {
-                    color: var(--success-color);
-                }
-                
-                .notification.notification-error i {
-                    color: var(--error-color);
-                }
-                
-                .notification.notification-warning i {
-                    color: var(--warning-color);
-                }
-                
-                .notification-close {
-                    background: none;
-                    border: none;
-                    color: var(--gray-500);
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                    margin-left: auto;
-                    padding: 0;
-                    line-height: 1;
-                }
-                
-                .notification-close:hover {
-                    color: var(--gray-700);
-                }
-                
-                .tooltip {
-                    position: absolute;
-                    background: var(--gray-900);
-                    color: var(--white);
-                    padding: var(--spacing-xs) var(--spacing-sm);
-                    border-radius: var(--radius-sm);
-                    font-size: 0.875rem;
-                    z-index: var(--z-tooltip);
-                    opacity: 0;
-                    pointer-events: none;
-                    transition: opacity var(--transition-fast);
-                }
-                
-                .tooltip.show {
-                    opacity: 1;
-                }
-                
-                .tooltip::after {
-                    content: '';
-                    position: absolute;
-                    top: 100%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    border: 4px solid transparent;
-                    border-top-color: var(--gray-900);
-                }
-                
-                .social-media-links {
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--spacing-md);
-                }
-                
-                .social-link {
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-md);
-                    padding: var(--spacing-md);
-                    border-radius: var(--radius-lg);
-                    text-decoration: none;
-                    color: var(--white);
-                    transition: var(--transition-fast);
-                }
-                
-                .social-link.facebook {
-                    background: #3b5998;
-                }
-                
-                .social-link.twitter {
-                    background: #1da1f2;
-                }
-                
-                .social-link.linkedin {
-                    background: #0077b5;
-                }
-                
-                .social-link.youtube {
-                    background: #ff0000;
-                }
-                
-                .social-link:hover {
-                    transform: translateY(-2px);
-                    box-shadow: var(--shadow-md);
-                }
-                
-                .social-link i {
-                    font-size: 1.25rem;
-                    width: 20px;
-                    text-align: center;
-                }
-                
-                .social-info {
-                    display: flex;
-                    flex-direction: column;
-                }
-                
-                .social-name {
-                    font-weight: 600;
-                    margin-bottom: 2px;
-                }
-                
-                .social-count {
-                    font-size: 0.875rem;
-                    opacity: 0.9;
-                }
-                
-                .recent-comment {
-                    padding: var(--spacing-md) 0;
-                    border-bottom: 1px solid var(--gray-200);
-                }
-                
-                .recent-comment:last-child {
-                    border-bottom: none;
-                }
-                
-                .comment-author {
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-xs);
-                }
-                
-                .comment-avatar {
-                    width: 32px;
-                    height: 32px;
-                    background: var(--gradient-primary);
-                    color: var(--white);
-                    border-radius: var(--radius-full);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: 600;
-                    font-size: 0.875rem;
-                }
-                
-                .comment-info strong {
-                    color: var(--gray-900);
-                    font-size: 0.875rem;
-                }
-                
-                .comment-time {
-                    color: var(--gray-500);
-                    font-size: 0.75rem;
-                }
-                
-                .comment-text {
-                    font-size: 0.875rem;
-                    color: var(--gray-600);
-                    margin: var(--spacing-xs) 0;
-                    line-height: 1.4;
-                }
-                
-                .comment-post {
-                    font-size: 0.75rem;
-                    color: var(--gray-500);
-                }
-                
-                .comment-post a {
-                    color: var(--primary-color);
-                    text-decoration: none;
-                }
-                
-                .sidebar-search-form {
-                    margin-bottom: 0;
-                }
-                
-                .search-input-group {
-                    display: flex;
-                    border: 2px solid var(--gray-200);
-                    border-radius: var(--radius-lg);
-                    overflow: hidden;
-                    transition: var(--transition-fast);
-                }
-                
-                .search-input-group:focus-within {
-                    border-color: var(--primary-color);
-                }
-                
-                .search-input-group input {
-                    flex: 1;
-                    border: none;
-                    padding: var(--spacing-md);
-                    font-size: 0.875rem;
-                    background: var(--white);
-                }
-                
-                .search-input-group input:focus {
-                    outline: none;
-                }
-                
-                .search-input-group button {
-                    background: var(--primary-color);
-                    border: none;
-                    color: var(--white);
-                    padding: var(--spacing-md);
-                    cursor: pointer;
-                    transition: var(--transition-fast);
-                }
-                
-                .search-input-group button:hover {
-                    background: var(--secondary-color);
-                }
-                
-                .post-modal {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.8);
-                    backdrop-filter: blur(10px);
-                    z-index: var(--z-modal);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: var(--spacing-lg);
-                }
-                
-                .post-modal-content {
-                    background: var(--white);
-                    border-radius: var(--radius-xl);
-                    max-width: 800px;
-                    width: 100%;
-                    max-height: 90vh;
-                    overflow-y: auto;
-                    position: relative;
-                }
-                
-                .post-modal-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-start;
-                    padding: var(--spacing-xl);
-                    border-bottom: 1px solid var(--gray-200);
-                }
-                
-                .post-modal-close {
-                    background: none;
-                    border: none;
-                    font-size: 2rem;
-                    color: var(--gray-500);
-                    cursor: pointer;
-                    line-height: 1;
-                }
-                
-                .post-modal-meta {
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-lg);
-                    padding: 0 var(--spacing-xl);
-                    color: var(--gray-600);
-                    font-size: 0.875rem;
-                }
-                
-                .post-modal-body {
-                    padding: var(--spacing-xl);
-                }
-                
-                .post-image {
-                    width: 100%;
-                    height: 300px;
-                    object-fit: cover;
-                    border-radius: var(--radius-lg);
-                    margin-bottom: var(--spacing-lg);
-                }
-                
-                .post-content {
-                    line-height: 1.7;
-                    color: var(--gray-700);
-                    margin-bottom: var(--spacing-lg);
-                }
-                
-                .post-tags {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: var(--spacing-sm);
-                }
-                
-                .post-tag {
-                    background: var(--gray-100);
-                    color: var(--gray-600);
-                    padding: var(--spacing-xs) var(--spacing-sm);
-                    border-radius: var(--radius-sm);
-                    font-size: 0.75rem;
-                    font-weight: 500;
-                }
-                
-                .no-results {
-                    text-align: center;
-                    padding: var(--spacing-3xl);
-                    color: var(--gray-600);
-                }
-                
-                .no-results i {
-                    font-size: 4rem;
-                    color: var(--gray-400);
-                    margin-bottom: var(--spacing-lg);
-                }
-                
-                .no-results h3 {
-                    color: var(--gray-700);
-                    margin-bottom: var(--spacing-md);
-                }
+                .notification.show { transform: translateX(0); }
+                .notification-success { border-left-color: #43e97b; }
+                .notification-error { border-left-color: #ff6b6b; }
+                .notification-close { background: none; border: none; cursor: pointer; font-size: 1.2rem; margin-left: auto; }
+                .recent-searches-title { font-size: 0.85rem; color: #666; margin: 10px 0 5px; }
+                .tags-cloud { display: flex; flex-wrap: wrap; gap: 5px; }
+                .tag { background: #f0f0f0; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; transition: background 0.2s; }
+                .tag:hover { background: #e0e0e0; }
+                .community-content .btn { margin-top: 1rem; width: 100%; }
+                .social-links-vertical { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
+                .social-link { display: flex; align-items: center; gap: 1rem; padding: 0.8rem; border-radius: 8px; text-decoration: none; color: white; transition: transform 0.2s; }
+                .social-link:hover { transform: translateY(-2px); }
+                .social-link.facebook { background: #3b5998; }
+                .social-link.twitter { background: #1da1f2; }
+                .social-link.linkedin { background: #0077b5; }
+                .social-info { display: flex; flex-direction: column; line-height: 1.2; }
+                .social-name { font-weight: 600; font-size: 0.9rem; }
+                .social-count { font-size: 0.8rem; opacity: 0.9; }
             `;
             document.head.appendChild(style);
         }
     }
+
+    initializeLazyLoading() {
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => observer.observe(img));
+        }
+    }
+
+    initializeShareButtons() {
+        // Implementation for share buttons if needed
+    }
 }
 
-// Initialize components manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.componentsManager = new ComponentsManager();
 });
-
-// Export for use in other modules
-window.ComponentsManager = ComponentsManager;
