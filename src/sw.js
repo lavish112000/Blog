@@ -1,4 +1,4 @@
-const CACHE_NAME = "vibrant-blog-v1";
+const CACHE_NAME = "vibrant-blog-v3";
 const STATIC_ASSETS = [
     "/",
     "/index.html",
@@ -15,6 +15,7 @@ const STATIC_ASSETS = [
 
 // Install Service Worker
 self.addEventListener("install", (event) => {
+    self.skipWaiting(); // Force waiting SW to become active
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll(STATIC_ASSETS);
@@ -33,7 +34,7 @@ self.addEventListener("activate", (event) => {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim()) // Force active SW to control clients
     );
 });
 
