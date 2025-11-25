@@ -20,8 +20,137 @@ class ModernBlog {
   }
 
   initializeComponents() {
-    this.loadFeaturedPosts();
-    this.loadLatestPosts();
+    // Check if we are on a single post page
+    if (window.location.pathname.includes('post.html')) {
+      this.loadSinglePost();
+    } else {
+      this.loadFeaturedPosts();
+      this.loadLatestPosts();
+    }
+  }
+
+  getPostUrl(id) {
+    // Determine relative path to post.html
+    const path = window.location.pathname;
+    // If we are already in pages/ directory (but not on post.html itself, though this function is for links TO post.html)
+    // Actually, if we are in pages/, the link is just post.html?id=...
+    // If we are at root (index.html), the link is pages/post.html?id=...
+    const inPagesDir = path.includes('/pages/');
+    const prefix = inPagesDir ? '' : 'pages/';
+    return `${prefix}post.html?id=${id}`;
+  }
+
+  loadSinglePost() {
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const post = this.posts.find(p => p.id === id);
+
+    if (!post) {
+      document.getElementById('single-post-content').innerHTML = '<div class="text-center py-5"><h3>Post not found</h3><a href="blog.html" class="btn btn-primary mt-3">Back to Blog</a></div>';
+      return;
+    }
+
+    // Update Page Title
+    document.title = `${post.title} - Modern Blog`;
+
+    // Update Breadcrumbs
+    const breadcrumbCategory = document.getElementById('breadcrumb-category');
+    const breadcrumbTitle = document.getElementById('breadcrumb-title');
+
+    if (breadcrumbCategory) {
+      breadcrumbCategory.innerHTML = `<a href="${post.category}.html" class="breadcrumb-link" style="text-transform: capitalize;">${post.category}</a>`;
+    }
+    if (breadcrumbTitle) {
+      breadcrumbTitle.textContent = post.title;
+    }
+
+    // Generate full content
+    const content = this.generatePostContent(post);
+
+    // Render Post
+    const container = document.getElementById('single-post-content');
+    container.innerHTML = `
+        <header class="post-header mb-5">
+            <div class="post-category-badge mb-3">${post.category}</div>
+            <h1 class="post-title display-4 fw-bold mb-4">${post.title}</h1>
+            <div class="post-meta d-flex align-items-center gap-4 text-gray-500">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="author-avatar">${post.author.charAt(0)}</div>
+                    <span class="fw-medium text-gray-900">${post.author}</span>
+                </div>
+                <span><i class="far fa-calendar me-2"></i>${post.date}</span>
+                <span><i class="far fa-eye me-2"></i>${post.views} views</span>
+            </div>
+        </header>
+
+        <div class="post-featured-image mb-5">
+            <img src="${post.image}" alt="${post.title}" class="img-fluid rounded-xl w-100" style="max-height: 500px; object-fit: cover;">
+        </div>
+
+        <div class="post-body">
+            <p class="lead mb-5">${post.excerpt}</p>
+            ${content}
+        </div>
+
+        <div class="post-tags mt-5 pt-4 border-top">
+            <h5 class="mb-3">Tags:</h5>
+            <div class="d-flex gap-2">
+                <span class="blog-tag">#${post.category}</span>
+                <span class="blog-tag">#trend</span>
+                <span class="blog-tag">#2024</span>
+            </div>
+        </div>
+        
+        <div class="author-bio mt-5">
+            <div class="author-bio-avatar">
+                <div class="author-avatar" style="width: 100%; height: 100%; font-size: 2rem;">${post.author.charAt(0)}</div>
+            </div>
+            <div class="author-bio-content">
+                <h3>About ${post.author}</h3>
+                <p>Senior editor and content creator specializing in ${post.category}. Passionate about uncovering the latest trends and sharing actionable insights with our readers.</p>
+                <div class="author-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                </div>
+            </div>
+        </div>
+    `;
+  }
+
+  generatePostContent(post) {
+    // Generate realistic-looking content based on the title and category
+    return `
+        <p>In the rapidly evolving landscape of <strong>${post.category}</strong>, few developments have sparked as much conversation as <em>${post.title}</em>. As we navigate through 2024, professionals and enthusiasts alike are finding themselves at a crossroads, needing to adapt to these significant shifts.</p>
+        
+        <h2 class="mt-5 mb-3">The Current State of Affairs</h2>
+        <p>To understand where we are going, we must first look at the data. Recent studies indicate a <strong>40% increase</strong> in adoption rates across the industry. This isn't just a fleeting trend; it's a fundamental restructuring of how we approach ${post.category}.</p>
+        <p>Experts argue that this shift is driven by three main factors:</p>
+        <ul>
+            <li><strong>Technological Convergence:</strong> New tools are making it easier than ever to implement complex solutions.</li>
+            <li><strong>Consumer Demand:</strong> Expectations for speed, quality, and sustainability are at an all-time high.</li>
+            <li><strong>Economic Pressures:</strong> Efficiency is no longer a luxury; it's a survival mechanism.</li>
+        </ul>
+
+        <h2 class="mt-5 mb-3">Why This Matters Now</h2>
+        <p>"The biggest risk is not taking any risk," as the saying goes. In the context of ${post.title}, this couldn't be truer. Those who hesitate to embrace these changes risk falling behind competitors who are already leveraging these new advantages.</p>
+        <blockquote class="blockquote my-5 p-4 bg-light border-start border-4 border-primary">
+            <p class="mb-0 fst-italic">"Innovation distinguishes between a leader and a follower. The changes we are seeing in ${post.category} today will define the market leaders of tomorrow."</p>
+        </blockquote>
+        <p>We spoke with several industry leaders, and the consensus is clear: the time to act is now. Whether you are a seasoned veteran or a newcomer to the field, understanding the nuances of this development is crucial.</p>
+
+        <h2 class="mt-5 mb-3">Practical Steps Forward</h2>
+        <p>So, how can you leverage this for your own success? Here is a simple framework to get started:</p>
+        <ol>
+            <li><strong>Audit your current processes:</strong> Identify where ${post.title} can have the most immediate impact.</li>
+            <li><strong>Invest in education:</strong> Ensure your team understands not just the 'how', but the 'why'.</li>
+            <li><strong>Start small, scale fast:</strong> Run pilot programs to test viability before a full rollout.</li>
+        </ol>
+        
+        <h2 class="mt-5 mb-3">Conclusion</h2>
+        <p>As we look towards 2025, the trajectory is clear. ${post.title} is not going away. By embracing these changes today, you position yourself at the forefront of the <strong>${post.category}</strong> revolution.</p>
+        <p>Stay tuned to ModernBlog for more updates as this story develops.</p>
+    `;
   }
 
   loadFeaturedPosts() {
@@ -43,9 +172,9 @@ class ModernBlog {
                         <span><i class="far fa-user"></i> ${post.author}</span>
                     </div>
                     <h3 class="featured-title">
-                        <a href="#">${post.title}</a>
+                        <a href="${this.getPostUrl(post.id)}">${post.title}</a>
                     </h3>
-                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                    <a href="${this.getPostUrl(post.id)}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
                 </div>
             </article>
         `).join('');
@@ -98,11 +227,11 @@ class ModernBlog {
                         <span class="blog-card-date">${post.date}</span>
                     </div>
                     <h3 class="blog-card-title">
-                        <a href="#">${post.title}</a>
+                        <a href="${this.getPostUrl(post.id)}">${post.title}</a>
                     </h3>
                     <p class="blog-card-excerpt">${post.excerpt}</p>
                     <div class="blog-card-footer">
-                        <a href="#" class="read-more">
+                        <a href="${this.getPostUrl(post.id)}" class="read-more">
                             Read More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
