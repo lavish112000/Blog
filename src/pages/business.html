@@ -118,138 +118,15 @@
             <button class="search-close" id="search-close">&times;</button>
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="Type to search...">
-                <!DOCTYPE html>
-                <html lang="en">
+                <button class="search-submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="search-suggestions" id="search-suggestions"></div>
+        </div>
+    </div>
 
-                <head>
-                    <!-- Google tag (gtag.js) -->
-                    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T51V1CD6G6"></script>
-                    <script>
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag() { dataLayer.push(arguments); }
-                        gtag('js', new Date());
+    <script src="../js/posts-data.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/components.js"></script>
+</body>
 
-                        gtag('config', 'G-T51V1CD6G6');
-                    </script>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Business - Vibrant Insights</title>
-                    <link rel="stylesheet" href="../css/main.css">
-                    <link rel="stylesheet" href="../css/components.css">
-                    <link rel="stylesheet" href="../css/responsive.css">
-                    <link rel="stylesheet"
-                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-                    <link
-                        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
-                        rel="stylesheet">
-                </head>
-
-                <body>
-                    <!-- Header -->
-                    <header class="header" id="header">
-                        <nav class="navbar">
-                            <div class="nav-container">
-                                <div class="nav-brand">
-                                    <a href="../index.html" class="brand-logo">
-                                        <i class="fas fa-feather"></i>
-                                        <span>Vibrant Insights</span>
-                                    </a>
-                                </div>
-
-                                <div class="nav-menu" id="nav-menu">
-                                    <ul class="nav-list">
-                                        <li class="nav-item">
-                                            <a href="../index.html" class="nav-link">Home</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="../pages/blog.html" class="nav-link">Blog</a>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle active">Categories <i
-                                                    class="fas fa-chevron-down"></i></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="technology.html" class="dropdown-link">Technology</a></li>
-                                                <li><a href="design.html" class="dropdown-link">Design</a></li>
-                                                <li><a href="business.html" class="dropdown-link active">Business</a>
-                                                </li>
-                                                <li><a href="lifestyle.html" class="dropdown-link">Lifestyle</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="about.html" class="nav-link">About</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="../index.html#contact" class="nav-link">Contact</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="nav-actions">
-                                    <button class="search-toggle" id="search-toggle" title="Search">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
-                                        <i class="fas fa-moon"></i>
-                                    </button>
-                                    <button class="nav-toggle" id="nav-toggle" title="Menu">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </nav>
-                    </header>
-
-                    <main>
-                        <div class="category-hero">
-                            <div class="container">
-                                <h1>Business</h1>
-                                <p>Insights on entrepreneurship, leadership, and market trends</p>
-                            </div>
-                        </div>
-
-                        <section class="content-section">
-                            <div class="container">
-                                <div class="content-grid">
-                                    <!-- Blog Posts -->
-                                    <div class="posts-column">
-                                        <div class="posts-grid" id="posts-grid">
-                                            <!-- Blog posts will be dynamically loaded here -->
-                                        </div>
-                                        <div class="load-more">
-                                            <button class="btn btn-outline" id="load-more-btn">Load More
-                                                Articles</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Sidebar -->
-                                    <aside class="sidebar" id="sidebar">
-                                        <!-- Sidebar content will be loaded here -->
-                                    </aside>
-                                </div>
-                            </div>
-                        </section>
-                    </main>
-
-                    <!-- Footer -->
-                    <footer class="footer" id="footer">
-                        <!-- Footer content will be loaded here -->
-                    </footer>
-
-                    <!-- Search Overlay -->
-                    <div class="search-overlay" id="search-overlay">
-                        <div class="search-container">
-                            <button class="search-close" id="search-close">&times;</button>
-                            <div class="search-box">
-                                <input type="text" id="search-input" placeholder="Type to search...">
-                                <button class="search-submit"><i class="fas fa-search"></i></button>
-                            </div>
-                            <div class="search-suggestions" id="search-suggestions"></div>
-                        </div>
-                    </div>
-
-                    <script src="../js/posts-data.js"></script>
-                    <script src="../js/main.js"></script>
-                    <script src="../js/components.js"></script>
-                </body>
-
-                </html>
+</html>
