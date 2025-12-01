@@ -6,17 +6,12 @@
 
 class ModernBlog {
   constructor() {
+    console.log('ModernBlog initializing...');
     this.posts = window.blogData || [];
+    console.log('Posts loaded:', this.posts.length);
+    this.enrichPostsWithUrls();
+    console.log('First post URL:', this.posts[0]?.url);
     this.init();
-  }
-
-  init() {
-    this.setupEventListeners();
-    this.initializeComponents();
-    this.handleLoadingScreen();
-    this.setupScrollEffects();
-    this.initializeTheme();
-    this.registerServiceWorker();
   }
 
   initializeComponents() {
@@ -29,18 +24,37 @@ class ModernBlog {
     }
   }
 
-  getPostUrl(id) {
-    // Determine relative path to post.html
+  getPostUrl(postOrId) {
+    let post = postOrId;
+    if (typeof postOrId === 'number' || typeof postOrId === 'string') {
+      post = this.posts.find(p => p.id == postOrId);
+    }
+
+    if (!post) return '#';
+
+    if (post.url) {
+      // Calculate depth to root to generate correct relative path
+      const slashes = (window.location.pathname.match(/\//g) || []).length;
+      // If pathname is just '/' (root), slashes is 1, depth should be 0.
+      // If pathname is '/index.html', slashes is 1, depth should be 0.
+      // If pathname is '/pages/blog.html', slashes is 2, depth should be 1.
+      const depth = Math.max(0, slashes - 1);
+      const prefix = '../'.repeat(depth);
+
+      return prefix + post.url;
+    }
+
+    // Fallback
     const path = window.location.pathname;
-    // If we are already in pages/ directory (but not on post.html itself, though this function is for links TO post.html)
-    // Actually, if we are in pages/, the link is just post.html?id=...
-    // If we are at root (index.html), the link is pages/post.html?id=...
     const inPagesDir = path.includes('/pages/');
     const prefix = inPagesDir ? '' : 'pages/';
-    return `${prefix}post.html?id=${id}`;
+    return `${prefix}post.html?id=${post.id}`;
   }
 
   loadSinglePost() {
+    // This function is likely obsolete for the new static pages, 
+    // but we keep it for now in case any old links exist.
+    // ... (rest of function)
     const params = new URLSearchParams(window.location.search);
     const id = parseInt(params.get('id'));
     const post = this.posts.find(p => p.id === id);
@@ -49,6 +63,10 @@ class ModernBlog {
       document.getElementById('single-post-content').innerHTML = '<div class="text-center py-5"><h3>Post not found</h3><a href="blog.html" class="btn btn-primary mt-3">Back to Blog</a></div>';
       return;
     }
+
+    // ... (rest of implementation is fine to leave as legacy support)
+    // But we should probably redirect if we are on post.html?id=X and we have a static URL?
+    // For now, let's just leave it.
 
     // Update Page Title
     document.title = `${post.title} - Modern Blog`;
@@ -172,9 +190,9 @@ class ModernBlog {
                         <span><i class="far fa-user"></i> ${post.author}</span>
                     </div>
                     <h3 class="featured-title">
-                        <a href="${this.getPostUrl(post.id)}">${post.title}</a>
+                        <a href="${this.getPostUrl(post)}">${post.title}</a>
                     </h3>
-                    <a href="${this.getPostUrl(post.id)}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                    <a href="${this.getPostUrl(post)}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
                 </div>
             </article>
         `).join('');
@@ -227,11 +245,11 @@ class ModernBlog {
                         <span class="blog-card-date">${post.date}</span>
                     </div>
                     <h3 class="blog-card-title">
-                        <a href="${this.getPostUrl(post.id)}">${post.title}</a>
+                        <a href="${this.getPostUrl(post)}">${post.title}</a>
                     </h3>
                     <p class="blog-card-excerpt">${post.excerpt}</p>
                     <div class="blog-card-footer">
-                        <a href="${this.getPostUrl(post.id)}" class="read-more">
+                        <a href="${this.getPostUrl(post)}" class="read-more">
                             Read More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
