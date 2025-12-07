@@ -62,6 +62,7 @@ class ComponentsManager {
                                     <li><a href="${bp}pages/technology.html" class="dropdown-link">Technology</a></li>
                                     <li><a href="${bp}pages/design.html" class="dropdown-link">Design</a></li>
                                     <li><a href="${bp}pages/business.html" class="dropdown-link">Business</a></li>
+                                    <li><a href="${bp}pages/finance.html" class="dropdown-link">Finance</a></li>
                                     <li><a href="${bp}pages/lifestyle.html" class="dropdown-link">Lifestyle</a></li>
                                 </ul>
                             </li>
@@ -145,6 +146,7 @@ class ComponentsManager {
                             <li><a href="${bp}pages/technology.html">Technology</a></li>
                             <li><a href="${bp}pages/design.html">Design</a></li>
                             <li><a href="${bp}pages/business.html">Business</a></li>
+                            <li><a href="${bp}pages/finance.html">Finance</a></li>
                             <li><a href="${bp}pages/lifestyle.html">Lifestyle</a></li>
                         </ul>
                     </div>

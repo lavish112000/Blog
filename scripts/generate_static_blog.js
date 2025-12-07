@@ -7,7 +7,7 @@ const PAGES_DIR = path.join(SOURCE_DIR, 'pages');
 const POST_TEMPLATE_PATH = path.join(PAGES_DIR, 'post.html');
 
 // Categories and Months
-const CATEGORIES = ['technology', 'design', 'business', 'lifestyle'];
+const CATEGORIES = ['technology', 'design', 'business', 'lifestyle', 'finance'];
 const MONTHS = [
     'january', 'february', 'march', 'april', 'may', 'june',
     'july', 'august', 'september', 'october', 'november', 'december'

@@ -274,6 +274,40 @@ window.blogData = [
         image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
         featured: false,
         views: "15.6k"
+    },
+    // FINANCE
+    {
+        id: 25,
+        title: "The Future of Fintech: Beyond Mobile Banking",
+        excerpt: "How decentralized finance and AI are reshaping the way we save, spend, and invest our money in 2025.",
+        author: "Sarah Chen",
+        date: "Nov 25, 2024",
+        category: "finance",
+        image: "https://images.unsplash.com/photo-1565514020176-db792f4b6d80?w=800&q=80",
+        featured: true,
+        views: "14.2k"
+    },
+    {
+        id: 26,
+        title: "Cryptocurrency in 2025: A Mature Asset Class?",
+        excerpt: "Analyzing the shift from speculative mania to institutional adoption. What every investor needs to know.",
+        author: "Alex Rivera",
+        date: "Nov 22, 2024",
+        category: "finance",
+        image: "https://images.unsplash.com/photo-1621416894512-53875a2b3766?w=800&q=80",
+        featured: false,
+        views: "18.5k"
+    },
+    {
+        id: 27,
+        title: "Personal Finance 101: Budgeting in a High-Inflation Era",
+        excerpt: "Practical strategies to make your money go further when prices are rising. Smart saving tips for the modern economy.",
+        author: "Emma Davis",
+        date: "Nov 18, 2024",
+        category: "finance",
+        image: "https://images.unsplash.com/photo-1579621970724-0371d6247161?w=800&q=80",
+        featured: false,
+        views: "9.8k"
     }
 ];
 
