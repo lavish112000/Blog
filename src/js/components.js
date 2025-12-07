@@ -6,7 +6,21 @@ class ComponentsManager {
 
     getPathPrefix() {
         const path = window.location.pathname;
-        return path.includes('/pages/') ? '../' : '';
+        let depth = 0;
+
+        if (path.includes('/src/')) {
+            const relativePath = path.split('/src/')[1];
+            depth = (relativePath.match(/\//g) || []).length;
+        } else {
+            if (path.includes('/pages/')) {
+                const afterPages = path.split('/pages/')[1];
+                depth = 1 + (afterPages.match(/\//g) || []).length;
+            } else {
+                depth = 0;
+            }
+        }
+
+        return '../'.repeat(depth);
     }
 
     init() {
