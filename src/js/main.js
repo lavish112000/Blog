@@ -10,8 +10,39 @@ class ModernBlog {
     this.posts = window.blogData || [];
     console.log('Posts loaded:', this.posts.length);
     this.enrichPostsWithUrls();
-    console.log('First post URL:', this.posts[0]?.url);
+    // console.log('First post URL:', this.posts[0]?.url); // Debug
     this.init();
+  }
+
+  init() {
+    this.initializeTheme();
+    this.initializeComponents();
+    this.setupScrollEffects();
+    this.setupEventListeners();
+    this.registerServiceWorker();
+    this.handleLoadingScreen();
+  }
+
+  enrichPostsWithUrls() {
+    this.posts.forEach(post => {
+      if (!post.url) {
+        // Generate slug from title
+        const slug = post.title
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/[\s_-]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+
+        // Extract month from date (e.g., "Nov 24, 2024")
+        const dateObj = new Date(post.date);
+        const month = dateObj.toLocaleString('default', { month: 'long' }).toLowerCase();
+
+        // Construct URL: pages/[category]/[month]/[slug].html
+        // Note: This assumes the "pages" prefix is correct relative to the root.
+        // The getPostUrl method handles relative pathing from current location.
+        post.url = `pages/${post.category}/${month}/${slug}.html`;
+      }
+    });
   }
 
   initializeComponents() {
@@ -34,13 +65,36 @@ class ModernBlog {
 
     if (post.url) {
       // Calculate depth to root to generate correct relative path
-      const slashes = (window.location.pathname.match(/\//g) || []).length;
-      // If pathname is just '/' (root), slashes is 1, depth should be 0.
-      // If pathname is '/index.html', slashes is 1, depth should be 0.
-      // If pathname is '/pages/blog.html', slashes is 2, depth should be 1.
-      const depth = Math.max(0, slashes - 1);
-      const prefix = '../'.repeat(depth);
+      const path = window.location.pathname;
+      let depth = 0;
 
+      if (path.includes('/src/')) {
+        // If running locally or with src structure
+        const relativePath = path.split('/src/')[1];
+        depth = (relativePath.match(/\//g) || []).length;
+      } else {
+        // Fallback for production/root serving
+        // If we are in /pages/, depth is at least 1
+        // Count slashes, but this is tricky without knowing root.
+        // Heuristic: index.html is root (0), anything in pages/ is 1+, etc.
+        const slashes = (path.match(/\//g) || []).length;
+        // Basic heuristic: if path ends in .html and slashes > 1 (assuming / is root)
+        // This is the old fragile logic, but improved slightly:
+        // If we are at root /, depth is 0.
+        // If we are at /index.html, depth is 0.
+        // If we are at /pages/..., depth is at least 1.
+
+        // Better heuristic: Check for 'pages' in path
+        if (path.includes('/pages/')) {
+          const afterPages = path.split('/pages/')[1];
+          depth = 1 + (afterPages.match(/\//g) || []).length;
+        } else {
+          // Assume root
+          depth = 0;
+        }
+      }
+
+      const prefix = '../'.repeat(depth);
       return prefix + post.url;
     }
 
