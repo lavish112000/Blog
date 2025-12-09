@@ -534,7 +534,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
+  gap: 12px;
+  width: 250px;
   height: 60px;
   border-radius: var(--radius-full);
   background: var(--white);
@@ -543,6 +544,7 @@
   transition: all var(--transition-normal);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .social-icon-link.facebook {
@@ -634,7 +636,7 @@
   margin: 0;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #090909ff;
+  color: #1a1a1a;
 }
 
 .faq-item.active .faq-question h4 {
@@ -666,7 +668,7 @@
 }
 
 .faq-answer p {
-  color: #fffefeff;
+  color: #4a4a4a;
   line-height: 1.8;
   margin: 0;
   font-weight: 500;
