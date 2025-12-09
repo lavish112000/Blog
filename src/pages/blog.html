@@ -1,96 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T51V1CD6G6"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-        gtag('config', 'G-T51V1CD6G6');
+      gtag('config', 'G-T51V1CD6G6');
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All Articles - Vibrant Insights</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/components.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4704600108238951"
-        crossorigin="anonymous"></script>
-</head>
+    <meta
+      name="description"
+      content="Browse all articles from Vibrant Insights covering technology, design, business, finance, and lifestyle topics."
+    />
+    <meta
+      name="keywords"
+      content="blog articles, tech articles, design articles, business insights, finance tips, lifestyle blog"
+    />
+    <link rel="canonical" href="https://vibrantinsights.com/pages/blog.html" />
 
-<body>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vibrantinsights.com/pages/blog.html" />
+    <meta property="og:title" content="All Articles - Vibrant Insights" />
+    <meta
+      property="og:description"
+      content="Browse all articles covering technology, design, business, finance, and lifestyle."
+    />
+    <meta property="og:image" content="https://vibrantinsights.com/assets/images/blog-cover.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://vibrantinsights.com/pages/blog.html" />
+    <meta property="twitter:title" content="All Articles - Vibrant Insights" />
+    <meta
+      property="twitter:description"
+      content="Browse all articles on tech, design, business, and more"
+    />
+
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Google AdSense -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4704600108238951"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
     <!-- Header -->
     <header class="header" id="header">
-        <!-- Header content loaded by components.js -->
+      <!-- Header content loaded by components.js -->
     </header>
 
     <main>
-        <div class="category-hero">
-            <div class="container">
-                <h1>All Articles</h1>
-                <p>Explore our complete collection of stories, insights, and tutorials.</p>
-            </div>
+      <div class="category-hero">
+        <div class="container">
+          <h1>All Articles</h1>
+          <p>Explore our complete collection of stories, insights, and tutorials.</p>
         </div>
+      </div>
 
-        <section class="content-section">
-            <div class="container">
-                <div class="content-grid">
-                    <!-- Blog Posts -->
-                    <div class="posts-column">
-                        <div class="posts-header">
-                            <div class="filter-tabs">
-                                <button class="filter-tab active" data-filter="all">All</button>
-                                <button class="filter-tab" data-filter="technology">Tech</button>
-                                <button class="filter-tab" data-filter="design">Design</button>
-                                <button class="filter-tab" data-filter="business">Business</button>
-                                <button class="filter-tab" data-filter="lifestyle">Lifestyle</button>
-                            </div>
-                        </div>
-                        <div class="posts-grid" id="posts-grid">
-                            <!-- Blog posts will be dynamically loaded here by main.js -->
-                        </div>
-                        <div class="load-more">
-                            <button class="btn btn-outline" id="load-more-btn">Load More Articles</button>
-                        </div>
-                    </div>
-
-                    <!-- Sidebar -->
-                    <aside class="sidebar" id="sidebar">
-                        <!-- Sidebar content will be loaded here by components.js -->
-                    </aside>
+      <section class="content-section">
+        <div class="container">
+          <div class="content-grid">
+            <!-- Blog Posts -->
+            <div class="posts-column">
+              <div class="posts-header">
+                <div class="filter-tabs">
+                  <button class="filter-tab active" data-filter="all">All</button>
+                  <button class="filter-tab" data-filter="technology">Tech</button>
+                  <button class="filter-tab" data-filter="design">Design</button>
+                  <button class="filter-tab" data-filter="business">Business</button>
+                  <button class="filter-tab" data-filter="lifestyle">Lifestyle</button>
                 </div>
+              </div>
+              <div class="posts-grid" id="posts-grid">
+                <!-- Blog posts will be dynamically loaded here by main.js -->
+              </div>
+              <div class="load-more">
+                <button class="btn btn-outline" id="load-more-btn">Load More Articles</button>
+              </div>
             </div>
-        </section>
+
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+              <!-- Sidebar content will be loaded here by components.js -->
+            </aside>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer" id="footer">
-        <!-- Footer content will be loaded here by components.js -->
+      <!-- Footer content will be loaded here by components.js -->
     </footer>
 
     <!-- Search Overlay -->
     <div class="search-overlay" id="search-overlay">
-        <div class="search-container">
-            <button class="search-close" id="search-close">&times;</button>
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Type to search...">
-                <button class="search-submit"><i class="fas fa-search"></i></button>
-            </div>
-            <div class="search-suggestions" id="search-suggestions"></div>
+      <div class="search-container">
+        <button class="search-close" id="search-close">&times;</button>
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Type to search..." />
+          <button class="search-submit" aria-label="Search" title="Search">
+            <i class="fas fa-search"></i>
+          </button>
         </div>
+        <div class="search-suggestions" id="search-suggestions"></div>
+      </div>
     </div>
 
     <script src="../js/posts-data.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/components.js"></script>
-</body>
-
+  </body>
 </html>
