@@ -1,42 +1,44 @@
 [
     {
         "id": 1,
-        "title": "The Future of Web Development",
-        "content": "Web development is evolving rapidly, with new technologies and frameworks emerging every day. In this post, we explore the trends shaping the future of web development and how developers can stay ahead of the curve.",
+        "title": "The Future of Web Development in 2025: State, Logic, and Native Power",
+        "excerpt": "How CSS is evolving to handle logic and state while native browser features eliminate the need for heavy JavaScript frameworks",
+        "content": "Explore the cutting-edge trends shaping web development in 2025, from CSS state containers to AI-powered debugging, and discover how native browser features are revolutionizing the way we build for the web.",
         "author": "Lalit Choudhary",
-        "date": "2023-10-01",
-        "tags": ["Web Development", "Technology", "Trends"]
+        "date": "2025-10-15",
+        "category": "Technology",
+        "slug": "the-future-of-web-development-2025",
+        "url": "pages/technology/october/the-future-of-web-development-2025.html",
+        "image": "assets/images/web-dev-2025.jpg",
+        "readTime": "8 min read",
+        "tags": ["Web Development", "CSS", "AI", "View Transitions", "Edge Computing"]
     },
     {
         "id": 2,
-        "title": "Understanding JavaScript Closures",
-        "content": "Closures are a fundamental concept in JavaScript that allow functions to maintain access to their lexical scope. This post dives deep into closures, providing examples and use cases to help you understand their importance.",
-        "author": "John Smith",
-        "date": "2023-10-05",
-        "tags": ["JavaScript", "Programming", "Closures"]
+        "title": "Mastering Modern CSS Grid Layout: From Basics to Advanced Techniques",
+        "excerpt": "Discover how container queries, subgrid, and masonry transform CSS Grid from a simple layout tool into a powerful design system",
+        "content": "Unlock the full potential of CSS Grid with container queries, subgrid, and masonry layouts. Learn advanced techniques that transform your responsive design workflow.",
+        "author": "Priya Sharma",
+        "date": "2025-10-22",
+        "category": "Design",
+        "slug": "mastering-modern-css-grid-layout",
+        "url": "pages/design/october/mastering-modern-css-grid-layout.html",
+        "image": "assets/images/css-grid-2025.jpg",
+        "readTime": "10 min read",
+        "tags": ["CSS Grid", "Container Queries", "Subgrid", "Responsive Design", "Web Design"]
     },
     {
         "id": 3,
-        "title": "A Guide to Responsive Design",
-        "content": "Responsive design is crucial for creating websites that look great on all devices. In this guide, we cover the principles of responsive design and provide tips for implementing it effectively.",
-        "author": "Emily Johnson",
-        "date": "2023-10-10",
-        "tags": ["Design", "Responsive", "UX"]
-    },
-    {
-        "id": 4,
-        "title": "Exploring CSS Grid Layout",
-        "content": "CSS Grid Layout is a powerful tool for creating complex web layouts. This post explores the features of CSS Grid and provides practical examples to help you get started.",
-        "author": "Michael Brown",
-        "date": "2023-10-15",
-        "tags": ["CSS", "Layout", "Grid"]
-    },
-    {
-        "id": 5,
-        "title": "Getting Started with React",
-        "content": "React is one of the most popular JavaScript libraries for building user interfaces. In this post, we provide an introduction to React, covering its core concepts and how to create your first application.",
-        "author": "Sarah Wilson",
-        "date": "2023-10-20",
-        "tags": ["React", "JavaScript", "Frontend"]
+        "title": "The Science of Mindfulness: How 10 Minutes Daily Can Transform Your Life",
+        "excerpt": "Evidence-based mindfulness practices that rewire your brain for reduced stress, sharper focus, and lasting well-being",
+        "content": "Discover evidence-based mindfulness techniques that reduce stress, improve focus, and enhance well-being in just 10 minutes a day. Backed by neuroscience research.",
+        "author": "Dr. Maya Patel",
+        "date": "2025-10-28",
+        "category": "Lifestyle",
+        "slug": "the-science-of-mindfulness",
+        "url": "pages/lifestyle/october/the-science-of-mindfulness.html",
+        "image": "assets/images/mindfulness-science.jpg",
+        "readTime": "9 min read",
+        "tags": ["Mindfulness", "Mental Health", "Neuroscience", "Wellness", "Meditation"]
     }
 ]
