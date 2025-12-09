@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T51V1CD6G6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-T51V1CD6G6');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Mastering Modern CSS Grid Layout: From Basics to Advanced Techniques | Vibrant Insights
+    </title>
+    <meta
+      name="description"
+      content="Unlock the full potential of CSS Grid with container queries, subgrid, and masonry layouts. Learn advanced techniques that transform your responsive design workflow."
+    />
+    <meta
+      name="keywords"
+      content="CSS Grid, container queries, subgrid, masonry layout, responsive design, CSS 2025"
+    />
+    <meta name="author" content="Vibrant Insights" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://vibrantinsights.com/design/mastering-modern-css-grid-layout"
+    />
+    <meta property="og:title" content="Mastering Modern CSS Grid Layout: From Basics to Advanced" />
+    <meta
+      property="og:description"
+      content="Learn container queries, subgrid, and masonry layouts for responsive design"
+    />
+    <meta
+      property="og:image"
+      content="https://vibrantinsights.com/assets/images/css-grid-2025.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://vibrantinsights.com/design/mastering-modern-css-grid-layout"
+    />
+    <meta property="twitter:title" content="Mastering Modern CSS Grid Layout" />
+    <meta property="twitter:description" content="Advanced CSS Grid techniques for 2025" />
+
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <link rel="stylesheet" href="../../../css/components.css" />
+    <link rel="stylesheet" href="../../../css/responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header" id="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="nav-brand">
+            <a href="../../../index.html" class="brand-logo">
+              <i class="fas fa-feather"></i>
+              <span>Vibrant Insights</span>
+            </a>
+          </div>
+          <div class="nav-menu" id="nav-menu">
+            <ul class="nav-list">
+              <li class="nav-item"><a href="../../../index.html" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="../../blog.html" class="nav-link">Blog</a></li>
+              <li class="nav-item">
+                <a href="../../design.html" class="nav-link active">Design</a>
+              </li>
+              <li class="nav-item"><a href="../../about.html" class="nav-link">About</a></li>
+              <li class="nav-item"><a href="../../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="article-content">
+      <article class="post-single">
+        <header class="post-header">
+          <div class="container">
+            <div class="post-meta">
+              <span class="post-category"><i class="fas fa-tag"></i> Design</span>
+              <span class="post-date"><i class="fas fa-calendar"></i> October 22, 2025</span>
+              <span class="read-time"><i class="fas fa-clock"></i> 10 min read</span>
+            </div>
+            <h1 class="post-title">
+              Mastering Modern CSS Grid Layout: From Basics to Advanced Techniques
+            </h1>
+            <p class="post-excerpt">
+              Discover how container queries, subgrid, and masonry transform CSS Grid from a simple
+              layout tool into a powerful design system
+            </p>
+            <div class="author-info">
+              <div class="author-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="author-details">
+                <span class="author-name">Priya Sharma</span>
+                <span class="author-role">UI/UX Designer & Frontend Specialist</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="post-body">
+          <div class="container">
+            <div class="post-content">
+              <p class="lead">
+                CSS Grid revolutionized web layout when it launched, but the modern Grid of 2025 is
+                a completely different beast. With container queries, subgrid, and native masonry
+                support, Grid has evolved from a basic layout tool into a complete design system.
+                Let's explore these game-changing features.
+              </p>
+
+              <h2>The Evolution of CSS Grid</h2>
+              <p>
+                When CSS Grid first arrived in 2017, it was revolutionary. For the first time,
+                developers could create complex two-dimensional layouts without hacks, floats, or
+                positioning tricks. But early Grid had limitations—no way to query container sizes,
+                awkward nested grids, and no native support for masonry layouts.
+              </p>
+
+              <p>
+                Fast forward to 2025, and those limitations are history. Modern Grid combines the
+                best of responsive design, component-based architecture, and intuitive layout
+                patterns.
+              </p>
+
+              <h2>Container Queries: The Responsive Revolution</h2>
+              <p>
+                Container queries represent the biggest shift in responsive design since media
+                queries. Instead of basing layout decisions on viewport size, you can now respond to
+                the size of any container.
+              </p>
+
+              <h3>Why Container Queries Matter</h3>
+              <p>
+                Consider a sidebar component. With media queries, you'd check the entire viewport:
+              </p>
+
+              <pre><code class="language-css">/* Old approach - media queries */
+@media (min-width: 768px) {
+  .sidebar-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}</code></pre>
+
+              <p>
+                But what if that sidebar is 300px wide on a 1200px screen? The card stays stacked
+                even though there's room for two columns. Container queries solve this:
+              </p>
+
+              <pre><code class="language-css">/* Modern approach - container queries */
+.sidebar {
+  container-type: inline-size;
+  container-name: sidebar;
+}
+
+@container sidebar (min-width: 400px) {
+  .sidebar-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}</code></pre>
+
+              <p>
+                Now the card responds to its <em>actual available space</em>, not the viewport. This
+                makes components truly reusable across different contexts.
+              </p>
+
+              <h3>Real-World Container Query Patterns</h3>
+              <p>Here's a practical product card that adapts seamlessly:</p>
+
+              <pre><code class="language-css">.product-grid {
+  container-type: inline-size;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.product-card {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Stack layout for narrow containers */
+@container (max-width: 300px) {
+  .product-card {
+    grid-template-rows: auto 1fr auto;
+  }
+  
+  .product-image {
+    aspect-ratio: 1;
+  }
+}
+
+/* Side-by-side layout for wider containers */
+@container (min-width: 400px) {
+  .product-card {
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .product-image {
+    grid-row: 1 / -1;
+  }
+}</code></pre>
+
+              <p>
+                This single component works perfectly in a main content area, sidebar, modal, or
+                mobile view—without any JavaScript or manual class toggling.
+              </p>
+
+              <h2>Subgrid: Aligning Across Boundaries</h2>
+              <p>
+                One of Grid's early frustrations was nested grids. A child grid couldn't align with
+                its parent's track lines, making card layouts with aligned headings and footers
+                nearly impossible.
+              </p>
+
+              <h3>The Subgrid Solution</h3>
+              <p>Subgrid allows child grids to inherit parent grid tracks:</p>
+
+              <pre><code class="language-css">.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto 1fr auto;
+  gap: 2rem;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+}
+
+/* Now all card headers align */
+.card-header {
+  grid-row: 1;
+}
+
+/* All card bodies flex to fill space */
+.card-body {
+  grid-row: 2;
+}
+
+/* All card footers align at the bottom */
+.card-footer {
+  grid-row: 3;
+}</code></pre>
+
+              <p>
+                This creates perfectly aligned card layouts where headers, bodies, and footers line
+                up across all cards, regardless of content length. Previously, this required
+                JavaScript height calculations or flexbox hacks.
+              </p>
+
+              <h3>Practical Subgrid Use Cases</h3>
+              <ul>
+                <li>
+                  <strong>Form layouts</strong> - Align labels and inputs across nested fieldsets
+                </li>
+                <li><strong>Pricing tables</strong> - Keep features and prices aligned</li>
+                <li>
+                  <strong>Magazine layouts</strong> - Create editorial designs with aligned elements
+                </li>
+                <li>
+                  <strong>Dashboard widgets</strong> - Consistent alignment across varied content
+                </li>
+              </ul>
+
+              <h2>Masonry Layouts: Pinterest Without JavaScript</h2>
+              <p>
+                For years, masonry layouts required JavaScript libraries. In 2025, CSS Grid has
+                native masonry support:
+              </p>
+
+              <pre><code class="language-css">.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: masonry;
+  gap: 1rem;
+  align-tracks: start;
+}
+
+.gallery-item {
+  break-inside: avoid;
+}</code></pre>
+
+              <p>
+                The browser automatically handles the masonry algorithm, placing items in the
+                shortest column. This is:
+              </p>
+
+              <ul>
+                <li><strong>Faster</strong> - No JavaScript calculations or DOM manipulation</li>
+                <li>
+                  <strong>More accessible</strong> - Maintains source order for screen readers
+                </li>
+                <li><strong>Responsive</strong> - Adapts instantly to container size changes</li>
+                <li><strong>Simpler</strong> - No library dependencies to maintain</li>
+              </ul>
+
+              <h3>Advanced Masonry Techniques</h3>
+              <p>Combine masonry with container queries for ultimate flexibility:</p>
+
+              <pre><code class="language-css">.gallery-container {
+  container-type: inline-size;
+}
+
+@container (min-width: 800px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@container (min-width: 500px) and (max-width: 799px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@container (max-width: 499px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}</code></pre>
+
+              <h2>Grid Auto-Flow: Intelligent Placement</h2>
+              <p>
+                Grid's <code>auto-flow</code> property has become more powerful with the
+                <code>dense</code> keyword:
+              </p>
+
+              <pre><code class="language-css">.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-flow: dense;
+  gap: 1rem;
+}
+
+.widget-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.widget-wide {
+  grid-column: span 2;
+}
+
+.widget-tall {
+  grid-row: span 2;
+}</code></pre>
+
+              <p>
+                The <code>dense</code> keyword tells Grid to backfill gaps, creating tighter layouts
+                without manual positioning. Perfect for dashboards, image galleries, and content
+                grids.
+              </p>
+
+              <h2>Named Grid Lines and Areas</h2>
+              <p>Named grid lines make complex layouts readable and maintainable:</p>
+
+              <pre><code class="language-css">.app-layout {
+  display: grid;
+  grid-template-columns: 
+    [full-start] 1fr 
+    [content-start] minmax(0, 1200px) 
+    [content-end] 1fr 
+    [full-end];
+  grid-template-rows:
+    [header-start] auto
+    [header-end main-start] 1fr
+    [main-end footer-start] auto
+    [footer-end];
+}
+
+.header {
+  grid-column: full;
+  grid-row: header;
+}
+
+.main-content {
+  grid-column: content;
+  grid-row: main;
+}
+
+.full-width-banner {
+  grid-column: full;
+  grid-row: main;
+  z-index: -1;
+}</code></pre>
+
+              <p>
+                This pattern creates a centered content area with full-width breakout sections—a
+                common design pattern that's now trivial to implement.
+              </p>
+
+              <h2>Grid and Flexbox: When to Use Each</h2>
+              <p>Modern layouts often combine Grid and Flexbox. Here's when to use each:</p>
+
+              <h3>Use CSS Grid for:</h3>
+              <ul>
+                <li>Page-level layouts (header, sidebar, main, footer)</li>
+                <li>Card grids and galleries</li>
+                <li>When you need both row and column control</li>
+                <li>Overlapping elements (with negative margins or z-index)</li>
+                <li>Aligning items in two dimensions</li>
+              </ul>
+
+              <h3>Use Flexbox for:</h3>
+              <ul>
+                <li>Navigation menus</li>
+                <li>Button groups</li>
+                <li>Centering content in one dimension</li>
+                <li>When content should determine sizing</li>
+                <li>Dynamic wrapping of items</li>
+              </ul>
+
+              <h3>Combining Both</h3>
+              <pre><code class="language-css">.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-footer {
+  margin-top: auto; /* Push to bottom */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+
+              <h2>Performance Optimization</h2>
+              <p>Modern Grid is performant, but follow these best practices:</p>
+
+              <h3>1. Use `content-visibility` for Large Grids</h3>
+              <pre><code class="language-css">.large-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.grid-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 200px 300px;
+}</code></pre>
+
+              <p>
+                This tells the browser to skip rendering off-screen items, dramatically improving
+                performance for large grids.
+              </p>
+
+              <h3>2. Minimize Grid Recalculations</h3>
+              <p>Avoid dynamic grid changes that force recalculation:</p>
+
+              <pre><code class="language-css">/* ❌ Bad - causes recalc on every resize */
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(calc(100vw / 5), 1fr));
+}
+
+/* ✅ Good - uses intrinsic sizing */
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}</code></pre>
+
+              <h3>3. Use `will-change` Sparingly</h3>
+              <pre><code class="language-css">.animating-grid-item {
+  will-change: transform;
+  /* Remove after animation completes */
+}</code></pre>
+
+              <h2>Accessibility Considerations</h2>
+              <p>Grid's visual reordering can break accessibility. Follow these guidelines:</p>
+
+              <h3>Maintain Source Order</h3>
+              <pre><code class="language-css">/* ❌ Bad - visual order doesn't match DOM order */
+.grid-item:nth-child(1) { grid-row: 3; }
+.grid-item:nth-child(2) { grid-row: 1; }
+
+/* ✅ Good - visual order matches DOM order */
+.grid {
+  display: grid;
+  grid-auto-flow: dense;
+}</code></pre>
+
+              <h3>Use Semantic HTML</h3>
+              <pre><code class="language-html">&lt;main class="grid-layout"&gt;
+  &lt;nav aria-label="Main navigation"&gt;...&lt;/nav&gt;
+  &lt;article&gt;...&lt;/article&gt;
+  &lt;aside aria-label="Sidebar"&gt;...&lt;/aside&gt;
+&lt;/main&gt;</code></pre>
+
+              <h2>Browser Support and Fallbacks</h2>
+              <p>
+                Most Grid features have excellent support in 2025, but always provide fallbacks:
+              </p>
+
+              <pre><code class="language-css">.grid {
+  display: flex; /* Fallback */
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@supports (grid-template-rows: masonry) {
+  .masonry-grid {
+    grid-template-rows: masonry;
+  }
+}</code></pre>
+
+              <h2>Real-World Example: Complete Layout System</h2>
+              <p>Here's a production-ready layout combining all these techniques:</p>
+
+              <pre><code class="language-css">/* Container setup */
+.page-container {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: 
+    [full-start] minmax(1rem, 1fr)
+    [content-start] minmax(0, 1200px)
+    [content-end] minmax(1rem, 1fr)
+    [full-end];
+  gap: 2rem;
+}
+
+/* Main content grid */
+.content-grid {
+  grid-column: content;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Responsive cards with subgrid */
+.card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  container-type: inline-size;
+}
+
+/* Container query for card layouts */
+@container (min-width: 400px) {
+  .card-content {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Masonry gallery */
+.gallery {
+  grid-column: full;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: masonry;
+  gap: 1rem;
+  padding: 0 1rem;
+}</code></pre>
+
+              <h2>The Future of Grid</h2>
+              <p>CSS Grid continues to evolve. Upcoming features include:</p>
+
+              <ul>
+                <li><strong>Grid Level 3</strong> - More powerful masonry controls</li>
+                <li><strong>Style queries</strong> - Apply styles based on custom properties</li>
+                <li><strong>Scroll-driven grids</strong> - Animate grid properties on scroll</li>
+                <li><strong>Better DevTools</strong> - More visual debugging capabilities</li>
+              </ul>
+
+              <div class="post-conclusion">
+                <p>
+                  <strong>Key Takeaways:</strong> Modern CSS Grid with container queries, subgrid,
+                  and masonry is a complete design system. It eliminates JavaScript dependencies,
+                  improves performance, and makes responsive design intuitive. Master these features
+                  to build layouts that are flexible, maintainable, and future-proof.
+                </p>
+              </div>
+
+              <div class="post-tags">
+                <h3>Tags:</h3>
+                <a href="#" class="tag">#CSSGrid</a>
+                <a href="#" class="tag">#ContainerQueries</a>
+                <a href="#" class="tag">#Subgrid</a>
+                <a href="#" class="tag">#MasonryLayout</a>
+                <a href="#" class="tag">#ResponsiveDesign</a>
+                <a href="#" class="tag">#WebDesign</a>
+              </div>
+
+              <div class="post-share">
+                <h3>Share this article:</h3>
+                <div class="share-buttons">
+                  <a href="#" class="share-btn twitter" aria-label="Share on Twitter"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                  <a href="#" class="share-btn facebook" aria-label="Share on Facebook"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                  <a href="#" class="share-btn linkedin" aria-label="Share on LinkedIn"
+                    ><i class="fab fa-linkedin-in"></i
+                  ></a>
+                  <a href="#" class="share-btn copy" aria-label="Copy link"
+                    ><i class="fas fa-link"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <aside class="post-sidebar">
+              <div class="sidebar-widget">
+                <h3>Related Articles</h3>
+                <ul class="related-posts">
+                  <li><a href="#">The Future of Web Development in 2025</a></li>
+                  <li><a href="#">Advanced CSS Techniques</a></li>
+                  <li><a href="#">Building Responsive Layouts</a></li>
+                </ul>
+              </div>
+
+              <div class="sidebar-widget">
+                <h3>About the Author</h3>
+                <p>
+                  Priya Sharma is a UI/UX designer and frontend specialist with expertise in modern
+                  CSS and responsive design patterns. She teaches CSS Grid workshops globally.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Vibrant Insights. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../../../js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  </body>
+</html>
