@@ -11,7 +11,7 @@ This project is a modern, responsive blog website designed with an enterprise-le
 - **User Engagement**: Includes components like a newsletter signup form and a contact page to enhance user interaction.
 - **Contact Page**: Interactive contact page with form validation, FAQ accordion functionality, and secure form submission handling.
 - **Modern UI Components**: Utilizes well-structured components for the header, footer, sidebar, and more, ensuring a consistent look and feel.
-
+ 
 ## Project Structure
 
 ```text
