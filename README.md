@@ -4,7 +4,7 @@
  
 This project is a modern, responsive blog website designed with an enterprise-level UI and a vibrant color theme. It incorporates award-winning design principles to provide a comprehensive platform for daily blogging.
 
-## Features
+## Features 
 
 - **Responsive Design**: The website is fully responsive, ensuring a seamless  experience across devices of all sizes. 
 - **Dynamic Blog Posts**: Blog posts are loaded dynamically from a JSON file, allowing for easy updates and management.
